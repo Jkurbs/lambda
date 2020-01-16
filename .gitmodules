@@ -10,3 +10,6 @@
 [submodule "swift-fundamentals-ii"]
 	path = swift-fundamentals-ii
 	url = https://github.com/Jkurbs/swift-fundamentals-ii.git
+[submodule "ios-afternoon-project-swift-fundamentals-iii"]
+	path = ios-afternoon-project-swift-fundamentals-iii
+	url = https://github.com/Jkurbs/ios-afternoon-project-swift-fundamentals-iii.git
