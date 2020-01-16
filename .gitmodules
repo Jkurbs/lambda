@@ -10,3 +10,6 @@
 [submodule "Lambda-Hello"]
 	path = Lambda-Hello
 	url = https://github.com/Jkurbs/Lambda-Hello.git
+[submodule "swift-fundamentals-ii"]
+	path = swift-fundamentals-ii
+	url = https://github.com/Jkurbs/swift-fundamentals-ii.git
