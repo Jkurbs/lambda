@@ -1,0 +1,9 @@
+[submodule "Lambda-Hello"]
+	path = Lambda-Hello
+	url = https://github.com/Jkurbs/Lambda-Hello.git
+[submodule "ios-afternoon-starter-project-swift-fundamentals-ii"]
+	path = ios-afternoon-starter-project-swift-fundamentals-ii
+	url = https://github.com/Jkurbs/ios-afternoon-starter-project-swift-fundamentals-ii.git
+[submodule "ios-module-project-noclist"]
+	path = ios-module-project-noclist
+	url = https://github.com/Jkurbs/ios-module-project-noclist.git
