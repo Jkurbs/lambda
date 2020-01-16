@@ -1,6 +1,3 @@
-[submodule "Lambda-Hello"]
-	path = Lambda-Hello
-	url = https://github.com/Jkurbs/Lambda-Hello.git
 [submodule "ios-afternoon-starter-project-swift-fundamentals-ii"]
 	path = ios-afternoon-starter-project-swift-fundamentals-ii
 	url = https://github.com/Jkurbs/ios-afternoon-starter-project-swift-fundamentals-ii.git
