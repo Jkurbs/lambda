@@ -1,4 +1,7 @@
 
+
+import Foundation
+
 // Choices of flavors
 
 struct Flavor {
@@ -82,6 +85,16 @@ class IceCreamShop {
 }
 
 
+// Format currency
+func formatPriceCurrency(price: Double) -> String {
+    let formatter = NumberFormatter()
+    formatter.usesGroupingSeparator = true
+    formatter.numberStyle = .currency
+    let priceString = formatter.string(from: NSNumber(value: price))!
+    return priceString
+}
+
+
 let cherry = Flavor(name: "Cherry", rating: 2.0)
 let coconut = Flavor(name: "Coconut", rating: 5.0)
 let mango = Flavor(name: "Mango", rating: 4.0)
@@ -103,7 +116,10 @@ let order2 = iceCreamShop.orderCone(cone: Cone(flavor: coconut, topping: nil, si
 
 let order3 = iceCreamShop.orderCone(cone: Cone(flavor: upcomingFlavor, topping: nil, size: .small))
 
+// Call eat function
 order1?.eat()
 
-print("The total sales is \(iceCreamShop.totalSales)")
+let totalSales = formatPriceCurrency(price: iceCreamShop.totalSales)
+
+print("The total sales is \(totalSales)")
 
