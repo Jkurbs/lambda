@@ -60,6 +60,7 @@ class IceCreamShop {
     func orderCone(cone: Cone) -> Cone? {
         let cone = Cone(flavor: cone.flavor, topping: cone.topping, size: cone.size)
         let price = cone.size.rawValue
+        let priceString = formatPriceCurrency(price: price)
         var orderString = ""
         
         let coneFlavorName = cone.flavor.name
@@ -68,9 +69,9 @@ class IceCreamShop {
         if flavors.contains(where: { $0.name == coneFlavorName }) {
             // If flavor exist, allow order
              if let topping = cone.topping {
-                orderString = "Your \(coneFlavorName) ice cream with \(topping) is \(price)"
+                orderString = "Your \(coneFlavorName) ice cream with \(topping) is \(priceString)"
                } else {
-                orderString = "Your \(coneFlavorName) ice cream is \(price)"
+                orderString = "Your \(coneFlavorName) ice cream is \(priceString)"
                }
             // Charge customer
             totalSales += price
