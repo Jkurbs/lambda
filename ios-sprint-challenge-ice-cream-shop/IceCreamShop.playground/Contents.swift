@@ -43,7 +43,6 @@ class IceCreamShop {
     }
     
     func listTopFlavors()  {
-        
         let topFlavors = flavors.filter({$0.rating > 4})
         var flavorNames = [String]()
         if topFlavors.isEmpty {
@@ -52,9 +51,10 @@ class IceCreamShop {
             for flavor in topFlavors {
                 flavorNames.append(flavor.name)
             }
+            
+            // List top flavors/flavor
             print("Our top " + (topFlavors.count == 1  ? "flavor is \(flavorNames.joined())" : "flavors are \(flavorNames.joined(separator: " and "))"))
         }
-        
     }
     
     func orderCone(cone: Cone) -> Cone? {
@@ -75,7 +75,7 @@ class IceCreamShop {
             // Charge customer
             totalSales += price
         } else {
-            // If flavor doesn't exist, informe customer.
+            // If flavor doesn't exist, inform customer.
              print("The \(coneFlavorName) flavor is not available in the menu for the moment.")
             return nil
         }
@@ -85,7 +85,7 @@ class IceCreamShop {
 }
 
 
-// Format currency
+// Format currency function
 func formatPriceCurrency(price: Double) -> String {
     let formatter = NumberFormatter()
     formatter.usesGroupingSeparator = true
@@ -95,21 +95,28 @@ func formatPriceCurrency(price: Double) -> String {
 }
 
 
+// Create flavors
 let cherry = Flavor(name: "Cherry", rating: 2.0)
 let coconut = Flavor(name: "Coconut", rating: 5.0)
 let mango = Flavor(name: "Mango", rating: 4.0)
 let vanilla = Flavor(name: "Vanilla", rating: 6.0)
+
+// Create unavailable flavor
 let upcomingFlavor = Flavor(name: "Chocolate", rating: 0.0)
 
+// Create sizes and toppings
 let sizes = [Size.small, Size.medium, Size.large]
 let toppings = ["Hot fudge", "Sprinkles" , "Caramel" , "Oreos"]
 
+
+// Create Ice cream shop
 let iceCreamShop = IceCreamShop(flavors: [cherry, coconut, mango, vanilla], sizes: sizes, toppings: toppings)
 
 // List all flavors
 iceCreamShop.listTopFlavors()
 
 
+// Create orders
 let order1 = iceCreamShop.orderCone(cone: Cone(flavor: cherry, topping: toppings.first, size: .large))
 
 let order2 = iceCreamShop.orderCone(cone: Cone(flavor: coconut, topping: nil, size: .small))
@@ -119,6 +126,7 @@ let order3 = iceCreamShop.orderCone(cone: Cone(flavor: upcomingFlavor, topping: 
 // Call eat function
 order1?.eat()
 
+// Print total sales
 let totalSales = formatPriceCurrency(price: iceCreamShop.totalSales)
 
 print("The total sales is \(totalSales)")
