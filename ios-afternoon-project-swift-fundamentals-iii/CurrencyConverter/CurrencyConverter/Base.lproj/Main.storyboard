@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CurrencyConverter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="AlU-Wk-R04">
+                                <rect key="frame" x="16" y="74" width="382" height="118"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Vfj-ss-sAB">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="34"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency (USD)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HdR-2C-4ZX">
+                                                <rect key="frame" x="0.0" y="0.0" width="121.5" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q97-bt-eeg">
+                                                <rect key="frame" x="129.5" y="0.0" width="252.5" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hCk-xI-gcW">
+                                        <rect key="frame" x="0.0" y="42" width="382" height="34"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency (CAD)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ul6-sE-H5T">
+                                                <rect key="frame" x="0.0" y="0.0" width="121.5" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Aa-0l-hRP">
+                                                <rect key="frame" x="129.5" y="0.0" width="252.5" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kUN-gZ-WUj">
+                                        <rect key="frame" x="0.0" y="84" width="382" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Convert"/>
+                                        <connections>
+                                            <action selector="convertButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bwz-eg-OSs"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="0Aa-0l-hRP" firstAttribute="leading" secondItem="Q97-bt-eeg" secondAttribute="leading" id="RNb-85-SJ1"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6VY-g9-d4l">
+                                <rect key="frame" x="159" y="232" width="96" height="36"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4i2-QK-bC3">
+                                        <rect key="frame" x="0.0" y="0.0" width="42" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <state key="normal" title="CAD"/>
+                                        <connections>
+                                            <action selector="cadButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YOz-ty-My4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LwJ-IE-oX9">
+                                        <rect key="frame" x="50" y="0.0" width="46" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <state key="normal" title="MXN"/>
+                                        <connections>
+                                            <action selector="mxnButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e77-s2-LRf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="AlU-Wk-R04" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="6i8-B1-cNf"/>
+                            <constraint firstItem="6VY-g9-d4l" firstAttribute="centerX" secondItem="AlU-Wk-R04" secondAttribute="centerX" id="BxI-Ds-oac"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AlU-Wk-R04" secondAttribute="trailing" constant="16" id="LuW-qx-yHM"/>
+                            <constraint firstItem="6VY-g9-d4l" firstAttribute="top" secondItem="AlU-Wk-R04" secondAttribute="bottom" constant="40" id="pT6-tf-YPq"/>
+                            <constraint firstItem="AlU-Wk-R04" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="uBQ-WJ-1ix"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="cadButton" destination="4i2-QK-bC3" id="8Co-3D-SPx"/>
+                        <outlet property="fromCurrencyTextField" destination="Q97-bt-eeg" id="BEH-2e-P4d"/>
+                        <outlet property="mxnButton" destination="LwJ-IE-oX9" id="Uru-u7-y4I"/>
+                        <outlet property="toCurrencyLabel" destination="Ul6-sE-H5T" id="KTp-jG-tBg"/>
+                        <outlet property="toCurrencyTextField" destination="0Aa-0l-hRP" id="o54-Y1-COb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="78"/>
+        </scene>
+    </scenes>
+</document>
