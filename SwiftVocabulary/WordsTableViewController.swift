@@ -33,12 +33,11 @@ class WordsTableViewController: UITableViewController {
         let textField = alert.textFields![0] as UITextField
         textField.placeholder = "Word"
         textField.becomeFirstResponder()
-
-     
         
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let addButton = UIAlertAction(title: "Add", style: .default) { (action) in
-            
+            self.vocabWords.insert(VocabularyWord(word: textField.text ?? "", definition: ""), at: 0)
+            self.tableView.reloadData()
         }
         alert.addAction(cancelButton)
         alert.addAction(addButton)
