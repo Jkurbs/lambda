@@ -1,0 +1,595 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6D6ED67A23D77B59006DFCEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6ED67923D77B59006DFCEF /* AppDelegate.swift */; };
+		6D6ED67C23D77B59006DFCEF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6ED67B23D77B59006DFCEF /* SceneDelegate.swift */; };
+		6D6ED67E23D77B59006DFCEF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6ED67D23D77B59006DFCEF /* ViewController.swift */; };
+		6D6ED68123D77B59006DFCEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D6ED67F23D77B59006DFCEF /* Main.storyboard */; };
+		6D6ED68323D77B60006DFCEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D6ED68223D77B60006DFCEF /* Assets.xcassets */; };
+		6D6ED68623D77B60006DFCEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D6ED68423D77B60006DFCEF /* LaunchScreen.storyboard */; };
+		6D6ED69123D77B60006DFCEF /* GrailDiaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6ED69023D77B60006DFCEF /* GrailDiaryTests.swift */; };
+		6D6ED69C23D77B60006DFCEF /* GrailDiaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6ED69B23D77B60006DFCEF /* GrailDiaryUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6D6ED68D23D77B60006DFCEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D6ED66E23D77B59006DFCEF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D6ED67523D77B59006DFCEF;
+			remoteInfo = GrailDiary;
+		};
+		6D6ED69823D77B60006DFCEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D6ED66E23D77B59006DFCEF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D6ED67523D77B59006DFCEF;
+			remoteInfo = GrailDiary;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6D6ED67623D77B59006DFCEF /* GrailDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrailDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D6ED67923D77B59006DFCEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6D6ED67B23D77B59006DFCEF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		6D6ED67D23D77B59006DFCEF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6D6ED68023D77B59006DFCEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6D6ED68223D77B60006DFCEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6D6ED68523D77B60006DFCEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6D6ED68723D77B60006DFCEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6D6ED68C23D77B60006DFCEF /* GrailDiaryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrailDiaryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D6ED69023D77B60006DFCEF /* GrailDiaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrailDiaryTests.swift; sourceTree = "<group>"; };
+		6D6ED69223D77B60006DFCEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6D6ED69723D77B60006DFCEF /* GrailDiaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrailDiaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D6ED69B23D77B60006DFCEF /* GrailDiaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrailDiaryUITests.swift; sourceTree = "<group>"; };
+		6D6ED69D23D77B60006DFCEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6D6ED67323D77B59006DFCEF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D6ED68923D77B60006DFCEF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D6ED69423D77B60006DFCEF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6D6ED66D23D77B59006DFCEF = {
+			isa = PBXGroup;
+			children = (
+				6D6ED67823D77B59006DFCEF /* GrailDiary */,
+				6D6ED68F23D77B60006DFCEF /* GrailDiaryTests */,
+				6D6ED69A23D77B60006DFCEF /* GrailDiaryUITests */,
+				6D6ED67723D77B59006DFCEF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6D6ED67723D77B59006DFCEF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6D6ED67623D77B59006DFCEF /* GrailDiary.app */,
+				6D6ED68C23D77B60006DFCEF /* GrailDiaryTests.xctest */,
+				6D6ED69723D77B60006DFCEF /* GrailDiaryUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6D6ED67823D77B59006DFCEF /* GrailDiary */ = {
+			isa = PBXGroup;
+			children = (
+				6D6ED67923D77B59006DFCEF /* AppDelegate.swift */,
+				6D6ED67B23D77B59006DFCEF /* SceneDelegate.swift */,
+				6D6ED67D23D77B59006DFCEF /* ViewController.swift */,
+				6D6ED67F23D77B59006DFCEF /* Main.storyboard */,
+				6D6ED68223D77B60006DFCEF /* Assets.xcassets */,
+				6D6ED68423D77B60006DFCEF /* LaunchScreen.storyboard */,
+				6D6ED68723D77B60006DFCEF /* Info.plist */,
+			);
+			path = GrailDiary;
+			sourceTree = "<group>";
+		};
+		6D6ED68F23D77B60006DFCEF /* GrailDiaryTests */ = {
+			isa = PBXGroup;
+			children = (
+				6D6ED69023D77B60006DFCEF /* GrailDiaryTests.swift */,
+				6D6ED69223D77B60006DFCEF /* Info.plist */,
+			);
+			path = GrailDiaryTests;
+			sourceTree = "<group>";
+		};
+		6D6ED69A23D77B60006DFCEF /* GrailDiaryUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6D6ED69B23D77B60006DFCEF /* GrailDiaryUITests.swift */,
+				6D6ED69D23D77B60006DFCEF /* Info.plist */,
+			);
+			path = GrailDiaryUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6D6ED67523D77B59006DFCEF /* GrailDiary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D6ED6A023D77B60006DFCEF /* Build configuration list for PBXNativeTarget "GrailDiary" */;
+			buildPhases = (
+				6D6ED67223D77B59006DFCEF /* Sources */,
+				6D6ED67323D77B59006DFCEF /* Frameworks */,
+				6D6ED67423D77B59006DFCEF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GrailDiary;
+			productName = GrailDiary;
+			productReference = 6D6ED67623D77B59006DFCEF /* GrailDiary.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6D6ED68B23D77B60006DFCEF /* GrailDiaryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D6ED6A323D77B60006DFCEF /* Build configuration list for PBXNativeTarget "GrailDiaryTests" */;
+			buildPhases = (
+				6D6ED68823D77B60006DFCEF /* Sources */,
+				6D6ED68923D77B60006DFCEF /* Frameworks */,
+				6D6ED68A23D77B60006DFCEF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6D6ED68E23D77B60006DFCEF /* PBXTargetDependency */,
+			);
+			name = GrailDiaryTests;
+			productName = GrailDiaryTests;
+			productReference = 6D6ED68C23D77B60006DFCEF /* GrailDiaryTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6D6ED69623D77B60006DFCEF /* GrailDiaryUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D6ED6A623D77B60006DFCEF /* Build configuration list for PBXNativeTarget "GrailDiaryUITests" */;
+			buildPhases = (
+				6D6ED69323D77B60006DFCEF /* Sources */,
+				6D6ED69423D77B60006DFCEF /* Frameworks */,
+				6D6ED69523D77B60006DFCEF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6D6ED69923D77B60006DFCEF /* PBXTargetDependency */,
+			);
+			name = GrailDiaryUITests;
+			productName = GrailDiaryUITests;
+			productReference = 6D6ED69723D77B60006DFCEF /* GrailDiaryUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6D6ED66E23D77B59006DFCEF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = "Kerby Jean";
+				TargetAttributes = {
+					6D6ED67523D77B59006DFCEF = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+					6D6ED68B23D77B60006DFCEF = {
+						CreatedOnToolsVersion = 11.2.1;
+						TestTargetID = 6D6ED67523D77B59006DFCEF;
+					};
+					6D6ED69623D77B60006DFCEF = {
+						CreatedOnToolsVersion = 11.2.1;
+						TestTargetID = 6D6ED67523D77B59006DFCEF;
+					};
+				};
+			};
+			buildConfigurationList = 6D6ED67123D77B59006DFCEF /* Build configuration list for PBXProject "GrailDiary" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6D6ED66D23D77B59006DFCEF;
+			productRefGroup = 6D6ED67723D77B59006DFCEF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6D6ED67523D77B59006DFCEF /* GrailDiary */,
+				6D6ED68B23D77B60006DFCEF /* GrailDiaryTests */,
+				6D6ED69623D77B60006DFCEF /* GrailDiaryUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6D6ED67423D77B59006DFCEF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D6ED68623D77B60006DFCEF /* LaunchScreen.storyboard in Resources */,
+				6D6ED68323D77B60006DFCEF /* Assets.xcassets in Resources */,
+				6D6ED68123D77B59006DFCEF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D6ED68A23D77B60006DFCEF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D6ED69523D77B60006DFCEF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6D6ED67223D77B59006DFCEF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D6ED67E23D77B59006DFCEF /* ViewController.swift in Sources */,
+				6D6ED67A23D77B59006DFCEF /* AppDelegate.swift in Sources */,
+				6D6ED67C23D77B59006DFCEF /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D6ED68823D77B60006DFCEF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D6ED69123D77B60006DFCEF /* GrailDiaryTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D6ED69323D77B60006DFCEF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D6ED69C23D77B60006DFCEF /* GrailDiaryUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6D6ED68E23D77B60006DFCEF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D6ED67523D77B59006DFCEF /* GrailDiary */;
+			targetProxy = 6D6ED68D23D77B60006DFCEF /* PBXContainerItemProxy */;
+		};
+		6D6ED69923D77B60006DFCEF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D6ED67523D77B59006DFCEF /* GrailDiary */;
+			targetProxy = 6D6ED69823D77B60006DFCEF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6D6ED67F23D77B59006DFCEF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6D6ED68023D77B59006DFCEF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6D6ED68423D77B60006DFCEF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6D6ED68523D77B60006DFCEF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6D6ED69E23D77B60006DFCEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6D6ED69F23D77B60006DFCEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6D6ED6A123D77B60006DFCEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GF728A45JE;
+				INFOPLIST_FILE = GrailDiary/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kurbs.GrailDiary;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6D6ED6A223D77B60006DFCEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GF728A45JE;
+				INFOPLIST_FILE = GrailDiary/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kurbs.GrailDiary;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6D6ED6A423D77B60006DFCEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GF728A45JE;
+				INFOPLIST_FILE = GrailDiaryTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kurbs.GrailDiaryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrailDiary.app/GrailDiary";
+			};
+			name = Debug;
+		};
+		6D6ED6A523D77B60006DFCEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GF728A45JE;
+				INFOPLIST_FILE = GrailDiaryTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kurbs.GrailDiaryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrailDiary.app/GrailDiary";
+			};
+			name = Release;
+		};
+		6D6ED6A723D77B60006DFCEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GF728A45JE;
+				INFOPLIST_FILE = GrailDiaryUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kurbs.GrailDiaryUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GrailDiary;
+			};
+			name = Debug;
+		};
+		6D6ED6A823D77B60006DFCEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GF728A45JE;
+				INFOPLIST_FILE = GrailDiaryUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kurbs.GrailDiaryUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GrailDiary;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6D6ED67123D77B59006DFCEF /* Build configuration list for PBXProject "GrailDiary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D6ED69E23D77B60006DFCEF /* Debug */,
+				6D6ED69F23D77B60006DFCEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D6ED6A023D77B60006DFCEF /* Build configuration list for PBXNativeTarget "GrailDiary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D6ED6A123D77B60006DFCEF /* Debug */,
+				6D6ED6A223D77B60006DFCEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D6ED6A323D77B60006DFCEF /* Build configuration list for PBXNativeTarget "GrailDiaryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D6ED6A423D77B60006DFCEF /* Debug */,
+				6D6ED6A523D77B60006DFCEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D6ED6A623D77B60006DFCEF /* Build configuration list for PBXNativeTarget "GrailDiaryUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D6ED6A723D77B60006DFCEF /* Debug */,
+				6D6ED6A823D77B60006DFCEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6D6ED66E23D77B59006DFCEF /* Project object */;
+}
