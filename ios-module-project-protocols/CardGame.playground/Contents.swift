@@ -50,11 +50,13 @@ enum Rank: Int, CustomStringConvertible {
     }
     
     static var allRanks: [Rank] {
+        
         return [ace, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king]
     }
 }
 
 extension Rank: Comparable {
+    
     static func < (lhs: Rank, rhs: Rank) -> Bool {
         return lhs.rawValue <= rhs.rawValue
     }
@@ -98,7 +100,7 @@ struct Card: CustomStringConvertible {
 
 //: ## Step 5
 //: Make the card also conform to `CustomStringConvertible`. When turned into a string, a card's value should look something like this, "ace of spades", or "3 of diamonds".
-   /// Create an instaceof  Card
+   /// Create an instace of  Card
    let card = Card(rank: .eight, suit: .diamonds)
    print(card)
 
@@ -123,6 +125,7 @@ struct Deck {
     
     /// Function to draw cards randomly
     func drawCard() -> Card {
+        
         return cards.randomElement()!
     }
 }
@@ -188,6 +191,7 @@ protocol CardGame {
 //: * a function called `gameDidStart` that takes a `CardGame` as an argument
 //: * a function with the following signature: `game(player1DidDraw card1: Card, player2DidDraw card2: Card)`
 protocol CardGameDelegate {
+    
     func gameDidStart(cardGame: CardGame)
     func game(player1DidDraw card1: Card, player2DidDraw card2: Card)
 }
