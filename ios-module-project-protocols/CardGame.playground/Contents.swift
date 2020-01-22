@@ -207,21 +207,37 @@ class HighLow: CardGame {
     var deck = Deck()
     var cardGameDelegate: CardGameDelegate?
     
+    var timer:Timer?
+    var time = 3.0
+    
+    
     init(cardGameDelegate: CardGameDelegate) {
         self.cardGameDelegate = cardGameDelegate
     }
     
     func play() {
         
-        /// Start game
-        cardGameDelegate?.gameDidStart(cardGame: self)
-        /// Create card for players
-        let player1Card = deck.drawCard()
-        let player2Card = deck.drawCard()
-        
-        cardGameDelegate?.game(player1DidDraw: player1Card, player2DidDraw: player2Card)
-        
-        cardGameDelegate?.gameDidEnd(self)
+        /// Create a countdown before game start 
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
+            self.time -= 1
+            print("A new game is about to start in \(self.time)")
+            if self.time == 0.0 {
+                timer.invalidate()
+                
+                /// Start game
+                self.cardGameDelegate?.gameDidStart(cardGame: self)
+                
+                /// Create cards for players
+                let player1Card = self.deck.drawCard()
+                let player2Card = self.deck.drawCard()
+                
+                /// Ongoing game
+                self.cardGameDelegate?.game(player1DidDraw: player1Card, player2DidDraw: player2Card)
+                
+                /// End game
+                self.cardGameDelegate?.gameDidEnd(self)
+            }
+        })
     }
 }
 
@@ -264,16 +280,17 @@ class HighLow: CardGame {
 //: ## Step 20
 //: Create a class called `CardGameTracker` that conforms to the `CardGameDelegate` protocol. Implement the two required functions: `gameDidStart` and `game(player1DidDraw:player2DidDraw)`. Model `gameDidStart` after the same method in the guided project from today. As for the other method, have it print a message like the following:
 //: * "Player 1 drew a 6 of hearts, player 2 drew a jack of spades."
-class CardGameTracker: CardGameDelegate {
+class CardGameTracker:  CardGameDelegate {
    
     var numberOfTurns = 0
     
     func gameDidStart(cardGame: CardGame) {
-        numberOfTurns = 0
+        self.numberOfTurns = 0
         if cardGame is HighLow {
-            print("Started a new card game!")
+            print("A new game has started.")
         }
     }
+    
     
     func game(player1DidDraw card1: Card, player2DidDraw card2: Card) {
         
@@ -281,13 +298,10 @@ class CardGameTracker: CardGameDelegate {
         
         print("Player 1 drew a \(card1), player 2 drew \(card2)")
         
-
         if card1.rank == card2.rank && card1.suit == card2.suit ||  card1.rank == card2.rank && card1.suit != card2.suit {
             print("Round ends in a tie with \(card1)")
-        }
-
-        // Compare cards to see which one is greater
-        if card1.rank > card2.rank {
+        } else if card1.rank > card2.rank {
+            // Compare cards to see which one is greater
             print("Player 1 wins with \(card1)")
         } else {
             print("Player 2 wins with \(card2)")
@@ -315,4 +329,5 @@ let highLow = HighLow(cardGameDelegate: CardGameTracker())
 
 /// Play
 highLow.play()
+
 
