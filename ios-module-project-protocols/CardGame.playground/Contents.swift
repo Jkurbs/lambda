@@ -70,6 +70,7 @@ extension Rank: Comparable {
     //: Create an enum for the suit of a playing card. The values are `hearts`, `diamonds`, `spades`, and `clubs`. Use a raw type of `String` for this enum (this will allow us to get a string version of the enum cases for free, no use of `CustomStringConvertible` required).
     
     enum Suit: String {
+        
         case hearts
         case diamonds
         case spades
@@ -97,6 +98,7 @@ struct Card: CustomStringConvertible {
 
 //: ## Step 5
 //: Make the card also conform to `CustomStringConvertible`. When turned into a string, a card's value should look something like this, "ace of spades", or "3 of diamonds".
+   /// Create an instaceof  Card
    let card = Card(rank: .eight, suit: .diamonds)
    print(card)
 
@@ -108,6 +110,8 @@ struct Deck {
     var cards = [Card]()
 
     init() {
+        
+        /// Iterate over all ranks and suits
         for rank in Rank.allRanks {
             for suit in Suit.allSuits {
                 let card = Card(rank: rank, suit: suit)
@@ -116,6 +120,8 @@ struct Deck {
         }
     }
     
+    
+    /// Function to draw cards randomly
     func drawCard() -> Card {
         return cards.randomElement()!
     }
@@ -151,7 +157,7 @@ struct Deck {
 //: ## Step 10
 //: These loops will allow you to match up every rank with every suit. Make a `Card` object from all these pairings and append each card to the `cards` property of the deck. At the end of the `init` method, the `cards` array should contain a full deck of standard playing card objects.
 
-
+// Print card counts
 var deck = Deck()
 print(deck.cards.count)
 
@@ -161,7 +167,7 @@ print(deck.cards.count)
 //: Add a method to the deck called `drawCard()`. It takes no arguments and it returns a `Card` object. Have it draw a random card from the deck of cards and return it.
 //: - Callout(Hint): There should be `52` cards in the deck. So what if you created a random number within those bounds and then retrieved that card from the deck? Remember that arrays are indexed from `0` and take that into account with your random number picking.
 
-
+// Draw random cards
 deck.drawCard()
 
 
@@ -201,7 +207,7 @@ class HighLow: CardGame {
     
     func play() {
         
-        // Create card for player
+        /// Create card for players
         let player1Card = deck.drawCard()
         let player2Card = deck.drawCard()
         
@@ -258,7 +264,6 @@ class CardGameTracker: CardGameDelegate {
         
         print("Player 1 drew a \(card1), player 2 drew \(card2)")
 
-
         if card1.rank == card2.rank && card1.suit == card2.suit ||  card1.rank == card2.rank && card1.suit != card2.suit {
             print("Round ends in a tie with \(card1)")
         }
@@ -283,8 +288,9 @@ class CardGameTracker: CardGameDelegate {
 //: ```
 
 
-
+/// Create instance of HighLow
 let highLow = HighLow(cardGameDelegate: CardGameTracker())
 
+/// Play
 highLow.play()
 
