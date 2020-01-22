@@ -185,7 +185,20 @@ protocol CardGameDelegate {
 
 //: ## Step 14
 //: Create a class called `HighLow` that conforms to the `CardGame` protocol. It should have an initialized `Deck` as a property, as well as an optional delegate property of type `CardGameDelegate`.
-
+class HighLow: CardGame {
+    
+    var deck = Deck()
+    var cardGameDelegate: CardGameDelegate?
+    
+    init(deck: Deck, cardGameDelegate: CardGameDelegate) {
+        self.deck = deck
+        self.cardGameDelegate = cardGameDelegate
+    }
+    
+    func play() {
+        
+    }    
+}
 
 
 
