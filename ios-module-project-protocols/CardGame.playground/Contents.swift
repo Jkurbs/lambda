@@ -284,7 +284,7 @@ class CardGameTracker: CardGameDelegate {
 
 
 
-let game = HighLow(cardGameDelegate: CardGameTracker())
-//game.cardGameDelegate?.gameDidStart(cardGame: <#T##CardGame#>)
+let highLow = HighLow(cardGameDelegate: CardGameTracker())
 
-game.play()
+highLow.play()
+
