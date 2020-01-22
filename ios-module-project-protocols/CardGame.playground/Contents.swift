@@ -194,6 +194,8 @@ protocol CardGameDelegate {
     
     func gameDidStart(cardGame: CardGame)
     func game(player1DidDraw card1: Card, player2DidDraw card2: Card)
+    func gameDidEnd( _ game: CardGame)
+
 }
 
 
@@ -211,11 +213,15 @@ class HighLow: CardGame {
     
     func play() {
         
+        /// Start game
+        cardGameDelegate?.gameDidStart(cardGame: self)
         /// Create card for players
         let player1Card = deck.drawCard()
         let player2Card = deck.drawCard()
         
         cardGameDelegate?.game(player1DidDraw: player1Card, player2DidDraw: player2Card)
+        
+        cardGameDelegate?.gameDidEnd(self)
     }
 }
 
@@ -259,14 +265,22 @@ class HighLow: CardGame {
 //: Create a class called `CardGameTracker` that conforms to the `CardGameDelegate` protocol. Implement the two required functions: `gameDidStart` and `game(player1DidDraw:player2DidDraw)`. Model `gameDidStart` after the same method in the guided project from today. As for the other method, have it print a message like the following:
 //: * "Player 1 drew a 6 of hearts, player 2 drew a jack of spades."
 class CardGameTracker: CardGameDelegate {
+   
+    var numberOfTurns = 0
     
     func gameDidStart(cardGame: CardGame) {
-        cardGame.play()
+        numberOfTurns = 0
+        if cardGame is HighLow {
+            print("Started a new card game!")
+        }
     }
     
     func game(player1DidDraw card1: Card, player2DidDraw card2: Card) {
         
+        numberOfTurns += 1
+        
         print("Player 1 drew a \(card1), player 2 drew \(card2)")
+        
 
         if card1.rank == card2.rank && card1.suit == card2.suit ||  card1.rank == card2.rank && card1.suit != card2.suit {
             print("Round ends in a tie with \(card1)")
@@ -278,6 +292,10 @@ class CardGameTracker: CardGameDelegate {
         } else {
             print("Player 2 wins with \(card2)")
         }
+    }
+    
+    func gameDidEnd(_ game: CardGame) {
+        print("The game lasted for \(numberOfTurns) turns.")
     }
 }
 
