@@ -2,7 +2,55 @@ import Foundation
 
 //: ## Step 1
 //: Create an enumeration for the value of a playing card. The values are: `ace`, `two`, `three`, `four`, `five`, `six`, `seven`, `eight`, `nine`, `ten`, `jack`, `queen`, and `king`. Set the raw type of the enum to `Int` and assign the ace a value of `1`.
-
+enum Rank: Int, CustomStringConvertible {
+    
+    
+    case ace = 1
+    case two
+    case three
+    case four
+    case five
+    case six
+    case seven
+    case eight
+    case nine
+    case ten
+    case jack
+    case queen
+    case king
+    
+    var description:String{
+        switch self {
+        case .ace:
+             return "Ace"
+         case .two:
+             return "Two"
+         case .three:
+             return "Three"
+        case .four:
+             return "Four"
+        case .five:
+            return "Five"
+        case .six:
+            return "Six"
+        case .seven:
+            return "Seven"
+        case .eight:
+            return "Eight"
+        case .nine:
+            return "Nine"
+        case .ten:
+            return "Ten"
+        case .jack:
+            return "Jack"
+        case .queen:
+            return "Queen"
+        case .king:
+            return "King"
+         default:
+             return ""
+    }
+}
 
 
 
