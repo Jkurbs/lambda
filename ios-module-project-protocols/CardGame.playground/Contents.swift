@@ -18,7 +18,7 @@ enum Rank: Int, CustomStringConvertible {
     case queen
     case king
     
-    var description:String{
+    var description:String {
         switch self {
         case .ace:
             return "Ace"
@@ -46,9 +46,11 @@ enum Rank: Int, CustomStringConvertible {
             return "Queen"
         case .king:
             return "King"
-        default:
-            return ""
         }
+    }
+    
+    static var allRanks: [Rank] {
+        return [ace, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king]
     }
 }
     
@@ -67,20 +69,23 @@ enum Rank: Int, CustomStringConvertible {
         case diamonds
         case spades
         case clubs
+        
+        static var allSuits: [Suit] {
+            return [hearts, diamonds, spades, clubs]
+        }
     }
 
 
 //: ## Step 4
 //: Using the two enums above, create a `struct` called `Card` to model a single playing card. It should have constant properties for each constituent piece (one for suit and one for rank).
-    struct Card: CustomStringConvertible {
-        
-        let rank: Rank
-        let suit: Suit
-        
-        var description: String {
-            return "\(rank.description) of \(suit.rawValue)"
-        }
-
+struct Card: CustomStringConvertible {
+    
+    let rank: Rank
+    let suit: Suit
+    
+    var description: String {
+        return "\(rank) of \(suit)"
+    }
 }
 
 
@@ -88,19 +93,26 @@ enum Rank: Int, CustomStringConvertible {
 //: ## Step 5
 //: Make the card also conform to `CustomStringConvertible`. When turned into a string, a card's value should look something like this, "ace of spades", or "3 of diamonds".
    let card = Card(rank: .eight, suit: .diamonds)
-
    print(card)
 
 
 //: ## Step 6
 //: Create a `struct` to model a deck of cards. It should be called `Deck` and have an array of `Card` objects as a constant property. A custom `init` function should be created that initializes the array with a card of each rank and suit. You'll want to iterate over all ranks, and then over all suits (this is an example of _nested `for` loops_). See the next 2 steps before you continue with the nested loops.
 struct Deck {
-    let cards: [Card]
-    
-    init(cards: [Card]) {
-        self.cards = cards
+    var cards = [Card]()
+
+    init() {
+        for rank in Rank.allRanks {
+            for suit in Suit.allSuits {
+                let card = Card(rank: rank, suit: suit)
+                self.cards.append(card)
+            }
+        }
     }
     
+    func drawCard() -> Card? {
+        return cards.randomElement()
+    }
 }
 
 
@@ -128,10 +140,15 @@ struct Deck {
 
 
 
+
+
 //: ## Step 10
 //: These loops will allow you to match up every rank with every suit. Make a `Card` object from all these pairings and append each card to the `cards` property of the deck. At the end of the `init` method, the `cards` array should contain a full deck of standard playing card objects.
 
 
+var deck = Deck()
+print(deck.cards)
+print(deck.cards.count)
 
 
 
@@ -140,14 +157,18 @@ struct Deck {
 //: - Callout(Hint): There should be `52` cards in the deck. So what if you created a random number within those bounds and then retrieved that card from the deck? Remember that arrays are indexed from `0` and take that into account with your random number picking.
 
 
-
+deck.drawCard()
 
 
 //: ## Step 12
 //: Create a protocol for a `CardGame`. It should have two requirements:
 //: * a gettable `deck` property
 //: * a `play()` method
-
+protocol CardGame {
+    
+    var deck: Deck {get}
+    func play()
+}
 
 
 
@@ -155,7 +176,10 @@ struct Deck {
 //: Create a protocol for tracking a card game as a delegate called `CardGameDelegate`. It should have two functional requirements:
 //: * a function called `gameDidStart` that takes a `CardGame` as an argument
 //: * a function with the following signature: `game(player1DidDraw card1: Card, player2DidDraw card2: Card)`
-
+protocol CardGameDelegate {
+    func gameDidStart(cardGame: CardGame)
+    func game(player1DidDraw card1: Card, player2DidDraw card2: Card)
+}
 
 
 
@@ -213,5 +237,4 @@ struct Deck {
 //: Player 1 drew a 2 of diamonds, player 2 drew a ace of diamonds.
 //: Player 1 wins with 2 of diamonds.
 //: ```
-
 
