@@ -3,7 +3,7 @@ import Foundation
 //: ## Step 1
 //: Create an enumeration for the value of a playing card. The values are: `ace`, `two`, `three`, `four`, `five`, `six`, `seven`, `eight`, `nine`, `ten`, `jack`, `queen`, and `king`. Set the raw type of the enum to `Int` and assign the ace a value of `1`.
 enum Rank: Int, CustomStringConvertible {
-    
+
     case ace = 1
     case two
     case three
@@ -53,7 +53,12 @@ enum Rank: Int, CustomStringConvertible {
         return [ace, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king]
     }
 }
-    
+
+extension Rank: Comparable {
+    static func < (lhs: Rank, rhs: Rank) -> Bool {
+        return lhs.rawValue <= rhs.rawValue
+    }
+}
     
     //: ## Step 2
     //: Once you've defined the enum as described above, take a look at this built-in protocol, [CustomStringConvertible](https://developer.apple.com/documentation/swift/customstringconvertible) and make the enum conform to that protocol. Make the face cards return a string of their name, and for the numbered cards, simply have it return that number as a string.
@@ -99,6 +104,7 @@ struct Card: CustomStringConvertible {
 //: ## Step 6
 //: Create a `struct` to model a deck of cards. It should be called `Deck` and have an array of `Card` objects as a constant property. A custom `init` function should be created that initializes the array with a card of each rank and suit. You'll want to iterate over all ranks, and then over all suits (this is an example of _nested `for` loops_). See the next 2 steps before you continue with the nested loops.
 struct Deck {
+    
     var cards = [Card]()
 
     init() {
@@ -110,8 +116,8 @@ struct Deck {
         }
     }
     
-    func drawCard() -> Card? {
-        return cards.randomElement()
+    func drawCard() -> Card {
+        return cards.randomElement()!
     }
 }
 
@@ -147,7 +153,6 @@ struct Deck {
 
 
 var deck = Deck()
-print(deck.cards)
 print(deck.cards.count)
 
 
@@ -190,14 +195,18 @@ class HighLow: CardGame {
     var deck = Deck()
     var cardGameDelegate: CardGameDelegate?
     
-    init(deck: Deck, cardGameDelegate: CardGameDelegate) {
-        self.deck = deck
+    init(cardGameDelegate: CardGameDelegate) {
         self.cardGameDelegate = cardGameDelegate
     }
     
     func play() {
         
-    }    
+        // Create card for player
+        let player1Card = deck.drawCard()
+        let player2Card = deck.drawCard()
+        
+        cardGameDelegate?.game(player1DidDraw: player1Card, player2DidDraw: player2Card)
+    }
 }
 
 
@@ -239,7 +248,29 @@ class HighLow: CardGame {
 //: ## Step 20
 //: Create a class called `CardGameTracker` that conforms to the `CardGameDelegate` protocol. Implement the two required functions: `gameDidStart` and `game(player1DidDraw:player2DidDraw)`. Model `gameDidStart` after the same method in the guided project from today. As for the other method, have it print a message like the following:
 //: * "Player 1 drew a 6 of hearts, player 2 drew a jack of spades."
+class CardGameTracker: CardGameDelegate {
+    
+    func gameDidStart(cardGame: CardGame) {
+        cardGame.play()
+    }
+    
+    func game(player1DidDraw card1: Card, player2DidDraw card2: Card) {
+        
+        print("Player 1 drew a \(card1), player 2 drew \(card2)")
 
+
+        if card1.rank == card2.rank && card1.suit == card2.suit ||  card1.rank == card2.rank && card1.suit != card2.suit {
+            print("Round ends in a tie with \(card1)")
+        }
+
+        // Compare cards to see which one is greater
+        if card1.rank > card2.rank {
+            print("Player 1 wins with \(card1)")
+        } else {
+            print("Player 2 wins with \(card2)")
+        }
+    }
+}
 
 
 //: Step 21
@@ -251,3 +282,9 @@ class HighLow: CardGame {
 //: Player 1 wins with 2 of diamonds.
 //: ```
 
+
+
+let game = HighLow(cardGameDelegate: CardGameTracker())
+//game.cardGameDelegate?.gameDidStart(cardGame: <#T##CardGame#>)
+
+game.play()
