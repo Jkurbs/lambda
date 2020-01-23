@@ -16,7 +16,7 @@ protocol AddPOIDelegate {
 class AddPOIViewController: UIViewController {
     
     
-    // MARK: Outlets/Properties
+    // MARK: - Outlets/Properties
     
     @IBOutlet weak var locationField: UITextField!
     @IBOutlet weak var countryField: UITextField!
@@ -28,16 +28,15 @@ class AddPOIViewController: UIViewController {
     var delegate: AddPOIDelegate?
     
     
-    // MARK: ViewController LifeCycle
+    // MARK: - ViewController LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
     }
     
     
-    // MARK: Actions
+    // MARK: - Actions
     
     @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
         /// Dismiss viewController
@@ -59,7 +58,7 @@ class AddPOIViewController: UIViewController {
 }
 
 
-// MARK: UITextFieldDelegate
+// MARK: - UITextFieldDelegate
 
 extension AddPOIViewController: UITextFieldDelegate {
     
