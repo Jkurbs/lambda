@@ -95,7 +95,7 @@ extension MovieListVC: UITableViewDelegate, UITableViewDataSource {
             
             alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { (updateAction) in
                 self.movies[indexPath.row].name = alert.textFields!.first!.text!
-                self.tableView.reloadRows(at: [indexPath], with: .fade)
+                self.saveMovies()
             }))
             
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -108,7 +108,8 @@ extension MovieListVC: UITableViewDelegate, UITableViewDataSource {
         /// Delete movie
         let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
             self.movies.remove(at: indexPath.row)
-            tableView.reloadData()
+            ///Save movies
+            self.saveMovies()
         })
 
         return [deleteAction, editAction]
@@ -126,14 +127,14 @@ extension MovieListVC: MovieDelegate {
     
     func newMovieAdded(_ movie: Movie) {
         self.movies.append(movie)
-        
-        /// Archive our movies to NSData
-
-        let movieData = archiveMovie(movie: movies)
-        
+        ///Save movies
+        saveMovies()
+    }
+    
+    func saveMovies() {
+        tableView.reloadData()
+        let movieData = archiveMovie(movie: self.movies)
         UserDefaults.standard.set(movieData, forKey: "movies")
         UserDefaults.standard.synchronize()
-
-        self.tableView.reloadData()
     }
 }
