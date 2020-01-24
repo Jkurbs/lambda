@@ -34,8 +34,9 @@ class AddMovieVC: UIViewController {
     func setupViews() {
         
         self.title = "Add Movie"
+        self.view.backgroundColor = .white
         
-        let addButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveNewMovie))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveNewMovie))
         self.navigationItem.rightBarButtonItem = addButton
         
         view.addSubview(textField)
@@ -48,6 +49,8 @@ class AddMovieVC: UIViewController {
     @objc func saveNewMovie() {
         guard let movieTitle = textField.text else { return }
         let movie = Movie(name: movieTitle, seen: false)
+        print(movie)
         delegate?.newMovieAdded(movie)
+        self.dismiss(animated: true, completion: nil)
     }
 }
