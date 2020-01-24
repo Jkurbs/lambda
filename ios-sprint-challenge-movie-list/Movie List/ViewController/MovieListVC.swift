@@ -15,8 +15,7 @@ class MovieListVC: UIViewController {
     var tableView: UITableView!
     var movies = [Movie]()
     
-    let UserDefaultsPeopleKey = "movieKey"
-
+    let key = "movies"
     
     // MARK: - ViewController LifeCicle
     
@@ -30,7 +29,7 @@ class MovieListVC: UIViewController {
     
     func setupViews() {
         
-        self.title = "Favorites"
+        self.title = "Favorite movies"
         self.view.backgroundColor = .white
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewMovie))
@@ -43,20 +42,21 @@ class MovieListVC: UIViewController {
         view.addSubview(tableView)
     }
     
-    @objc func addNewMovie() {
-        let vc = AddMovieVC()
-        let nav = UINavigationController(rootViewController:vc)
-        vc.delegate = self
-        self.present(nav, animated: true, completion: nil)
-    }
     
-    func loadExistingMovies(){
-        if let unarchivedObject = UserDefaults.standard.object(forKey: "movies") as? NSData {
+    func loadExistingMovies() {
+        if let unarchivedObject = UserDefaults.standard.object(forKey: key) as? NSData {
             if let movies = NSKeyedUnarchiver.unarchiveObject(with: unarchivedObject as Data) as? [Movie] {
                 self.movies = movies
                 tableView.reloadData()
             }
         }
+    }
+    
+    @objc func addNewMovie() {
+        let vc = AddMovieVC()
+        let nav = UINavigationController(rootViewController:vc)
+        vc.delegate = self
+        self.present(nav, animated: true, completion: nil)
     }
 }
 
@@ -83,7 +83,6 @@ extension MovieListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        /// Update movie name
         let editAction = UITableViewRowAction(style: .default, title: "Edit", handler: { (action, indexPath) in
             
             let name = self.movies[indexPath.row].name
@@ -95,6 +94,7 @@ extension MovieListVC: UITableViewDelegate, UITableViewDataSource {
             
             alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { (updateAction) in
                 self.movies[indexPath.row].name = alert.textFields!.first!.text!
+                /// Update movie from userDefaults
                 self.saveMovies()
             }))
             
@@ -104,11 +104,9 @@ extension MovieListVC: UITableViewDelegate, UITableViewDataSource {
         
         editAction.backgroundColor = .systemBlue
 
-        
-        /// Delete movie
         let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
             self.movies.remove(at: indexPath.row)
-            ///Save movies
+            /// Remove deleted movie from userDefaults
             self.saveMovies()
         })
 
@@ -127,14 +125,16 @@ extension MovieListVC: MovieDelegate {
     
     func newMovieAdded(_ movie: Movie) {
         self.movies.append(movie)
-        ///Save movies
+        /// Add new movie to UserDefaults
         saveMovies()
     }
     
+    
+    // Add-Update-Remove movie from UserDefaults
     func saveMovies() {
         tableView.reloadData()
         let movieData = archiveMovie(movie: self.movies)
-        UserDefaults.standard.set(movieData, forKey: "movies")
+        UserDefaults.standard.set(movieData, forKey: key)
         UserDefaults.standard.synchronize()
     }
 }
