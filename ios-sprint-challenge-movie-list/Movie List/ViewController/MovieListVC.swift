@@ -15,13 +15,15 @@ class MovieListVC: UIViewController {
     var tableView: UITableView!
     var movies = [Movie]()
     
+    let UserDefaultsPeopleKey = "movieKey"
+
+    
     // MARK: - ViewController LifeCicle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupViews()
-        
+        loadExistingMovies()
     }
     
     // MARK: - Helper Functions
@@ -42,11 +44,19 @@ class MovieListVC: UIViewController {
     }
     
     @objc func addNewMovie() {
-    
         let vc = AddMovieVC()
         let nav = UINavigationController(rootViewController:vc)
         vc.delegate = self
         self.present(nav, animated: true, completion: nil)
+    }
+    
+    func loadExistingMovies(){
+        if let unarchivedObject = UserDefaults.standard.object(forKey: "movies") as? NSData {
+            if let movies = NSKeyedUnarchiver.unarchiveObject(with: unarchivedObject as Data) as? [Movie] {
+                self.movies = movies
+                tableView.reloadData()
+            }
+        }
     }
 }
 
@@ -72,7 +82,6 @@ extension MovieListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
         
         /// Update movie name
         let editAction = UITableViewRowAction(style: .default, title: "Edit", handler: { (action, indexPath) in
@@ -110,8 +119,21 @@ extension MovieListVC: UITableViewDelegate, UITableViewDataSource {
 
 extension MovieListVC: MovieDelegate {
     
+    func archiveMovie(movie:[Movie]) -> NSData {
+        let archivedObject = NSKeyedArchiver.archivedData(withRootObject: movie as NSArray)
+        return archivedObject as NSData
+    }
+    
     func newMovieAdded(_ movie: Movie) {
         self.movies.append(movie)
+        
+        /// Archive our movies to NSData
+
+        let movieData = archiveMovie(movie: movies)
+        
+        UserDefaults.standard.set(movieData, forKey: "movies")
+        UserDefaults.standard.synchronize()
+
         self.tableView.reloadData()
     }
 }

@@ -49,8 +49,7 @@ class AddMovieVC: UIViewController {
     @objc func saveNewMovie() {
         guard let movieTitle = textField.text else { return }
         let movie = Movie(name: movieTitle, seen: false)
-        print(movie)
-        delegate?.newMovieAdded(movie)
+        delegate?.newMovieAdded(movie)    
         self.dismiss(animated: true, completion: nil)
     }
 }

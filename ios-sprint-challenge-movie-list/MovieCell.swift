@@ -54,7 +54,7 @@ class MovieCell: UITableViewCell {
     }
     
      @objc func watched(_ sender: UIButton) {
-        guard var movie = self.movie else { return }
+        guard let movie = self.movie else { return }
         movie.seen = !movie.seen
         print(movie.seen)
         movie.seen ? seenButton.setTitle("Seen", for: .normal) : seenButton.setTitle("Not seen", for: .normal)
