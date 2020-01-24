@@ -26,7 +26,6 @@ class AddMovieVC: UIViewController {
         super.viewDidLoad()
         
         setupViews()
-
     }
     
     //MARK: - Helper Functions

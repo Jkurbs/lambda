@@ -92,9 +92,9 @@ extension MovieListVC: UITableViewDelegate, UITableViewDataSource {
                 textField.placeholder = "Add new name"
             })
             
+            /// Update existing movie
             alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { (updateAction) in
                 self.movies[indexPath.row].name = alert.textFields!.first!.text!
-                /// Update movie from userDefaults
                 self.saveMovies()
             }))
             
@@ -104,9 +104,9 @@ extension MovieListVC: UITableViewDelegate, UITableViewDataSource {
         
         editAction.backgroundColor = .systemBlue
 
+        /// Remove deleted movie
         let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
             self.movies.remove(at: indexPath.row)
-            /// Remove deleted movie from userDefaults
             self.saveMovies()
         })
 
@@ -118,23 +118,25 @@ extension MovieListVC: UITableViewDelegate, UITableViewDataSource {
 
 extension MovieListVC: MovieDelegate {
     
+    
+    func newMovieAdded(_ movie: Movie) {
+        /// Add new movie
+        self.movies.append(movie)
+        saveMovies()
+    }
+    
     func archiveMovie(movie:[Movie]) -> NSData {
+        /// Archive array of Movie to NSData to save with UserDefaults
         let archivedObject = NSKeyedArchiver.archivedData(withRootObject: movie as NSArray)
         return archivedObject as NSData
     }
     
-    func newMovieAdded(_ movie: Movie) {
-        self.movies.append(movie)
-        /// Add new movie to UserDefaults
-        saveMovies()
-    }
-    
-    
-    // Add-Update-Remove movie from UserDefaults
     func saveMovies() {
+        /// Add-Update-Remove movie
         tableView.reloadData()
         let movieData = archiveMovie(movie: self.movies)
         UserDefaults.standard.set(movieData, forKey: key)
         UserDefaults.standard.synchronize()
     }
 }
+
