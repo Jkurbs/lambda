@@ -11,7 +11,7 @@ import UIKit
 class MovieCell: UITableViewCell {
     
     
-    // MARK: - Properties
+    // MARK: - UI Elements
     
     var movieNameLabel = UILabel()
     var seenButton = UIButton()
@@ -32,7 +32,7 @@ class MovieCell: UITableViewCell {
         let width = contentView.frame.width
         let height =  contentView.frame.height
         movieNameLabel.frame = CGRect(x: 20, y: 0, width: width - 80 , height: height)
-        seenButton.frame = CGRect(x: contentView.bounds.width - 10, y: 0, width: 80, height: height)
+        seenButton.frame = CGRect(x: contentView.bounds.width, y: 0, width: 80, height: height)
         seenButton.addTarget(self, action: #selector(watched(_:)), for: .touchUpInside)
         seenButton.setTitleColor(contentView.tintColor, for: .normal)
         

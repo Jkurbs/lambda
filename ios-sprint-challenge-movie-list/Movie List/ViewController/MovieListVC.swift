@@ -71,11 +71,38 @@ extension MovieListVC: UITableViewDelegate, UITableViewDataSource {
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        
+        /// Update movie name
+        let editAction = UITableViewRowAction(style: .default, title: "Edit", handler: { (action, indexPath) in
+            
+            let name = self.movies[indexPath.row].name
+                        
+            let alert = UIAlertController(title: "", message: "Change name of \(name)", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: { (textField) in
+                textField.placeholder = "Add new name"
+            })
+            
+            alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { (updateAction) in
+                self.movies[indexPath.row].name = alert.textFields!.first!.text!
+                self.tableView.reloadRows(at: [indexPath], with: .fade)
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: false)
+        })
+        
+        editAction.backgroundColor = .systemBlue
+
+        
+        /// Delete movie
+        let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
             self.movies.remove(at: indexPath.row)
-            self.tableView.reloadData()
-        }
+            tableView.reloadData()
+        })
+
+        return [deleteAction, editAction]
     }
 }
 
