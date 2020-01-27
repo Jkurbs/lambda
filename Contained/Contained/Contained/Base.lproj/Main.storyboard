@@ -47,8 +47,7 @@
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HwY-KY-YeP">
                                                 <rect key="frame" x="45.5" y="0.0" width="51" height="31"/>
                                                 <connections>
-                                                    <action selector="toggleFade:" destination="Wa8-NH-mbi" eventType="valueChanged" id="9gT-nk-iOL"/>
-                                                    <action selector="toggleRoll:" destination="Wa8-NH-mbi" eventType="valueChanged" id="7Sz-wT-T0Y"/>
+                                                    <action selector="toggleFade:" destination="Wa8-NH-mbi" eventType="valueChanged" id="FNJ-qO-gcf"/>
                                                 </connections>
                                             </switch>
                                         </subviews>
@@ -65,8 +64,7 @@
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xtx-OT-5O0">
                                                 <rect key="frame" x="34" y="0.0" width="51" height="31"/>
                                                 <connections>
-                                                    <action selector="toggleFall:" destination="Wa8-NH-mbi" eventType="valueChanged" id="eEY-08-36x"/>
-                                                    <action selector="toggleRoll:" destination="Wa8-NH-mbi" eventType="valueChanged" id="CY9-hX-vkU"/>
+                                                    <action selector="toggleFall:" destination="Wa8-NH-mbi" eventType="valueChanged" id="ksB-yW-Wi8"/>
                                                 </connections>
                                             </switch>
                                         </subviews>

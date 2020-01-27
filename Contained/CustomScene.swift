@@ -12,7 +12,7 @@ import SpriteKit
 class CustomScene: SKScene {
     let crab = SKSpriteNode()
     
-    // Add and center child, initializing animation sequence
+    /// Add and center child, initializing animation sequence
     override func sceneDidLoad() {
         super.sceneDidLoad()
         addChild(crab)
@@ -20,26 +20,30 @@ class CustomScene: SKScene {
         Settings.shared.happy ? crab.loadTextures(named: "HappyCrab", forKey: SKSpriteNode.textureKey) : crab.loadTextures(named: "WaitingCrab", forKey: SKSpriteNode.textureKey)
         crab.position = Settings.shared.position ?? CGPoint(x: frame.midX, y: frame.midY)
     }
-    
-   
-    
+
     // Move to touch
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        // Fetch a touch or leave
+        /// Fetch a touch or leave
         guard !touches.isEmpty, let touch = touches.first else { return }
         
-        // Retrieve position
+        /// Retrieve position
         let position = touch.location(in: self)
         Settings.shared.position = position
         
-        // Create move action
+        /// Create move action
         let actionDuration = 1.0
         let moveAction = SKAction.move(to: position, duration: actionDuration)
         
+        
+        /// Create Roll action
         let rollAction = SKAction.rotate(byAngle: CGFloat.pi * 2, duration: actionDuration)
-        let fadeAction = SKAction.fadeAlpha(by: 1.5, duration: 1.5)
-        let falloffAction = SKAction.falloff(by: 10.0, duration: 1.0)
+        
+        /// Create Fade actions
+        let fadeOutAction = SKAction.fadeOut(withDuration: 1.0)
+        let fadeInAction = SKAction.fadeIn(withDuration: 1.0)
+        
+        /// Create zoom actions
         let zoomAction = SKAction.scale(by: 1.3, duration: 0.3)
         let unzoomAction = SKAction.scale(to: 1.0, duration: 0.1)
                 
@@ -54,12 +58,10 @@ class CustomScene: SKScene {
         if Settings.shared.shouldRoll {
             crab.run(rollAction)
         }
+        
         if Settings.shared.shouldFade {
-            print("SHOULD FADE")
-            crab.run(fadeAction)
-        }
-        if Settings.shared.shouldFall {
-            crab.run(falloffAction)
+            let sequenceAction = SKAction.sequence([fadeOutAction, fadeInAction])
+            crab.run(sequenceAction)
         }
     }
 }
