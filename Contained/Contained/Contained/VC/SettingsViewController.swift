@@ -19,10 +19,6 @@ class SettingsViewController: UIViewController {
          Settings.shared.shouldFade = sender.isOn
     }
     
-    @IBAction func toggleFall(_ sender: UISwitch) {
-        Settings.shared.shouldFall = sender.isOn
-    }
-    
     @IBAction func toggleZoom(_ sender: UISwitch) {
         Settings.shared.shouldZoom = sender.isOn
     }
