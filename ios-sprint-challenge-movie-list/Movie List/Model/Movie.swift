@@ -11,7 +11,7 @@ import Foundation
 class Movie: NSObject, NSCoding {
     
     
-    var name: String = ""
+    var name: String
     var seen: Bool = false
     
     init(name: String, seen: Bool) {
@@ -23,7 +23,7 @@ class Movie: NSObject, NSCoding {
     
     func encode(with coder: NSCoder) {
         coder.encode(name, forKey: "name")
-        coder.encode(false, forKey: "seen")
+        coder.encode(seen, forKey: "seen")
     }
     
     required init?(coder: NSCoder) {

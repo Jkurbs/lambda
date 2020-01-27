@@ -1,5 +1,5 @@
 //
-//  DatePickerViewController.swift
+//  ViewController.swift
 //  Outatime
 //
 //  Created by Kerby Jean on 1/27/20.
@@ -8,11 +8,13 @@
 
 import UIKit
 
-class DatePickerViewController: UIViewController {
+class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
+
+
 }
+

@@ -14,6 +14,8 @@ class MovieListVC: UIViewController {
     
     var tableView: UITableView!
     var movies = [Movie]()
+    var seenMovies = [Movie]()
+    let sectionTitles = ["Not seen", "Seen"]
     
     let key = "movies"
     
@@ -47,6 +49,7 @@ class MovieListVC: UIViewController {
         if let unarchivedObject = UserDefaults.standard.object(forKey: key) as? NSData {
             if let movies = NSKeyedUnarchiver.unarchiveObject(with: unarchivedObject as Data) as? [Movie] {
                 self.movies = movies
+                self.seenMovies = movies.filter{($0.seen == false)}
                 tableView.reloadData()
             }
         }
@@ -64,16 +67,46 @@ class MovieListVC: UIViewController {
 
 extension MovieListVC: UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height:  60))
+        view.backgroundColor = .red
+        let label = UILabel(frame: view.bounds)
+        label.text = sectionTitles[section]
+        label.backgroundColor = .white
+        view.addSubview(label)
+        return view
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
+        if section == 0 {
+            return movies.filter{($0.seen == false)}.count
+        } else {
+
+            return seenMovies.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: MovieCell.id, for: indexPath) as? MovieCell {
-            let movie = self.movies[indexPath.row]
-            cell.movie = movie
-            return cell
+        if indexPath.section == 0 {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: MovieCell.id, for: indexPath) as? MovieCell {
+                let movie = movies.filter{($0.seen == false )}[indexPath.count]
+                cell.movie = movie
+                cell.tableView = tableView
+                return cell
+            }
+        } else {
+            print("SECTION SE")
+            if let cell = tableView.dequeueReusableCell(withIdentifier: MovieCell.id, for: indexPath) as? MovieCell {
+                let movie = seenMovies[indexPath.count]
+                cell.movie = movie
+                return cell
+            }
         }
+        
         return UITableViewCell()
     }
     

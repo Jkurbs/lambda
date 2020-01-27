@@ -9,11 +9,25 @@
 import UIKit
 
 class TimeCircuitsViewController: UIViewController {
+    
+    
+    let destDescLabel = UILabel()
+    let destinationValueLabel = UILabel()
+    
+//    lazy var containerStackview = TimeStackView(
+    
+    
+    
+    
+    
+  
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        
     }
     
 

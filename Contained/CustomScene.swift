@@ -16,9 +16,12 @@ class CustomScene: SKScene {
     override func sceneDidLoad() {
         super.sceneDidLoad()
         addChild(crab)
+        
         crab.loadTextures(named: "HappyCrab", forKey: SKSpriteNode.textureKey)
-        crab.position = CGPoint(x: frame.midX, y: frame.midY)
+        crab.position = Settings.shared.position ?? CGPoint(x: frame.midX, y: frame.midY)
     }
+    
+   
     
     // Move to touch
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -28,6 +31,7 @@ class CustomScene: SKScene {
         
         // Retrieve position
         let position = touch.location(in: self)
+        Settings.shared.position = position
         
         // Create move action
         let actionDuration = 1.0

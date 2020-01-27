@@ -29,7 +29,7 @@
             </objects>
             <point key="canvasLocation" x="3255" y="-662"/>
         </scene>
-        <!--Info View Controller-->
+        <!--Info-->
         <scene sceneID="rBc-Ws-Gyq">
             <objects>
                 <viewController id="Lf0-KN-jRk" customClass="InfoViewController" customModule="Contained" customModuleProvider="target" sceneMemberID="viewController">
@@ -53,6 +53,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mWy-gA-fRZ"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Info" image="info" id="n02-E0-sG3"/>
                     <navigationItem key="navigationItem" id="kDO-aD-Z3p">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="fvP-Gx-qVE">
                             <connections>
@@ -60,6 +61,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vfV-eb-V75" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -120,4 +122,7 @@
             <point key="canvasLocation" x="640.57971014492762" y="-662.27678571428567"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="info" width="30" height="30"/>
+    </resources>
 </document>

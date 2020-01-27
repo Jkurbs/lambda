@@ -10,11 +10,11 @@ import UIKit
 
 class MovieCell: UITableViewCell {
     
-    
     // MARK: - UI Elements
     
     var movieNameLabel = UILabel()
     var seenButton = UIButton()
+    var tableView: UITableView!
     
     static var id: String {
         return String(describing: self)
