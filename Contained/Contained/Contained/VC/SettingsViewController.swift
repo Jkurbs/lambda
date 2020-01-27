@@ -10,14 +10,9 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
-
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+     @IBAction func toggleCrabState(_ sender: UISwitch) {
+        Settings.shared.happy = sender.isOn
+     }
     
     @IBAction func toggleRoll(_ sender: UISwitch) {
         Settings.shared.shouldRoll = sender.isOn
@@ -25,6 +20,14 @@ class SettingsViewController: UIViewController {
     
     @IBAction func toggleZoom(_ sender: UISwitch) {
         Settings.shared.shouldZoom = sender.isOn
+    }
+    
+    @IBAction func toggleFade(_ sender: UISwitch) {
+        Settings.shared.shouldFade = sender.isOn
+    }
+    
+    @IBAction func toggleFall(_ sender: UISwitch) {
+        Settings.shared.shouldFall = sender.isOn
     }
     /*
     // MARK: - Navigation
