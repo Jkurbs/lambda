@@ -55,7 +55,7 @@ class BookController {
     
     
     func updateHasBeenRead(for book: Book) {
-        var book = books.filter({$0 == book}).first
+        var book = books.filter({$0.title == book.title}).first
         book?.hasBeenRead = true
         self.saveToPersistentStore()
     }

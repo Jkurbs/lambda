@@ -90,7 +90,6 @@ extension ReadingListTableViewController {
 extension ReadingListTableViewController: BookTableViewCellDelegate {
     
     func toggleHasBeenRead(for cell: ReadingListCell) {
-        print("DOUBLE TAPPED")
         if let book = cell.book {
             bookController.updateHasBeenRead(for: book)
             self.tableView.reloadData()

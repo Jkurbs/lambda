@@ -26,6 +26,15 @@ class ReadingListCell: UITableViewCell {
 
     @IBAction func toogleReadButton(_ sender: UIButton) {
         print("TAPPED")
+        
+        sender.isSelected = !sender.isSelected
+        
+        
+        if sender.isSelected {
+            sender.setImage(UIImage(named: "checked"), for: .selected)
+        } else {
+            sender.setImage(UIImage(named: "unchecked"), for: .normal)
+        }
         delegate?.toggleHasBeenRead(for: self)
     }
     
@@ -33,7 +42,7 @@ class ReadingListCell: UITableViewCell {
     func updateViews() {
         if let book = self.book {
             self.titleLabel.text = book.title
-            _ = book.hasBeenRead ? readButton.isSelected : !readButton.isSelected
+            _ = book.hasBeenRead ? readButton.setImage(UIImage(named: "checked"), for: .selected) :  readButton.setImage(UIImage(named: "unchecked"), for: .normal)
         }
     }
 }

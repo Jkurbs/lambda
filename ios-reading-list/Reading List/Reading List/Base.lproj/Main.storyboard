@@ -28,7 +28,7 @@
                                             <rect key="frame" x="20" y="11" width="366" height="44"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJe-bw-jqN">
-                                                    <rect key="frame" x="0.0" y="0.0" width="196" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="172" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="196" id="c85-wQ-3Yg"/>
                                                         <constraint firstAttribute="height" constant="44" id="haI-v3-6DH"/>
@@ -38,8 +38,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ufw-X5-xU1">
-                                                    <rect key="frame" x="346" y="0.0" width="20" height="44"/>
-                                                    <state key="normal" image="circle" catalog="system"/>
+                                                    <rect key="frame" x="322" y="0.0" width="44" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="aeO-NG-yeA"/>
+                                                        <constraint firstAttribute="height" constant="44" id="pqE-Jf-dTi"/>
+                                                    </constraints>
+                                                    <state key="normal" image="unchecked"/>
                                                     <state key="selected" image="checkmark.circle.fill" catalog="system"/>
                                                     <connections>
                                                         <action selector="toogleReadButton:" destination="70o-dl-it2" eventType="touchUpInside" id="VYu-ZL-bcm"/>
@@ -151,7 +155,7 @@
     </scenes>
     <resources>
         <image name="checkmark.circle.fill" catalog="system" width="64" height="60"/>
-        <image name="circle" catalog="system" width="64" height="60"/>
+        <image name="unchecked" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Y0D-Va-4Rb"/>
