@@ -19,7 +19,7 @@ class BookController {
     }
     
     var unreadBooks: [Book] {
-        let booksUnread = books.filter({!$0.hasBeenRead })
+        let booksUnread = books.filter({!$0.hasBeenRead})
         return booksUnread
     }
     
@@ -32,10 +32,8 @@ class BookController {
     
     var readingListURL: URL? {
         let fileManager = FileManager.default
-        
         guard let documentUrls = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
-        
-        let url = documentUrls.appendingPathComponent("ReadingList.plist")
+        let url = documentUrls.appendingPathComponent("ReadingList").appendingPathExtension("plist")
         return url
     }
     
@@ -57,12 +55,12 @@ class BookController {
     
     
     func updateHasBeenRead(for book: Book) {
-        var mutableBook = book
-        mutableBook.hasBeenRead = !mutableBook.hasBeenRead
+        var book = books.filter({$0 == book}).first
+        book?.hasBeenRead = true
         self.saveToPersistentStore()
     }
     
-    func updateBookDetails() {
+    func updateBookDetails(title: String, reasonToRead: String) {
         
     }
     
@@ -87,16 +85,14 @@ class BookController {
     // Load from persistence
     
     func loadFromPersistentStore() {
-        let listEncoder = PropertyListDecoder()
         
+        let listEncoder = PropertyListDecoder()
         do {
-            
             if let url = readingListURL {
                 let data = try Data(contentsOf: url)
                 let decodedBooks = try listEncoder.decode([Book].self, from: data)
                 self.books = decodedBooks
             }
-            
         } catch {
             print("Error loading books: \(error)")
         }
