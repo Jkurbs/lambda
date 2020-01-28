@@ -44,10 +44,10 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HwY-KY-YeP">
+                                            <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HwY-KY-YeP">
                                                 <rect key="frame" x="45.5" y="0.0" width="51" height="31"/>
                                                 <connections>
-                                                    <action selector="toggleFade:" destination="Wa8-NH-mbi" eventType="valueChanged" id="FNJ-qO-gcf"/>
+                                                    <action selector="toggleRoll:" destination="Wa8-NH-mbi" eventType="valueChanged" id="uHs-mw-sSG"/>
                                                 </connections>
                                             </switch>
                                         </subviews>
@@ -61,10 +61,10 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jjy-Ob-ZN0">
+                                            <switch opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jjy-Ob-ZN0">
                                                 <rect key="frame" x="52.5" y="0.0" width="51" height="31"/>
                                                 <connections>
-                                                    <action selector="toggleZoom:" destination="Wa8-NH-mbi" eventType="valueChanged" id="fu1-Ln-Ikt"/>
+                                                    <action selector="toggleRoll:" destination="Wa8-NH-mbi" eventType="valueChanged" id="6ue-OL-CuU"/>
                                                 </connections>
                                             </switch>
                                         </subviews>
@@ -78,10 +78,10 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VxI-dO-bDn">
+                                            <switch opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VxI-dO-bDn">
                                                 <rect key="frame" x="99" y="0.0" width="51" height="31"/>
                                                 <connections>
-                                                    <action selector="toggleCrabState:" destination="Wa8-NH-mbi" eventType="valueChanged" id="vyt-CB-LU1"/>
+                                                    <action selector="toggleRoll:" destination="Wa8-NH-mbi" eventType="valueChanged" id="X38-Vg-xVN"/>
                                                 </connections>
                                             </switch>
                                         </subviews>

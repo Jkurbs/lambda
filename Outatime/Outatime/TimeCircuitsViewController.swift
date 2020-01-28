@@ -11,10 +11,16 @@ import UIKit
 class TimeCircuitsViewController: UIViewController {
     
     
-    let destDescLabel = UILabel()
-    let destinationValueLabel = UILabel()
     
-//    lazy var containerStackview = TimeStackView(
+    
+//    let destDescLabel = UILabel()
+//    let destinationValueLabel = UILabel()
+    
+    
+    let firstStackview: TimeStackView! = nil
+//    let secondStackview = TimeStackView(arrangedSubviews: [destDescLabel, destinationValueLabel])
+//    let thirdStackview = TimeStackView(arrangedSubviews: [destDescLabel, destinationValueLabel])
+//    let containerStackview = TimeStackView(arrangedSubviews: [destDescLabel, destinationValueLabel])
     
     
     

@@ -12,18 +12,58 @@ class SettingsViewController: UIViewController {
 
     
     @IBAction func toggleRoll(_ sender: UISwitch) {
-        Settings.shared.shouldRoll = sender.isOn
-    }
-    
-    @IBAction func toggleFade(_ sender: UISwitch) {
-         Settings.shared.shouldFade = sender.isOn
-    }
-    
-    @IBAction func toggleZoom(_ sender: UISwitch) {
-        Settings.shared.shouldZoom = sender.isOn
-    }
-
-    @IBAction func toggleCrabState(_ sender: UISwitch) {
-       Settings.shared.happy = sender.isOn
+        switch sender.tag {
+        case 0:
+            Settings.shared.shouldRoll = sender.isOn
+        case 1:
+            Settings.shared.shouldFade = sender.isOn
+        case 2:
+            Settings.shared.shouldZoom = sender.isOn
+        case 3:
+            Settings.shared.happy = sender.isOn
+        default:
+            break
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

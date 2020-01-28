@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Reading List-->
+        <scene sceneID="wPn-WK-5Tg">
+            <objects>
+                <tableViewController id="8zU-3j-sau" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Ay-bI-YSL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="66" id="70o-dl-it2">
+                                <rect key="frame" x="0.0" y="28" width="414" height="66"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="70o-dl-it2" id="FgY-jA-Q0T">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ufw-X5-xU1">
+                                            <rect key="frame" x="360" y="11" width="34" height="44"/>
+                                            <state key="normal" image="circle" catalog="system"/>
+                                            <state key="selected" image="checkmark.circle.fill" catalog="system"/>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJe-bw-jqN">
+                                            <rect key="frame" x="20" y="22" width="33.5" height="22"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Ufw-X5-xU1" firstAttribute="top" secondItem="FgY-jA-Q0T" secondAttribute="topMargin" id="EUV-B3-OdL"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="tJe-bw-jqN" secondAttribute="bottom" constant="11" id="LRx-iY-Ec8"/>
+                                        <constraint firstItem="tJe-bw-jqN" firstAttribute="top" secondItem="FgY-jA-Q0T" secondAttribute="topMargin" constant="11" id="VRx-kl-7tL"/>
+                                        <constraint firstItem="Ufw-X5-xU1" firstAttribute="bottom" secondItem="FgY-jA-Q0T" secondAttribute="bottomMargin" id="iTH-IA-FUf"/>
+                                        <constraint firstItem="tJe-bw-jqN" firstAttribute="leading" secondItem="FgY-jA-Q0T" secondAttribute="leadingMargin" id="qAU-WO-g3d"/>
+                                        <constraint firstItem="Ufw-X5-xU1" firstAttribute="trailing" secondItem="FgY-jA-Q0T" secondAttribute="trailingMargin" id="swb-i1-PgW"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="8zU-3j-sau" id="Bo1-r4-Tzg"/>
+                            <outlet property="delegate" destination="8zU-3j-sau" id="eY2-QL-6au"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Reading List" id="X7h-31-O6t"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mxa-Lw-eKD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="740.57971014492762" y="172.76785714285714"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="gNK-By-LA3">
+            <objects>
+                <viewController id="J9z-ib-C67" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GXW-zW-4jy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Ekz-FU-urw"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9qu-ak-fpU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1509" y="173"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="uAP-7Y-Uau">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="doF-FZ-GkQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1zb-Vj-RRF">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8zU-3j-sau" kind="relationship" relationship="rootViewController" id="uCf-WI-1zt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6KR-ov-2pr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-169.56521739130437" y="172.76785714285714"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="checkmark.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="circle" catalog="system" width="64" height="60"/>
+    </resources>
+</document>

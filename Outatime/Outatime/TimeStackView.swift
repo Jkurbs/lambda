@@ -10,13 +10,13 @@ import UIKit
 
 class TimeStackView: UIStackView {
     
-   
-    init
+    var views = [UIView]()
     
-    init() {
-        super.init(arrangedSubviews: views)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         self.axis = .vertical
         self.alignment = .fill
+        self.spacing = 20
     }
     
     required init(coder: NSCoder) {

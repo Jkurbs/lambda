@@ -16,9 +16,33 @@ class CustomScene: SKScene {
     override func sceneDidLoad() {
         super.sceneDidLoad()
         addChild(crab)
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
                 
-        Settings.shared.happy ? crab.loadTextures(named: "HappyCrab", forKey: SKSpriteNode.textureKey) : crab.loadTextures(named: "WaitingCrab", forKey: SKSpriteNode.textureKey)
-        crab.position = Settings.shared.position ?? CGPoint(x: frame.midX, y: frame.midY)
+//        Settings.shared.happy ? crab.loadTextures(named: "HappyCrab", forKey: SKSpriteNode.textureKey) : crab.loadTextures(named: "WaitingCrab", forKey: SKSpriteNode.textureKey)
+//        crab.position = Settings.shared.position ?? CGPoint(x: frame.midX, y: frame.midY)
     }
 
     // Move to touch
