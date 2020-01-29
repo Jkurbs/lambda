@@ -13,13 +13,13 @@ class TimeMachine {
     
     static let DeLorean = TimeMachine()
     
-    /// The starting speed of the machien
+    /// The starting speed of the machine.
     var currentSpeed = 0
     
-    /// The timer  that keeps track of the current speen .
+    /// The timer that keeps track of the current speed.
     var timer: Timer?
     
-    /// The Formatter to format  date to String
+    /// The Formatter to format  date to String.
     var dater: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM DD YYYY"

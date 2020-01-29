@@ -10,7 +10,6 @@ import UIKit
 
 class TimeCircuitsViewController: UIViewController {
     
-    
     // MARK: - IBOutlets
     
     @IBOutlet weak var destinationLabel: UILabel!
