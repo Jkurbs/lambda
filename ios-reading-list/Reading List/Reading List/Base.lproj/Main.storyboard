@@ -92,7 +92,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="Web-Pr-STZ">
-                                <rect key="frame" x="44" y="179" width="326" height="251"/>
+                                <rect key="frame" x="44" y="304" width="326" height="251"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aHr-zP-WFP">
                                         <rect key="frame" x="0.0" y="0.0" width="326" height="34"/>
@@ -108,13 +108,22 @@
                                     </textView>
                                 </subviews>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Hsz-Ue-hZa">
+                                <rect key="frame" x="143" y="142" width="128" height="124"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="DmV-K1-0fw"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Web-Pr-STZ" firstAttribute="leading" secondItem="Ekz-FU-urw" secondAttribute="leading" constant="44" id="F2q-HD-J2t"/>
-                            <constraint firstItem="Web-Pr-STZ" firstAttribute="centerX" secondItem="GXW-zW-4jy" secondAttribute="centerX" id="KeS-O5-unp"/>
-                            <constraint firstItem="Web-Pr-STZ" firstAttribute="top" secondItem="Ekz-FU-urw" secondAttribute="top" constant="91" id="den-9n-Zgm"/>
-                            <constraint firstItem="Ekz-FU-urw" firstAttribute="bottom" secondItem="Web-Pr-STZ" secondAttribute="bottom" constant="432" id="u8Z-sx-r8B"/>
+                            <constraint firstItem="Hsz-Ue-hZa" firstAttribute="centerX" secondItem="Web-Pr-STZ" secondAttribute="centerX" id="00Y-U2-gOt"/>
+                            <constraint firstItem="Hsz-Ue-hZa" firstAttribute="centerX" secondItem="GXW-zW-4jy" secondAttribute="centerX" id="1YE-gb-mFy"/>
+                            <constraint firstItem="Web-Pr-STZ" firstAttribute="leading" secondItem="Ekz-FU-urw" secondAttribute="leading" constant="44" id="7re-bc-xPa"/>
+                            <constraint firstItem="Hsz-Ue-hZa" firstAttribute="top" secondItem="Ekz-FU-urw" secondAttribute="top" constant="52" id="ExH-5O-eaI"/>
+                            <constraint firstItem="Ekz-FU-urw" firstAttribute="bottom" secondItem="Web-Pr-STZ" secondAttribute="bottom" constant="307" id="Trh-zi-39Q"/>
+                            <constraint firstItem="Web-Pr-STZ" firstAttribute="top" secondItem="Hsz-Ue-hZa" secondAttribute="bottom" constant="36" id="VyS-8J-pWn"/>
+                            <constraint firstItem="Hsz-Ue-hZa" firstAttribute="leading" secondItem="Ekz-FU-urw" secondAttribute="leading" constant="143" id="xal-mU-Zx7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ekz-FU-urw"/>
                     </view>
@@ -126,6 +135,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="imageView" destination="Hsz-Ue-hZa" id="S1S-Ge-5XD"/>
                         <outlet property="textView" destination="tTA-HF-LsO" id="29t-aL-6SN"/>
                         <outlet property="titleField" destination="aHr-zP-WFP" id="5ik-EO-yUI"/>
                     </connections>
@@ -155,6 +165,7 @@
     </scenes>
     <resources>
         <image name="checkmark.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="plus" catalog="system" width="64" height="56"/>
         <image name="unchecked" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>

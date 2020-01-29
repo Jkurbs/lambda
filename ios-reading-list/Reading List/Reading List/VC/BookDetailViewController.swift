@@ -8,22 +8,27 @@
 
 import UIKit
 
-class BookDetailViewController: UIViewController {
+class BookDetailViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var imageView: UIImageView!
     
     var bookController: BookController?
     
     var book: Book?
     
+    var imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         updateView()
+        
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addImage)))
     }
+    
     
     @IBAction func save(_ sender: Any) {
         
@@ -34,7 +39,7 @@ class BookDetailViewController: UIViewController {
         if self.book == nil {
             bookController?.create(title: title, reasonToRead: reason, hasBeenRead: false)
         } else {
-            bookController?.updateBookDetails(title: title, reasonToRead: reason)
+            bookController?.updateBookDetails(for: book!, newTitle: title, newReason: reason)
         }
         
         self.navigationController?.popToRootViewController(animated: true)
@@ -48,5 +53,14 @@ class BookDetailViewController: UIViewController {
         } else {
             self.title = "Add a new book"
         }
+    }
+    
+    @objc func addImage() {
+        imagePicker.delegate = self
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        <#code#>
     }
 }

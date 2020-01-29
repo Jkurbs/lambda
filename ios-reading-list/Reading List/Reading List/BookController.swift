@@ -11,15 +11,18 @@ import UIKit
 class BookController {
     
     var books = [Book]()
+    var tableView: UITableView!
     
     
     var readBooks: [Book] {
-        let booksRead = books.filter({$0.hasBeenRead})
+        var booksRead = books.filter({$0.hasBeenRead})
+        booksRead.sort{$0.title < $1.title }
         return booksRead
     }
     
     var unreadBooks: [Book] {
-        let booksUnread = books.filter({!$0.hasBeenRead})
+        var booksUnread = books.filter({!$0.hasBeenRead})
+        booksUnread.sort{$0.title < $1.title }
         return booksUnread
     }
     
@@ -55,13 +58,21 @@ class BookController {
     
     
     func updateHasBeenRead(for book: Book) {
-        var book = books.filter({$0.title == book.title}).first
-        book?.hasBeenRead = true
+        if let index = books.index(where: {$0.title == book.title}) {
+            books[index].hasBeenRead = true
+        }
         self.saveToPersistentStore()
     }
     
-    func updateBookDetails(title: String, reasonToRead: String) {
+    
+    
+    func updateBookDetails(for book: Book, newTitle: String, newReason: String) {
         
+        if let index = books.index(where: {$0.title == book.title}) {
+            books[index].title = newTitle
+            books[index].reasonToRead = newReason
+        }
+        self.saveToPersistentStore()
     }
     
     
@@ -78,6 +89,10 @@ class BookController {
             }
         } catch {
             print("Error saving books: \(error)")
+        }
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
     

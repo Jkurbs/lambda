@@ -6,17 +6,20 @@
 //  Copyright © 2020 Lambda School. All rights reserved.
 //
 
+
 import Foundation
+import UIKit
 
 
 struct Book: Codable {
     
+    var image: Data
     var title: String
     var reasonToRead: String
     var hasBeenRead: Bool
     
-    init(title :String, reasonToRead: String, hasBeenRead: Bool = false) {
-        
+    init(image: Data, title :String, reasonToRead: String, hasBeenRead: Bool = false) {
+        self.image = image 
         self.title = title
         self.reasonToRead = reasonToRead
         self.hasBeenRead = hasBeenRead
@@ -26,7 +29,7 @@ struct Book: Codable {
 extension Book: Equatable {
     
     static func == (lhs: Self, rhs: Self) -> Bool {
-        return lhs.title != rhs.title
+        return lhs.title >= rhs.title
     }
     
 }
