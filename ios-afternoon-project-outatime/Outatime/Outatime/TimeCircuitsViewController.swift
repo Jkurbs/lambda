@@ -11,7 +11,7 @@ import UIKit
 class TimeCircuitsViewController: UIViewController {
     
     
-    // MARK: - Properties
+    // MARK: - IBOutlets
     
     @IBOutlet weak var destinationLabel: UILabel!
     @IBOutlet weak var presentLabel: UILabel!
@@ -19,7 +19,8 @@ class TimeCircuitsViewController: UIViewController {
     @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var trabelButton: UIButton!
     
-    
+    // MARK: - Properties
+
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM DD YYYY"
@@ -29,36 +30,34 @@ class TimeCircuitsViewController: UIViewController {
     
     var currentSpeed = 0
     var timer: Timer?
-    
-    
-    
+
     // MARK: View Controller LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateViews()
+        
+        let presentDateString = dateFormatter.string(from: Date())
+        self.presentLabel.text = presentDateString
     }
     
     // MARK: - Actions
 
-    
     @IBAction func travel(_ sender: UIButton) {
-        TimeMachine.ready.travel { (speed, done) in
-            self.speedLabel.text = "\(speed) MPH"
-            if done {
-               self.trabelButton.isEnabled = false
-               self.departedLabel.text = self.presentLabel.text
-               self.presentLabel.text = self.destinationLabel.text
-               self.speedLabel.text = "0 MPH"
-               self.showAlert()
+         TimeMachine.ready.travel { (speed, arrived) in
+             self.speedLabel.text = "\(speed)"
+            if arrived {
+             self.updateViews()
             }
         }
     }
-    
+ 
 
     func updateViews() {
-        let presentDateString = dateFormatter.string(from: Date())
-        self.presentLabel.text = presentDateString
+        self.trabelButton.isEnabled = false
+        self.departedLabel.text = self.presentLabel.text
+        self.presentLabel.text = self.destinationLabel.text
+        self.speedLabel.text = "0 MPH"
+        self.showAlert()
     }
     
     
@@ -72,9 +71,7 @@ class TimeCircuitsViewController: UIViewController {
     
     func showAlert() {
         let alert = UIAlertController(title: "Time Travel Successful", message: "You're new date is \(presentLabel.text!)", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Take me back", style: .destructive, handler: { (action) in
-            
-        }))
+        alert.addAction(UIAlertAction(title: "Cool", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -84,6 +81,7 @@ class TimeCircuitsViewController: UIViewController {
 // MARK: - DatePickerDelegate
 
 extension TimeCircuitsViewController: DatePickerDelegate {
+    
     func destinationDateWasChosen(date: Date) {
         let dateString = dateFormatter.string(from: date)
         self.destinationLabel.text = dateString

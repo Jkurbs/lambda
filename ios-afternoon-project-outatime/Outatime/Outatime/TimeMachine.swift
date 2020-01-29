@@ -13,6 +13,7 @@ class TimeMachine {
     
     static let ready = TimeMachine()
     
+    /// The starting speed of the machien
     var currentSpeed = 0
     
     /// The timer  that keeps track of the current speen .
@@ -25,10 +26,10 @@ class TimeMachine {
         formatter.dateStyle = .medium
         return formatter
     }
-
+        
+    // Start travel and update speed
     
-    // Start the timer and call update speed
-    @objc func travel( _ complete: @escaping (_ speed: Int, _ done: Bool) -> ()) {
+    @objc func travel( _ complete: @escaping (_ speed: Int, _ arrived: Bool) -> ()) {
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { (timer) in
             if self.currentSpeed <= 88 {
                 self.currentSpeed += 1
@@ -39,6 +40,9 @@ class TimeMachine {
             complete(self.currentSpeed, true)
         })
     }
+
+    
+    // Reset timer when arrived
     
     func resetTimer() {
         timer?.invalidate()
