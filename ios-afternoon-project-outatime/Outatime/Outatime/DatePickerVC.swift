@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol DatePickerDelegate {
-    func selectedDate(date: Date)
+    func destinationDateWasChosen(date: Date)
 }
 
 class DatePickerViewController: UIViewController {
@@ -19,19 +19,16 @@ class DatePickerViewController: UIViewController {
     
     var delegate: DatePickerDelegate?
     
-    @IBAction func selectDate(_ sender: UIDatePicker) {
-        delegate?.selectedDate(date: sender.date)
-    }
-    
-    
     @IBAction func cancel(_ sender: Any) {
-        
-        
+        dismiss()
     }
-    
+        
     @IBAction func save(_ sender: Any) {
-        
-        
+        delegate?.destinationDateWasChosen(date: pickerView.date)
+        dismiss()
     }
     
+    func dismiss() {
+        self.dismiss(animated: true, completion: nil)
+    }
 }

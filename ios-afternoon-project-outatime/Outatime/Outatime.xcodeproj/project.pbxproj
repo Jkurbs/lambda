@@ -15,8 +15,9 @@
 		6D790AC523E217EA00EAF88F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D790AC323E217EA00EAF88F /* LaunchScreen.storyboard */; };
 		6D790AD023E217EA00EAF88F /* OutatimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D790ACF23E217EA00EAF88F /* OutatimeTests.swift */; };
 		6D790ADB23E217EA00EAF88F /* OutatimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D790ADA23E217EA00EAF88F /* OutatimeUITests.swift */; };
-		6D790AE923E2184400EAF88F /* DatePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D790AE823E2184400EAF88F /* DatePickerVC.swift */; };
 		6D9460BF23E219C0007F8CA8 /* digital-7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D9460BE23E219C0007F8CA8 /* digital-7.ttf */; };
+		6D9460C323E21CF6007F8CA8 /* DatePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9460C223E21CF6007F8CA8 /* DatePickerVC.swift */; };
+		6D9460C523E22460007F8CA8 /* TimeMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9460C423E22460007F8CA8 /* TimeMachine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,8 +52,9 @@
 		6D790AD623E217EA00EAF88F /* OutatimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OutatimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D790ADA23E217EA00EAF88F /* OutatimeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutatimeUITests.swift; sourceTree = "<group>"; };
 		6D790ADC23E217EA00EAF88F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6D790AE823E2184400EAF88F /* DatePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerVC.swift; sourceTree = SOURCE_ROOT; };
 		6D9460BE23E219C0007F8CA8 /* digital-7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "digital-7.ttf"; path = "../../digital-7.ttf"; sourceTree = "<group>"; };
+		6D9460C223E21CF6007F8CA8 /* DatePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerVC.swift; sourceTree = "<group>"; };
+		6D9460C423E22460007F8CA8 /* TimeMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,12 +108,13 @@
 				6D790AB823E217E400EAF88F /* AppDelegate.swift */,
 				6D790ABA23E217E400EAF88F /* SceneDelegate.swift */,
 				6D790ABC23E217E400EAF88F /* TimeCircuitsViewController.swift */,
+				6D9460C223E21CF6007F8CA8 /* DatePickerVC.swift */,
 				6D790ABE23E217E400EAF88F /* Main.storyboard */,
 				6D790AC123E217EA00EAF88F /* Assets.xcassets */,
 				6D790AC323E217EA00EAF88F /* LaunchScreen.storyboard */,
 				6D790AC623E217EA00EAF88F /* Info.plist */,
 				6D9460BE23E219C0007F8CA8 /* digital-7.ttf */,
-				6D790AE823E2184400EAF88F /* DatePickerVC.swift */,
+				6D9460C423E22460007F8CA8 /* TimeMachine.swift */,
 			);
 			path = Outatime;
 			sourceTree = "<group>";
@@ -267,8 +270,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D790ABD23E217E400EAF88F /* TimeCircuitsViewController.swift in Sources */,
+				6D9460C523E22460007F8CA8 /* TimeMachine.swift in Sources */,
 				6D790AB923E217E400EAF88F /* AppDelegate.swift in Sources */,
-				6D790AE923E2184400EAF88F /* DatePickerVC.swift in Sources */,
+				6D9460C323E21CF6007F8CA8 /* DatePickerVC.swift in Sources */,
 				6D790ABB23E217E400EAF88F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
