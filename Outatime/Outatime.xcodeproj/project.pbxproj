@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D38E6C423E1C83B0087BEC4 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D38E6C323E1C83B0087BEC4 /* PickerViewController.swift */; };
 		6D3DC7FA23DF64F00018AD01 /* TimeCircuitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3DC7F923DF64F00018AD01 /* TimeCircuitsViewController.swift */; };
 		6D3DC7FC23DF65270018AD01 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3DC7FB23DF65270018AD01 /* DatePickerViewController.swift */; };
 		6D3DC7FE23DF66120018AD01 /* digital-7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D3DC7FD23DF66120018AD01 /* digital-7.ttf */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D38E6C323E1C83B0087BEC4 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		6D3DC7F923DF64F00018AD01 /* TimeCircuitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCircuitsViewController.swift; sourceTree = "<group>"; };
 		6D3DC7FB23DF65270018AD01 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		6D3DC7FD23DF66120018AD01 /* digital-7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7.ttf"; sourceTree = SOURCE_ROOT; };
@@ -118,6 +120,7 @@
 				6D3DC7FB23DF65270018AD01 /* DatePickerViewController.swift */,
 				6D3DC7FD23DF66120018AD01 /* digital-7.ttf */,
 				6D3DC7FF23DF673E0018AD01 /* TimeStackView.swift */,
+				6D38E6C323E1C83B0087BEC4 /* PickerViewController.swift */,
 			);
 			path = Outatime;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				6D3DC7FC23DF65270018AD01 /* DatePickerViewController.swift in Sources */,
 				6DB7A51223DF63B900E1C7C4 /* AppDelegate.swift in Sources */,
 				6D3DC7FA23DF64F00018AD01 /* TimeCircuitsViewController.swift in Sources */,
+				6D38E6C423E1C83B0087BEC4 /* PickerViewController.swift in Sources */,
 				6DB7A51423DF63B900E1C7C4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

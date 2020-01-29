@@ -11,40 +11,39 @@ import UIKit
 class TimeCircuitsViewController: UIViewController {
     
     
+    @IBOutlet weak var destinationLabel: UILabel!
+    @IBOutlet weak var presentLabel: UILabel!
+    @IBOutlet weak var departedLabel: UILabel!
+    @IBOutlet weak var speedLabel: UILabel!
     
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter
+    }
     
-//    let destDescLabel = UILabel()
-//    let destinationValueLabel = UILabel()
-    
-    
-    let firstStackview: TimeStackView! = nil
-//    let secondStackview = TimeStackView(arrangedSubviews: [destDescLabel, destinationValueLabel])
-//    let thirdStackview = TimeStackView(arrangedSubviews: [destDescLabel, destinationValueLabel])
-//    let containerStackview = TimeStackView(arrangedSubviews: [destDescLabel, destinationValueLabel])
-    
-    
-    
-    
-    
-  
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateViews()
+    }
+    
 
-        // Do any additional setup after loading the view.
+    @IBAction func setDestination(_ sender: UIButton) {
         
         
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    
+    @IBAction func travelBack(_ sender: UIButton) {
+        
+        
     }
-    */
-
+    
+    
+    func updateViews() {
+        let date = dateFormatter.string(from: Date())
+        presentLabel.text = "\(date.capitalized)"
+    }
 }

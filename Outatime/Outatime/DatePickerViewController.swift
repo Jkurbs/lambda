@@ -8,11 +8,30 @@
 
 import UIKit
 
+
+protocol DatePickerDelegate {
+    func selectedDate(date: Date)
+}
+
 class DatePickerViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    
+    @IBOutlet weak var pickerView: UIDatePicker!
+    
+    var delegate: DatePickerDelegate?
+    
+    @IBAction func selectDate(_ sender: UIDatePicker) {
+        delegate?.selectedDate(date: sender.date)
     }
+    
+    
+    @IBAction func cancel(_ sender: Any) {
+        
+        
+    }
+    
+    @IBAction func save(_ sender: Any) {
+        
+        
+    }
+    
 }
