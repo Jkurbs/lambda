@@ -11,7 +11,7 @@ import Foundation
 
 class TimeMachine {
     
-    static let ready = TimeMachine()
+    static let DeLorean = TimeMachine()
     
     /// The starting speed of the machien
     var currentSpeed = 0
@@ -20,7 +20,7 @@ class TimeMachine {
     var timer: Timer?
     
     /// The Formatter to format  date to String
-    var dateFormatter: DateFormatter {
+    var dater: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM DD YYYY"
         formatter.dateStyle = .medium

@@ -18,34 +18,26 @@ class TimeCircuitsViewController: UIViewController {
     @IBOutlet weak var departedLabel: UILabel!
     @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var trabelButton: UIButton!
-    
-    // MARK: - Properties
 
-    var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MM DD YYYY"
-        formatter.dateStyle = .medium
-        return formatter
-    }
-    
-    var currentSpeed = 0
-    var timer: Timer?
-
-    // MARK: View Controller LifeCycle
+    // MARK: View Controller Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let presentDateString = dateFormatter.string(from: Date())
+        // Setup current date
+        let presentDateString = TimeMachine.DeLorean.dater.string(from: Date())
         self.presentLabel.text = presentDateString
+        
     }
     
     // MARK: - Actions
 
     @IBAction func travel(_ sender: UIButton) {
-         TimeMachine.ready.travel { (speed, arrived) in
+         TimeMachine.DeLorean.travel { (speed, arrived) in
+             // Keep track of machine speed
              self.speedLabel.text = "\(speed)"
             if arrived {
+             // Update all views when travel is done
              self.updateViews()
             }
         }
@@ -60,7 +52,7 @@ class TimeCircuitsViewController: UIViewController {
         self.showAlert()
     }
     
-    
+    // - Tag: Prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SelectDate" {
             if let destination = segue.destination as? DatePickerViewController {
@@ -83,7 +75,7 @@ class TimeCircuitsViewController: UIViewController {
 extension TimeCircuitsViewController: DatePickerDelegate {
     
     func destinationDateWasChosen(date: Date) {
-        let dateString = dateFormatter.string(from: date)
+        let dateString = TimeMachine.DeLorean.dater.string(from: date)
         self.destinationLabel.text = dateString
         self.trabelButton.isEnabled = true 
     }
