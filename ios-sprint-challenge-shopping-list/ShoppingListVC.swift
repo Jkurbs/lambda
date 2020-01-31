@@ -13,21 +13,35 @@ import UIKit
 
 class ShoppingListVC: UICollectionViewController {
     
+    // MARK: - Properties
+    
     var shoppingController = ShoppingController()
-
+    
+    // MARK: - View Controller Life Cicle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .white
-        collectionView?.backgroundColor = .white
-
-        self.collectionView!.register(ShoppingCell.self, forCellWithReuseIdentifier: ShoppingCell.id)
-        self.collectionView?.reloadData()
+        setupViews()
+        collectionView.reloadData()
     }
     
-    
     // MARK: - Functions
+    
+    func setupViews() {
+       view.backgroundColor = .white
+       collectionView?.backgroundColor = .white
+       
+       let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewItemVC))
+       navigationItem.rightBarButtonItem = addButton
+        
+       self.collectionView!.register(ShoppingCell.self, forCellWithReuseIdentifier: ShoppingCell.id)
+       self.collectionView?.reloadData()
+    }
 
+    
+    @objc func addNewItemVC() {
+        navigationController?.pushViewController(AddNewItemVC(), animated: true)
+    }
     
    
     // MARK: UICollectionViewDataSource

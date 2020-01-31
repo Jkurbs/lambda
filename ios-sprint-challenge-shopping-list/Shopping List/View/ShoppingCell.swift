@@ -17,8 +17,6 @@ class ShoppingCell: UICollectionViewCell {
     static var id: String {
         return String(describing: self)
     }
-
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,6 +50,8 @@ class ShoppingCell: UICollectionViewCell {
         
         if item.added == true {
             contentView.layer.borderColor = contentView.tintColor.cgColor
+        } else {
+            contentView.layer.borderColor = UIColor(white: 0.6, alpha: 1.0).cgColor
         }
     }
 }

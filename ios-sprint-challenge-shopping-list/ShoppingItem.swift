@@ -15,12 +15,12 @@ class ShoppingItem: Codable {
     var added: Bool
     var image: Data
         
-    init(name: String, added: Bool, image: Data) {
+    init(name: String, added: Bool = false, image: Data) {
         self.name = name
         self.added = added
         self.image = image
         if let image = UIImage(named: name) {
-            let data = UIImageJPEGRepresentation(image, 1.0)
+            let data = image.jpegData(compressionQuality: 1.0)
             self.image = data!
         }
     }

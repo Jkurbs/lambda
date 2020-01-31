@@ -26,7 +26,7 @@ class ShoppingController {
         if !UserDefaults.standard.bool(forKey: .wasInitialize) {
             UserDefaults.standard.set(true, forKey: .wasInitialize)
             for name in itemNames {
-                 if let imageData = UIImageJPEGRepresentation( UIImage(named: name)!, 1.0) {
+                 if let image = UIImage(named: name), let imageData = dataFromImage(image) {
                      let item = ShoppingItem(name: name, added: false, image: imageData)
                      self.items.append(item)
                      saveToPersistence()
@@ -90,5 +90,12 @@ class ShoppingController {
         } catch {
             print("Error decoding data: \(error)")
         }
+    }
+    
+    
+    // Get image Data
+    
+    func dataFromImage(_ image: UIImage) -> Data? {
+        return image.jpegData(compressionQuality: 1.0)
     }
 }
