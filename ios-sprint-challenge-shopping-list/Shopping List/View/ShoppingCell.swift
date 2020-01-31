@@ -22,24 +22,26 @@ class ShoppingCell: UICollectionViewCell {
         super.init(frame: frame)
         setupViews()
     }
-
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     func setupViews() {
         let height = contentView.frame.height - 80
-        imageView.frame = CGRect(x: 0, y: 0, width: height, height: height)
         contentView.layer.cornerRadius = contentView.frame.width/2
         contentView.layer.borderWidth = 5.0
         contentView.layer.borderColor = UIColor(white: 0.6, alpha: 1.0).cgColor
-        imageView.center = contentView.center
+        imageView.frame = CGRect(x: 0, y: 35, width: height, height: height)
+        
+        imageView.center.x = contentView.center.x
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         
-        titleLabel.frame = CGRect(x: 0, y: height, width: contentView.frame.width, height: 40)
+        titleLabel.frame = CGRect(x: 0, y: height + 30, width: contentView.frame.width, height: 40)
         titleLabel.textAlignment = .center
+        titleLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         contentView.addSubview(imageView)
         contentView.addSubview(titleLabel)
     }

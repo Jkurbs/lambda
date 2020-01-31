@@ -6,8 +6,6 @@
 //  Copyright © 2020 Lambda School. All rights reserved.
 //
 
-import Foundation
-
 import UIKit
 
 
@@ -22,63 +20,61 @@ class ShoppingListVC: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        collectionView.reloadData()
     }
     
     // MARK: - Functions
     
     func setupViews() {
-       view.backgroundColor = .white
-       collectionView?.backgroundColor = .white
-       
-       let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewItemVC))
-       navigationItem.leftBarButtonItem = addButton
+        view.backgroundColor = .white
+        collectionView?.backgroundColor = .white
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewItemVC))
+        navigationItem.leftBarButtonItem = addButton
+        
+        var shopButton = UIBarButtonItem()
         
         if #available(iOS 13.0, *) {
             let image = UIImage(systemName: "cart")
-            let shopButton = UIBarButtonItem(image: image , style: .plain, target: self, action:  #selector(orderVC))
-            navigationItem.rightBarButtonItem = shopButton
+            shopButton = UIBarButtonItem(image: image , style: .plain, target: self, action:  #selector(orderVC))
         } else {
             // Fallback on earlier versions
+            shopButton = UIBarButtonItem(title: "Order", style: .plain, target: self, action: #selector(orderVC))
         }
-
-       
         
-       self.collectionView!.register(ShoppingCell.self, forCellWithReuseIdentifier: ShoppingCell.id)
-       self.collectionView?.reloadData()
+        navigationItem.rightBarButtonItem = shopButton
+        
+        self.collectionView!.register(ShoppingCell.self, forCellWithReuseIdentifier: ShoppingCell.id)
+        self.collectionView?.reloadData()
     }
-
     
+    
+    // MARK: - Actions
+    
+    // Go to add new item
     @objc func addNewItemVC() {
         navigationController?.pushViewController(AddNewItemVC(), animated: true)
     }
     
+    // Go to orders
     @objc func orderVC() {
-        
         let vc = OrderVC()
         vc.shoppingController = self.shoppingController
         navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
-    
-   
-    // MARK: UICollectionViewDataSource
+}
 
+// MARK: UICollectionViewDataSource
+
+extension ShoppingListVC {
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 2
     }
-        
-
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        if section == 0 {
-            return shoppingController.addedItems.count
-        }
-        return shoppingController.notAddedItems.count
+        section == 0 ? shoppingController.listedItems.count : shoppingController.unlistedItems.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ShoppingCell.id, for: indexPath) as! ShoppingCell
         let item = itemForSection(indexPath: indexPath)
@@ -93,11 +89,9 @@ class ShoppingListVC: UICollectionViewController {
     }
     
     func itemForSection(indexPath: IndexPath) -> ShoppingItem {
-        if indexPath.section == 0 {
-            return shoppingController.addedItems[indexPath.row]
-        } else {
-            return shoppingController.notAddedItems[indexPath.row]
-        }
+        let index = indexPath.section == 0 ? shoppingController.listedItems[indexPath.row] : shoppingController.unlistedItems[indexPath.row]
+        return index
     }
 }
+
 

@@ -11,6 +11,7 @@ import UIKit
 class AddNewItemVC: UIViewController {
     
     // MARK: - UI Elements
+    
     var imageView = UIImageView()
     var addImageButton = UIButton()
     var textField = UITextField()
@@ -19,11 +20,14 @@ class AddNewItemVC: UIViewController {
     var shoppingController = ShoppingController()
     
     
-    
+    // MARK: - View Controller Life Cicle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
     }
+    
+    // MARK: Functions
     
     func setupViews() {
         
@@ -59,16 +63,10 @@ class AddNewItemVC: UIViewController {
         textField.frame = CGRect(x: 0, y: addImageButton.layer.position.y + 20, width: width, height: 60)
         textField.center.x = centerX
         textField.becomeFirstResponder()
-        
     }
     
     
-    // MARK: - Functions
-    
-    func updateViews() {
-        
-    }
-    
+    // MARK: - Actions
     
     @objc func addImage() {
         imagePicker.delegate = self
@@ -85,8 +83,10 @@ class AddNewItemVC: UIViewController {
     }
 }
 
+
+//MARK: - UINavigationControllerDelegate/UIImagePickerControllerDelegate
+
 extension AddNewItemVC: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if  let image = info[.originalImage] as? UIImage {
@@ -95,8 +95,3 @@ extension AddNewItemVC: UINavigationControllerDelegate, UIImagePickerControllerD
         picker.dismiss(animated: true, completion: nil)
     }
 }
-
-//// Helper function inserted by Swift 4.2 migrator.
-//fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-//	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-//}

@@ -19,15 +19,11 @@ class ShoppingItem: Codable {
         self.name = name
         self.added = added
         self.image = image
-        if let image = UIImage(named: name) {
-            let data = image.jpegData(compressionQuality: 1.0)
-            self.image = data!
-        }
     }
 }
 
 extension ShoppingItem: Equatable {
     static func == (lhs: ShoppingItem, rhs: ShoppingItem) -> Bool {
-        return lhs == rhs
+        return lhs.name == rhs.name
     }
 }

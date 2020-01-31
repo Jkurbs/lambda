@@ -9,9 +9,6 @@
 import Foundation
 import UIKit
 
-extension String {
-    static var wasInitialize = "wasInitialize"
-}
 
 class ShoppingController {
     
@@ -22,38 +19,42 @@ class ShoppingController {
         initializeItems()
     }
     
+    // Initialize exsisting items
     func initializeItems() {
-        if !UserDefaults.standard.bool(forKey: .wasInitialize) {
-            UserDefaults.standard.set(true, forKey: .wasInitialize)
+        if !UserDefaults.standard.bool(forKey: .itemWasInitialize) {
+            UserDefaults.standard.set(true, forKey: .itemWasInitialize)
             for name in itemNames {
-                 if let image = UIImage(named: name), let imageData = dataFromImage(image) {
-                     let item = ShoppingItem(name: name, added: false, image: imageData)
-                     self.items.append(item)
-                     saveToPersistence()
-                 }
-             }
+                if let image = UIImage(named: name), let imageData = dataFromImage(image) {
+                    let item = ShoppingItem(name: name, added: false, image: imageData)
+                    self.items.append(item)
+                    saveToPersistence()
+                }
+            }
         }
+        /// Items are initialized, load items from persistence
         loadFromPersistence()
     }
     
-    
+    // Add new shopping items
     func addNewItems(item: ShoppingItem) {
         self.items.append(item)
         saveToPersistence()
     }
     
     
-    var addedItems: [ShoppingItem] {
+    // Array of listed items
+    var listedItems: [ShoppingItem] {
         let addedItems = items.filter({$0.added})
         saveToPersistence()
         return addedItems
     }
     
-    var notAddedItems: [ShoppingItem] {
+    
+    // Array of unlisted items
+    var unlistedItems: [ShoppingItem] {
         let notAddedItems = items.filter({!$0.added})
         return notAddedItems
     }
-    
     
     // Persistence file url
     var fileURL: URL? {
@@ -64,8 +65,8 @@ class ShoppingController {
         let fileURL = documentDir.appendingPathComponent("shopping.plist")
         return fileURL
     }
-
-    // Save to persistence
+    
+    // Save items to persistence
     func saveToPersistence() {
         guard let url = fileURL else {  return }
         
@@ -73,12 +74,12 @@ class ShoppingController {
             let encoder = PropertyListEncoder()
             let data = try encoder.encode(items)
             try data.write(to: url)
-            print("")
         } catch {
             print("Error encoding data: \(error)")
         }
     }
     
+    // Load items from persistence
     func loadFromPersistence() {
         guard let url = fileURL else { return }
         
@@ -92,9 +93,7 @@ class ShoppingController {
         }
     }
     
-    
-    // Get image Data
-    
+    // Get image Data from image
     func dataFromImage(_ image: UIImage) -> Data? {
         return image.jpegData(compressionQuality: 1.0)
     }

@@ -10,23 +10,29 @@ import UIKit
 
 class OrderVC: UIViewController {
     
+    
+    // MARK: - Properties
+    
     var nameTextField = UITextField()
     var addressTextField = UITextField()
     var orderButton = UIButton()
     var shoppingController: ShoppingController!
     
+    
+    // MARK: - View Controller Life Cicle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupViews()
     }
-    
-    
+
+    // MARK: Functions
+
     func setupViews() {
         
         view.backgroundColor = .white
         
-        self.title = "\(shoppingController.addedItems.count) orders on card"
+        self.title = "\(shoppingController.listedItems.count) orders on card"
         
         let centerX = view.center.x
         let width = view.frame.width - 60
@@ -50,6 +56,9 @@ class OrderVC: UIViewController {
         orderButton.setTitleColor(view.tintColor, for: .normal)
         orderButton.addTarget(self, action: #selector(order), for: .touchUpInside)
     }
+    
+    
+    // MARK: - Actions
     
     @objc func order() {
         if let name = nameTextField.text, let address = addressTextField.text {
