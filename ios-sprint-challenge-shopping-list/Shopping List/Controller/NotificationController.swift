@@ -13,7 +13,7 @@ import UserNotifications
 
 class NotificationController {
     
-    @objc func registerLocalNotif() {
+    static func registerLocalNotif() {
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             if granted {
@@ -24,7 +24,7 @@ class NotificationController {
         }
     }
 
-    @objc func scheduleLocalNotif(name: String, orderCount: Int) {
+    static func scheduleLocalNotif(name: String, orderCount: Int) {
         let center = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()
         content.title = "\(name)"

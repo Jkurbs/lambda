@@ -29,7 +29,7 @@ class ShoppingListVC: UICollectionViewController {
         collectionView?.backgroundColor = .white
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewItemVC))
-        navigationItem.leftBarButtonItem = addButton
+        navigationItem.rightBarButtonItem = addButton
         
         var shopButton = UIBarButtonItem()
         
@@ -41,7 +41,7 @@ class ShoppingListVC: UICollectionViewController {
             shopButton = UIBarButtonItem(title: "Order", style: .plain, target: self, action: #selector(orderVC))
         }
         
-        navigationItem.rightBarButtonItem = shopButton
+        navigationItem.leftBarButtonItem = shopButton
         
         self.collectionView!.register(ShoppingCell.self, forCellWithReuseIdentifier: ShoppingCell.id)
         self.collectionView?.reloadData()
@@ -59,7 +59,7 @@ class ShoppingListVC: UICollectionViewController {
     @objc func orderVC() {
         let vc = OrderVC()
         vc.shoppingController = self.shoppingController
-        navigationController?.pushViewController(vc, animated: true)
+        self.present(vc, animated: true, completion: nil)
     }
 }
 

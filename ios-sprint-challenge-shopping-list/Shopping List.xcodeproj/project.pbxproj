@@ -16,7 +16,6 @@
 		6D40447C23E48E4F00E7066D /* ShoppingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D40447B23E48E4F00E7066D /* ShoppingCell.swift */; };
 		6D40448023E49FF800E7066D /* AddNewItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D40447F23E49FF800E7066D /* AddNewItemVC.swift */; };
 		6DEAF68923E4ADB0005BA6E7 /* OrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEAF68823E4ADB0005BA6E7 /* OrderVC.swift */; };
-		6DEAF68E23E4BB32005BA6E7 /* OrderListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEAF68D23E4BB32005BA6E7 /* OrderListVC.swift */; };
 		6DEAF69223E4C28C005BA6E7 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEAF69123E4C28C005BA6E7 /* NotificationController.swift */; };
 		6DEAF69523E4C67E005BA6E7 /* CGColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEAF69323E4C67E005BA6E7 /* CGColor.swift */; };
 		6DEAF69623E4C67E005BA6E7 /* String+UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEAF69423E4C67E005BA6E7 /* String+UserDefault.swift */; };
@@ -35,7 +34,6 @@
 		6D40447B23E48E4F00E7066D /* ShoppingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCell.swift; sourceTree = "<group>"; };
 		6D40447F23E49FF800E7066D /* AddNewItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItemVC.swift; sourceTree = "<group>"; };
 		6DEAF68823E4ADB0005BA6E7 /* OrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderVC.swift; sourceTree = "<group>"; };
-		6DEAF68D23E4BB32005BA6E7 /* OrderListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListVC.swift; sourceTree = "<group>"; };
 		6DEAF69123E4C28C005BA6E7 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		6DEAF69323E4C67E005BA6E7 /* CGColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGColor.swift; sourceTree = "<group>"; };
 		6DEAF69423E4C67E005BA6E7 /* String+UserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+UserDefault.swift"; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 				6D40447923E48E0B00E7066D /* ShoppingListVC.swift */,
 				6D40447F23E49FF800E7066D /* AddNewItemVC.swift */,
 				6DEAF68823E4ADB0005BA6E7 /* OrderVC.swift */,
-				6DEAF68D23E4BB32005BA6E7 /* OrderListVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -203,7 +200,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DEAF68E23E4BB32005BA6E7 /* OrderListVC.swift in Sources */,
 				6DEAF69823E4C6CA005BA6E7 /* ShoppingItem.swift in Sources */,
 				6DEAF68923E4ADB0005BA6E7 /* OrderVC.swift in Sources */,
 				6DEAF69223E4C28C005BA6E7 /* NotificationController.swift in Sources */,
