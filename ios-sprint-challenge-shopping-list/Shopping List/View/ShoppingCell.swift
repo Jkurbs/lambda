@@ -23,7 +23,6 @@ class ShoppingCell: UICollectionViewCell {
         setupViews()
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -32,7 +31,7 @@ class ShoppingCell: UICollectionViewCell {
         let height = contentView.frame.height - 80
         contentView.layer.cornerRadius = contentView.frame.width/2
         contentView.layer.borderWidth = 5.0
-        contentView.layer.borderColor = UIColor(white: 0.6, alpha: 1.0).cgColor
+        contentView.layer.borderColor = .unselectedColor
         imageView.frame = CGRect(x: 0, y: 35, width: height, height: height)
         
         imageView.center.x = contentView.center.x
@@ -51,9 +50,9 @@ class ShoppingCell: UICollectionViewCell {
         titleLabel.text = item.name
         
         if item.added == true {
-            contentView.layer.borderColor = contentView.tintColor.cgColor
+            contentView.layer.borderColor = .selectedColor
         } else {
-            contentView.layer.borderColor = UIColor(white: 0.6, alpha: 1.0).cgColor
+            contentView.layer.borderColor = .unselectedColor
         }
     }
 }
