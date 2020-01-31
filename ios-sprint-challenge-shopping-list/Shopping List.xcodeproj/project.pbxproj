@@ -12,7 +12,6 @@
 		4613E91921143BFD00E7FF73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4613E91821143BFD00E7FF73 /* Assets.xcassets */; };
 		4613E91C21143BFD00E7FF73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4613E91A21143BFD00E7FF73 /* LaunchScreen.storyboard */; };
 		6D40447723E48A7F00E7066D /* ShoppingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D40447623E48A7F00E7066D /* ShoppingController.swift */; };
-		6D40447A23E48E0B00E7066D /* ShoppingListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D40447923E48E0B00E7066D /* ShoppingListVC.swift */; };
 		6D40447C23E48E4F00E7066D /* ShoppingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D40447B23E48E4F00E7066D /* ShoppingCell.swift */; };
 		6D40448023E49FF800E7066D /* AddNewItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D40447F23E49FF800E7066D /* AddNewItemVC.swift */; };
 		6DEAF68923E4ADB0005BA6E7 /* OrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEAF68823E4ADB0005BA6E7 /* OrderVC.swift */; };
@@ -20,6 +19,7 @@
 		6DEAF69523E4C67E005BA6E7 /* CGColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEAF69323E4C67E005BA6E7 /* CGColor.swift */; };
 		6DEAF69623E4C67E005BA6E7 /* String+UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEAF69423E4C67E005BA6E7 /* String+UserDefault.swift */; };
 		6DEAF69823E4C6CA005BA6E7 /* ShoppingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEAF69723E4C6CA005BA6E7 /* ShoppingItem.swift */; };
+		6DEAF69A23E4CA5D005BA6E7 /* ShoppingListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEAF69923E4CA5D005BA6E7 /* ShoppingListVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +30,6 @@
 		4613E91B21143BFD00E7FF73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4613E91D21143BFD00E7FF73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D40447623E48A7F00E7066D /* ShoppingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingController.swift; sourceTree = "<group>"; };
-		6D40447923E48E0B00E7066D /* ShoppingListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListVC.swift; sourceTree = SOURCE_ROOT; };
 		6D40447B23E48E4F00E7066D /* ShoppingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCell.swift; sourceTree = "<group>"; };
 		6D40447F23E49FF800E7066D /* AddNewItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItemVC.swift; sourceTree = "<group>"; };
 		6DEAF68823E4ADB0005BA6E7 /* OrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderVC.swift; sourceTree = "<group>"; };
@@ -38,6 +37,7 @@
 		6DEAF69323E4C67E005BA6E7 /* CGColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGColor.swift; sourceTree = "<group>"; };
 		6DEAF69423E4C67E005BA6E7 /* String+UserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+UserDefault.swift"; sourceTree = "<group>"; };
 		6DEAF69723E4C6CA005BA6E7 /* ShoppingItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingItem.swift; sourceTree = "<group>"; };
+		6DEAF69923E4CA5D005BA6E7 /* ShoppingListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingListVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +104,7 @@
 		6D40447823E48DD900E7066D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				6D40447923E48E0B00E7066D /* ShoppingListVC.swift */,
+				6DEAF69923E4CA5D005BA6E7 /* ShoppingListVC.swift */,
 				6D40447F23E49FF800E7066D /* AddNewItemVC.swift */,
 				6DEAF68823E4ADB0005BA6E7 /* OrderVC.swift */,
 			);
@@ -204,9 +204,9 @@
 				6DEAF68923E4ADB0005BA6E7 /* OrderVC.swift in Sources */,
 				6DEAF69223E4C28C005BA6E7 /* NotificationController.swift in Sources */,
 				6D40447C23E48E4F00E7066D /* ShoppingCell.swift in Sources */,
-				6D40447A23E48E0B00E7066D /* ShoppingListVC.swift in Sources */,
 				6DEAF69623E4C67E005BA6E7 /* String+UserDefault.swift in Sources */,
 				6D40448023E49FF800E7066D /* AddNewItemVC.swift in Sources */,
+				6DEAF69A23E4CA5D005BA6E7 /* ShoppingListVC.swift in Sources */,
 				6DEAF69523E4C67E005BA6E7 /* CGColor.swift in Sources */,
 				4613E91221143BFC00E7FF73 /* AppDelegate.swift in Sources */,
 				6D40447723E48A7F00E7066D /* ShoppingController.swift in Sources */,
