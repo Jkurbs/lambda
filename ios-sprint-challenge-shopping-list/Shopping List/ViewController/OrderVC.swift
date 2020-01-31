@@ -17,7 +17,7 @@ class OrderVC: UIViewController {
     var addressTextField = UITextField()
     var orderButton = UIButton()
     var shoppingController: ShoppingController!
-    
+    let notificationController = NotificationController()
     
     // MARK: - View Controller Life Cicle
 
@@ -32,7 +32,10 @@ class OrderVC: UIViewController {
         
         view.backgroundColor = .white
         
-        self.title = "\(shoppingController.listedItems.count) orders on card"
+        self.title = "Finish order"
+        
+        let countButton = UIBarButtonItem(title: "\(shoppingController.listedItems.count) items", style: .done, target: self, action: #selector(orderListVC))
+        navigationItem.leftBarButtonItem = countButton
         
         let centerX = view.center.x
         let width = view.frame.width - 60
@@ -60,11 +63,20 @@ class OrderVC: UIViewController {
     
     // MARK: - Actions
     
+    @objc func orderListVC() {
+        
+        
+    }
+    
     @objc func order() {
         if let name = nameTextField.text, let address = addressTextField.text {
-            let alert = UIAlertController(title: "\(name)", message: "\(address)", preferredStyle: .alert)
-            alert.addAction( UIAlertAction(title: "Ok", style: .default, handler: nil))
+            let alert = UIAlertController(title: "\(name)", message: "Your order will arrive in 15 min at \(address)", preferredStyle: .alert)
+            alert.addAction( UIAlertAction(title: "Great", style: .default, handler: { (action) in
+                self.notificationController.scheduleLocalNotif(name: name, orderCount: self.shoppingController.listedItems.count)
+            }))
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
+    
 }

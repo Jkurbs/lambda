@@ -1,5 +1,5 @@
 //
-//  ListedItemsVC.swift
+//  OrderListVC.swift
 //  Shopping List
 //
 //  Created by Kerby Jean on 1/31/20.
@@ -8,29 +8,17 @@
 
 import UIKit
 
-class ListedItemsVC: UICollectionViewController {
+class OrderListVC: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-//        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    
+    func setupViews() {
+        self.title = "Your 5 orders"
     }
-    */
+    
 
     // MARK: UICollectionViewDataSource
 
