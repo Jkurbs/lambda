@@ -18,9 +18,9 @@ class PhotoDetailViewController: ViewController {
        var addButton = UIButton()
        var textField = UITextField()
     
-       var photoController: PhotoController?
+       var photoController = PhotoController()
        var photo: Photo?
-       var themeHelper: ThemeHelper?
+       var themeHelper = ThemeHelper()
        
        
        // MARK: View Controller LifeCicle
@@ -83,7 +83,7 @@ class PhotoDetailViewController: ViewController {
     
        
       func setTheme() {
-        if let theme = themeHelper?.themePreference {
+        if let theme = themeHelper.themePreference {
             if theme == "Dark" {
                 view.backgroundColor = .darkGray
             } else {
@@ -92,10 +92,13 @@ class PhotoDetailViewController: ViewController {
         }
     }
        
-       
        @objc func save() {
         guard let data = imageView.image?.jpegData(compressionQuality: 1.0), let title = textField.text else { return }
-        photo != nil ? photoController?.update(photo!, data, title) : photoController?.create(imageData: data, title: title)
+        if let photo = photo {
+            photoController.update(photo, data, title)
+        } else {
+            photoController.create(imageData: data, title: title)
+        }
         self.navigationController?.popViewController(animated: true)
     }
 }

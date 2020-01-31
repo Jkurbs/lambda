@@ -15,10 +15,13 @@ class PhotoController {
     func create(imageData: Data, title: String) {
         let photo = Photo(imageData: imageData, title: title)
         photos.append(photo)
-        print(photos.count)
     }
     
     func update(_ photo: Photo, _ data: Data, _ title: String) {
         
+        if let index = photos.firstIndex(of: photo) {
+            photos[index].imageData = data
+            photos[index].title = title
+        }
     }
 }
