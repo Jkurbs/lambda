@@ -24,4 +24,18 @@ class PhotoController {
             photos[index].title = title
         }
     }
+    
+    // Persistence
+    
+    var persistenceFileURL: URL? {
+        
+        let fileManager = FileManager()
+        
+        // Find the documents directory of the app
+        
+        guard let documentsDir = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {  return nil }
+        let photosURL = documentsDir.appendingPathComponent("photos.plist")
+        
+        return photosURL
+    }
 }
