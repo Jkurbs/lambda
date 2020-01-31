@@ -23,7 +23,7 @@ class NotificationController {
             }
         }
     }
-
+    
     static func scheduleLocalNotif(name: String, orderCount: Int) {
         let center = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()
@@ -32,7 +32,7 @@ class NotificationController {
         content.categoryIdentifier = "alarm"
         content.userInfo = ["customData": "fizzbuzz"]
         content.sound = UNNotificationSound.default
-
+        
         var dateComponents = DateComponents()
         dateComponents.minute = 15
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)

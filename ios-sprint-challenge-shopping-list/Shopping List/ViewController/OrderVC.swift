@@ -20,21 +20,21 @@ class OrderVC: UIViewController {
     var shoppingController: ShoppingController!
     
     // MARK: - View Controller Life Cicle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
     }
-
+    
     // MARK: Functions
-
+    
     func setupViews() {
         
         view.backgroundColor = .white
-                
+        
         let centerX = view.center.x
         let width = view.frame.width - 60
-                
+        
         view.addSubview(label)
         label.frame = CGRect(x: 0, y: 150, width: width, height: 45)
         label.center.x = centerX

@@ -21,7 +21,7 @@ class AddNewItemVC: UIViewController {
     
     
     // MARK: - View Controller Life Cicle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -39,7 +39,7 @@ class AddNewItemVC: UIViewController {
         
         let width = view.frame.width
         let centerX = view.center.x
-                
+        
         imageView.frame = CGRect(x: 0, y: 150, width: 100, height: 100)
         imageView.layer.cornerRadius = imageView.frame.width/2
         imageView.center.x = centerX
