@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ShoppingCell: UICollectionViewCell {
     
     var imageView = UIImageView()
@@ -16,6 +17,7 @@ class ShoppingCell: UICollectionViewCell {
     static var id: String {
         return String(describing: self)
     }
+
     
     
     override init(frame: CGRect) {
@@ -29,9 +31,12 @@ class ShoppingCell: UICollectionViewCell {
     }
 
     func setupViews() {
-        let height = contentView.frame.height - 50
+        let height = contentView.frame.height - 80
         imageView.frame = CGRect(x: 0, y: 0, width: height, height: height)
-        imageView.center.x = contentView.center.x
+        contentView.layer.cornerRadius = contentView.frame.width/2
+        contentView.layer.borderWidth = 5.0
+        contentView.layer.borderColor = UIColor(white: 0.6, alpha: 1.0).cgColor
+        imageView.center = contentView.center
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         
@@ -44,9 +49,9 @@ class ShoppingCell: UICollectionViewCell {
     func configure(_ item: ShoppingItem) {
         imageView.image = UIImage(data: item.image)
         titleLabel.text = item.name
-    }
-    
-    func selected() {
         
+        if item.added == true {
+            contentView.layer.borderColor = contentView.tintColor.cgColor
+        }
     }
 }

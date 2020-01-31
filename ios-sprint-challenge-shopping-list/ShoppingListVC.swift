@@ -55,7 +55,7 @@ class ShoppingListVC: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = itemForSection(indexPath: indexPath)
-        item.added = true
+        item.added = !item.added
         collectionView.reloadData()
     }
     

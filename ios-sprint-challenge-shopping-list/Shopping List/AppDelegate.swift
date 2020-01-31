@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let layout = UICollectionViewFlowLayout()
           let width = ((self.window?.rootViewController?.view.frame.width)!/3) - 10
           layout.itemSize = CGSize(width: width, height: width)
-          layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 0, right: 5)
-          layout.minimumLineSpacing = 0
+          layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 20, right: 5)
+          layout.minimumLineSpacing = 10
           layout.minimumInteritemSpacing = 0
 
           let initialViewController = ShoppingListVC(collectionViewLayout: layout)
