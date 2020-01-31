@@ -20,22 +20,9 @@ class ShoppingListVC: UICollectionViewController {
 
         view.backgroundColor = .white
         collectionView?.backgroundColor = .white
-//        let themeButton = UIBarButtonItem(title: "Theme", style: .plain, target: self, action: #selector(selectTheme))
-//        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPhoto))
-//        
-//        navigationItem.leftBarButtonItem = themeButton
-//        navigationItem.rightBarButtonItem = addButton
-        
 
         self.collectionView!.register(ShoppingCell.self, forCellWithReuseIdentifier: ShoppingCell.id)
         self.collectionView?.reloadData()
-    }
-    
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        collectionView?.reloadData()
     }
     
     
@@ -47,36 +34,36 @@ class ShoppingListVC: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
-
+        
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return shoppingController.items.count
+        if section == 0 {
+            return shoppingController.addedItems.count
+        }
+        return shoppingController.notAddedItems.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ShoppingCell.id, for: indexPath) as! ShoppingCell
-        let item = shoppingController.items[indexPath.row]
+        let item = itemForSection(indexPath: indexPath)
         cell.configure(item)
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let photo = self.controller.photos[indexPath.row]
-//        let vc = PhotoDetailViewController()
-//        vc.photo = photo
-//        vc.photoController = self.controller
-//        vc.themeHelper = self.themeHelper
-//        navigationController?.pushViewController(vc, animated: true)
+        let item = itemForSection(indexPath: indexPath)
+        item.added = true
+        collectionView.reloadData()
     }
     
-    func sectionForItem(indexPath: IndexPath) {
+    func itemForSection(indexPath: IndexPath) -> ShoppingItem {
         if indexPath.section == 0 {
-            
+            return shoppingController.addedItems[indexPath.row]
         } else {
-            
+            return shoppingController.notAddedItems[indexPath.row]
         }
     }
 }

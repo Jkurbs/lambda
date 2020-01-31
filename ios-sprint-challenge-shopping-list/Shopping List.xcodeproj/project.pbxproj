@@ -62,6 +62,7 @@
 		4613E91021143BFC00E7FF73 /* Shopping List */ = {
 			isa = PBXGroup;
 			children = (
+				6D40447E23E49B3700E7066D /* View */,
 				6D40447823E48DD900E7066D /* ViewController */,
 				6D40447523E48A6C00E7066D /* Controller */,
 				6D40447223E4895A00E7066D /* Model */,
@@ -71,7 +72,6 @@
 				4613E91821143BFD00E7FF73 /* Assets.xcassets */,
 				4613E91A21143BFD00E7FF73 /* LaunchScreen.storyboard */,
 				4613E91D21143BFD00E7FF73 /* Info.plist */,
-				6D40447B23E48E4F00E7066D /* ShoppingCell.swift */,
 			);
 			path = "Shopping List";
 			sourceTree = "<group>";
@@ -98,6 +98,14 @@
 				6D40447923E48E0B00E7066D /* ShoppingListVC.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		6D40447E23E49B3700E7066D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6D40447B23E48E4F00E7066D /* ShoppingCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

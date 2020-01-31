@@ -45,4 +45,8 @@ class ShoppingCell: UICollectionViewCell {
         imageView.image = UIImage(data: item.image)
         titleLabel.text = item.name
     }
+    
+    func selected() {
+        
+    }
 }

@@ -16,8 +16,6 @@ extension String {
 class ShoppingController {
     
     var items = [ShoppingItem]()
-    var addedItems = [ShoppingItem]()
-    
     let itemNames = ["Apple", "Grapes", "Milk", "Muffin", "Popcorn", "Soda", "Strawberries"]
     
     init() {
@@ -27,7 +25,6 @@ class ShoppingController {
     func initializeItems() {
         if !UserDefaults.standard.bool(forKey: .wasInitialize) {
             UserDefaults.standard.set(true, forKey: .wasInitialize)
-            print("INITIALIZE")
             for name in itemNames {
                  if let imageData = UIImageJPEGRepresentation( UIImage(named: name)!, 1.0) {
                      let item = ShoppingItem(name: name, added: false, image: imageData)
@@ -46,10 +43,15 @@ class ShoppingController {
     }
     
     
-    // Item added to shopping list
-    func addItemToAdded() {
-        let addedItems = self.items.filter({ $0.added == true })
-        self.addedItems = addedItems
+    var addedItems: [ShoppingItem] {
+        let addedItems = items.filter({$0.added})
+        saveToPersistence()
+        return addedItems
+    }
+    
+    var notAddedItems: [ShoppingItem] {
+        let notAddedItems = items.filter({!$0.added})
+        return notAddedItems
     }
     
     
