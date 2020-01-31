@@ -18,6 +18,7 @@
 		6D40447C23E48E4F00E7066D /* ShoppingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D40447B23E48E4F00E7066D /* ShoppingCell.swift */; };
 		6D40448023E49FF800E7066D /* AddNewItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D40447F23E49FF800E7066D /* AddNewItemVC.swift */; };
 		6D40448223E4A30400E7066D /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D40448123E4A30400E7066D /* CustomLabel.swift */; };
+		6DEAF68923E4ADB0005BA6E7 /* OrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEAF68823E4ADB0005BA6E7 /* OrderVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		6D40447B23E48E4F00E7066D /* ShoppingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCell.swift; sourceTree = "<group>"; };
 		6D40447F23E49FF800E7066D /* AddNewItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItemVC.swift; sourceTree = "<group>"; };
 		6D40448123E4A30400E7066D /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = SOURCE_ROOT; };
+		6DEAF68823E4ADB0005BA6E7 /* OrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				6D40447923E48E0B00E7066D /* ShoppingListVC.swift */,
 				6D40447F23E49FF800E7066D /* AddNewItemVC.swift */,
+				6DEAF68823E4ADB0005BA6E7 /* OrderVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D40447423E4896500E7066D /* ShoppingItem.swift in Sources */,
+				6DEAF68923E4ADB0005BA6E7 /* OrderVC.swift in Sources */,
 				6D40447C23E48E4F00E7066D /* ShoppingCell.swift in Sources */,
 				6D40447A23E48E0B00E7066D /* ShoppingListVC.swift in Sources */,
 				4613E91421143BFC00E7FF73 /* ViewController.swift in Sources */,

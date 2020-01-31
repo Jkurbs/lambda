@@ -32,7 +32,17 @@ class ShoppingListVC: UICollectionViewController {
        collectionView?.backgroundColor = .white
        
        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewItemVC))
-       navigationItem.rightBarButtonItem = addButton
+       navigationItem.leftBarButtonItem = addButton
+        
+        if #available(iOS 13.0, *) {
+            let image = UIImage(systemName: "cart")
+            let shopButton = UIBarButtonItem(image: image , style: .plain, target: self, action:  #selector(orderVC))
+            navigationItem.rightBarButtonItem = shopButton
+        } else {
+            // Fallback on earlier versions
+        }
+
+       
         
        self.collectionView!.register(ShoppingCell.self, forCellWithReuseIdentifier: ShoppingCell.id)
        self.collectionView?.reloadData()
@@ -42,6 +52,15 @@ class ShoppingListVC: UICollectionViewController {
     @objc func addNewItemVC() {
         navigationController?.pushViewController(AddNewItemVC(), animated: true)
     }
+    
+    @objc func orderVC() {
+        
+        let vc = OrderVC()
+        vc.shoppingController = self.shoppingController
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
     
    
     // MARK: UICollectionViewDataSource
