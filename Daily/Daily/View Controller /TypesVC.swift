@@ -1,18 +1,17 @@
 //
-//  TaskTableVC.swift
+//  TypesVC.swift
 //  Daily
 //
-//  Created by Kerby Jean on 2/3/20.
+//  Created by Kerby Jean on 2/4/20.
 //  Copyright © 2020 Kerby Jean. All rights reserved.
 //
 
 import UIKit
 
-
-class TaskListVC: UIViewController {
+class TypesVC: UIViewController {
     
     var tableView: UITableView!
-    var list: List?
+    var types = [Type]()
     var listController: ListController?
     
     override func viewDidLoad() {
@@ -26,7 +25,6 @@ class TaskListVC: UIViewController {
     }
     
     func setupViews() {
-        self.title = list?.title
         view.backgroundColor = .white
         tableView = UITableView(frame: view.frame, style: .plain)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.id)
@@ -40,37 +38,30 @@ class TaskListVC: UIViewController {
     
     @objc func addTask() {
         let vc = CreateTaskVC()
-        vc.list = self.list
         vc.listController = listController
         navigationController?.pushViewController(vc, animated: true)
     }
 }
 
-extension TaskListVC: UITableViewDelegate, UITableViewDataSource {
+extension TypesVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list?.tasks?.count ?? 0
+        return types.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.id, for: indexPath) as! TaskCell
-        let task = list?.tasks?[indexPath.row]
-        cell.task = task
+        let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.id, for: indexPath)
+        let type = types[indexPath.row]
+        cell.textLabel?.text = type.rawValue
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            listController?.removeTaskInList(list: list!, index: indexPath.row)
-            tableView.reloadData()
-        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80.0
     }
 }
+

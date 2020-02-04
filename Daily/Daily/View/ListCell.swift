@@ -18,6 +18,12 @@ class ListCell: UICollectionViewCell {
     var titleLabel = UILabel()
     var countLabel = UILabel()
     
+    var list: List? {
+        didSet {
+            configure()
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -30,34 +36,29 @@ class ListCell: UICollectionViewCell {
     
     func setupViews() {
         
-        let height = contentView.frame.height - 20
+        let height = contentView.frame.height - 50
         imageView.frame = CGRect(x: 0, y: 15, width: height, height: height)
         imageView.center.x = contentView.center.x
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 5.0
-        imageView.layer.borderWidth = 0.5
-        imageView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
-        imageView.layer.borderColor = UIColor.lightGray.cgColor
-
-               
-       titleLabel.frame = CGRect(x: 0, y: height + 10, width: contentView.frame.width, height: 40)
-       titleLabel.textAlignment = .center
-       titleLabel.font = UIFont.systemFont(ofSize: 16)
         
-       countLabel.frame = CGRect(x: 0, y: titleLabel.layer.position.y , width: contentView.frame.width, height: 40)
-       countLabel.textAlignment = .center
+        titleLabel.frame = CGRect(x: 0, y: height + 10, width: contentView.frame.width, height: 40)
+        titleLabel.textAlignment = .center
+        titleLabel.font = UIFont.systemFont(ofSize: 16)
+        
+        countLabel.frame = CGRect(x: 0, y: titleLabel.layer.position.y , width: contentView.frame.width, height: 40)
+        countLabel.textAlignment = .center
         countLabel.font = UIFont.systemFont(ofSize: 11, weight: .light)
-       contentView.addSubview(imageView)
-       contentView.addSubview(titleLabel)
-       contentView.addSubview(countLabel)
+        contentView.addSubview(imageView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(countLabel)
     }
     
-    func configure(item: List) {
+    func configure() {
         
-        imageView.image = item.thumbnail?.image()
-        titleLabel.text = item.title
-        if let count = item.tasks?.count {
+        imageView.image = list?.thumbnail?.image()
+        titleLabel.text = list?.title
+        if let count = list?.tasks?.count {
             let text = count > 1 ? "\(count) tasks" : "\(count) task"
             countLabel.text = text
         }

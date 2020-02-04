@@ -13,7 +13,6 @@ import Foundation
 class ListController {
     
     var taskController = TaskController()
-    
     var lists = [List]()
     
     init() {
@@ -24,10 +23,10 @@ class ListController {
     func initializeItems() {
         if !UserDefaults.standard.bool(forKey: .initializeLists) {
             UserDefaults.standard.set(true, forKey: .initializeLists)
-            lists = [List(title: "All Tasks", thumbnail: UIImage(named: "doc.plaintext"), type: .all, tasks: nil),
-                          List(title: "Personal", thumbnail: UIImage(named: "doc.plaintext"), type: .personal, tasks: nil),
-                          List(title: "Health", thumbnail: UIImage(named: "doc.plaintext"), type: .health, tasks: taskController.tasks),
-                          List(title: "Work", thumbnail: UIImage(named: "doc.plaintext"), type: .work, tasks: nil)]
+            lists = [List(title: "All Tasks", thumbnail: UIImage(systemName: "doc.plaintext"), type: .all, tasks: []),
+                          List(title: "Personal", thumbnail: UIImage(systemName: "doc.plaintext"), type: .personal, tasks: []),
+                          List(title: "Health", thumbnail: UIImage(systemName: "doc.plaintext"), type: .health, tasks: []),
+                          List(title: "Work", thumbnail: UIImage(systemName: "doc.plaintext"), type: .work, tasks: [])]
             saveToPersistence()
         }
         /// Items are initialized, load items from persistence
@@ -64,13 +63,35 @@ class ListController {
     
     func tasksForList(at index: Int) -> [Task]? {
         let list = self.item(at: index)
-        let tasks = list.tasks?.filter({$0.type == list.type})
-        return tasks
+        if list.type != .all {
+            return list.tasks
+        } else {
+            return taskController.tasks
+        }
+    }
+    
+    func suggestionForList(at index: Int) -> [Task]? {
+        let list = self.item(at: index)
+        let suggestions = taskController.suggestions.filter({$0.type == list.type})
+        return suggestions
+    }
+    
+    func addTaskInList(task: Task, list: List) {
+        let allList = self.lists[0]
+        list.tasks?.append(task)
+        allList.tasks?.append(task)
+        saveToPersistence()
+    }
+    
+    func removeTaskInList(list: List, index: Int) {
+        let allList = self.lists[0]
+        allList.tasks?.remove(at: index)
+        list.tasks?.remove(at: index)
+        saveToPersistence()
     }
 }
 
 extension ListController {
-
     
     // Persistence file url
     var fileURL: URL? {

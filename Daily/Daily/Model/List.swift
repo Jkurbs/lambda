@@ -24,3 +24,9 @@ class List: Codable {
         self.tasks = tasks
     }
 }
+
+extension List: Equatable {
+    static func == (lhs: List, rhs: List) -> Bool {
+        return lhs.title != rhs.title 
+    }
+}

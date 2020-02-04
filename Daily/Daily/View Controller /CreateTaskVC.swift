@@ -1,40 +1,40 @@
 //
-//  TaskTableVC.swift
+//  CreateTaskVC.swift
 //  Daily
 //
-//  Created by Kerby Jean on 2/3/20.
+//  Created by Kerby Jean on 2/4/20.
 //  Copyright © 2020 Kerby Jean. All rights reserved.
 //
 
 import UIKit
 
-
-class TaskListVC: UIViewController {
+class CreateTaskVC: UIViewController {
     
     var tableView: UITableView!
-    var list: List?
     var listController: ListController?
+    var list: List?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.reloadData()
-    }
-    
     func setupViews() {
-        self.title = list?.title
+        
+        self.title = "Create new Task"
+        view.backgroundColor = .white
+        self.navigationItem.largeTitleDisplayMode = .automatic
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addTask))
+        navigationItem.rightBarButtonItem = addButton
+        
         view.backgroundColor = .white
         tableView = UITableView(frame: view.frame, style: .plain)
-        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.id)
+        tableView.register(TextFieldCell.self, forCellReuseIdentifier: TextFieldCell.id)
         tableView.estimatedRowHeight = 85.0
         tableView.dataSource = self
         tableView.dataSource = self
         view.addSubview(tableView)
-        
         navigationItem.addRight(self, .add, #selector(addTask))
     }
     
@@ -46,28 +46,19 @@ class TaskListVC: UIViewController {
     }
 }
 
-extension TaskListVC: UITableViewDelegate, UITableViewDataSource {
+extension CreateTaskVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list?.tasks?.count ?? 0
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.id, for: indexPath) as! TaskCell
-        let task = list?.tasks?[indexPath.row]
-        cell.task = task
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            listController?.removeTaskInList(list: list!, index: indexPath.row)
-            tableView.reloadData()
-        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

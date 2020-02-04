@@ -35,14 +35,20 @@ extension Type {
 class Task: Codable {
     
     var title: String
-    var type: Type?
+    var type: Type
     var setReminder: Bool
     var done: Bool
     
-    init(title: String, type: Type, setReminder: Bool = true, done: Bool = false) {
+    init(title: String, type: Type = .all, setReminder: Bool = true, done: Bool) {
         self.title = title
         self.type = type
         self.setReminder = setReminder
         self.done = done 
+    }
+}
+
+extension Task: Equatable {
+    static func == (lhs: Task, rhs: Task) -> Bool {
+        return lhs.title != rhs.title
     }
 }
