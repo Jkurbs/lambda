@@ -18,17 +18,16 @@ class ListController {
     
     init() {
        initializeItems()
-        
-        lists = [List(title: "All Tasks", thumbnail: UIImage(named: "doc.plaintext"), type: .all, tasks: nil),
-               List(title: "Personal", thumbnail: UIImage(named: "doc.plaintext"), type: .personal, tasks: nil),
-               List(title: "Health", thumbnail: UIImage(named: "doc.plaintext"), type: .health, tasks: taskController.tasks),
-               List(title: "Work", thumbnail: UIImage(named: "doc.plaintext"), type: .work, tasks: nil)]
     }
     
     // Initialize exsisting lists
     func initializeItems() {
         if !UserDefaults.standard.bool(forKey: .initializeLists) {
             UserDefaults.standard.set(true, forKey: .initializeLists)
+            lists = [List(title: "All Tasks", thumbnail: UIImage(named: "doc.plaintext"), type: .all, tasks: nil),
+                          List(title: "Personal", thumbnail: UIImage(named: "doc.plaintext"), type: .personal, tasks: nil),
+                          List(title: "Health", thumbnail: UIImage(named: "doc.plaintext"), type: .health, tasks: taskController.tasks),
+                          List(title: "Work", thumbnail: UIImage(named: "doc.plaintext"), type: .work, tasks: nil)]
             saveToPersistence()
         }
         /// Items are initialized, load items from persistence
@@ -101,6 +100,7 @@ extension ListController {
         do {
             let decoder = PropertyListDecoder()
             let data = try Data(contentsOf: url)
+            print(data)
             let decodedData = try decoder.decode([List].self, from: data)
             self.lists = decodedData
         } catch {

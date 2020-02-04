@@ -17,6 +17,21 @@ enum Type: String, Codable {
     case work
 }
 
+extension Type {
+    
+    private enum CodingKeys: String, CodingKey {
+        case all
+        case health
+        case personal
+        case work
+    }
+    
+    enum PostTypeCodingError: Error {
+        case decoding(String)
+    }
+    
+}
+
 class Task: Codable {
     
     var title: String

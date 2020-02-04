@@ -43,11 +43,11 @@ class ListCell: UICollectionViewCell {
                
        titleLabel.frame = CGRect(x: 0, y: height + 10, width: contentView.frame.width, height: 40)
        titleLabel.textAlignment = .center
-       titleLabel.font = UIFont.systemFont(ofSize: 15)
+       titleLabel.font = UIFont.systemFont(ofSize: 16)
         
-       countLabel.frame = CGRect(x: 0, y: titleLabel.layer.position.y + 5, width: contentView.frame.width, height: 40)
+       countLabel.frame = CGRect(x: 0, y: titleLabel.layer.position.y , width: contentView.frame.width, height: 40)
        countLabel.textAlignment = .center
-       countLabel.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+        countLabel.font = UIFont.systemFont(ofSize: 11, weight: .light)
        contentView.addSubview(imageView)
        contentView.addSubview(titleLabel)
        contentView.addSubview(countLabel)
@@ -58,7 +58,7 @@ class ListCell: UICollectionViewCell {
         imageView.image = item.thumbnail?.image()
         titleLabel.text = item.title
         if let count = item.tasks?.count {
-            let text = count > 1 ? "\(count) tasks" :  "\(count) task"
+            let text = count > 1 ? "\(count) tasks" : "\(count) task"
             countLabel.text = text
         }
     }
