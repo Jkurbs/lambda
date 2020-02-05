@@ -74,7 +74,7 @@ class ListVC: UIViewController {
             let alert = UIAlertController(title: "Are you sure you want to delete \(list.title)", message: "You can't undo this action.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
-                self.controller.delete(at: index)
+                self.controller.delete(at: index, list: list)
                 self.collectionView.reloadData()
             }))
             self.present(alert, animated: true, completion: nil)

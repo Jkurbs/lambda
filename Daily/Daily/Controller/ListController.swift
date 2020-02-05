@@ -57,7 +57,8 @@ class ListController {
     func delete(at index: Int, list: List) {
         lists.remove(at: index)
         let allList = self.lists[0]
-        allList.tasks.filter { $0 >= 5 }
+        let tasks = allList.tasks?.filter { $0.type == list.type }
+        allList.tasks = tasks
         saveToPersistence()
     }
     
