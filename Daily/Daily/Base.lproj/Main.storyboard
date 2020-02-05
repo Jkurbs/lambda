@@ -21,9 +21,9 @@
                                 <state key="normal" title="Button"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UCg-eC-1YK">
-                                <rect key="frame" x="166" y="375" width="86" height="32"/>
+                                <rect key="frame" x="172" y="380" width="74" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="hea"/>
+                                <state key="normal" title="Button" image="exclamationmark.circle" catalog="system"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -36,6 +36,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="hea" width="16" height="16"/>
+        <image name="exclamationmark.circle" catalog="system" width="64" height="60"/>
     </resources>
 </document>

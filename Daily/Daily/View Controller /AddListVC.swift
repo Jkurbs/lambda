@@ -64,8 +64,8 @@ class AddListVC: UIViewController {
     
     @objc func add() {
         if let title = titleField.text, let image =  imageView.image {
-            let list = List(title: title, thumbnail: image, type: .health, tasks: nil)
-            listController?.add(item: list)
+            let list = List(title: title, thumbnail: image, type: .health, tasks: [])
+            listController!.add(item: list)
             self.navigationController?.popViewController(animated: true)
         }
     }

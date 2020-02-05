@@ -43,7 +43,7 @@ class CreateTaskVC: UIViewController {
     @objc func addTask() {
         if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TextFieldCell {
             let task = Task(title: cell.textFied.text!, done: false)
-            listController?.addTaskInList(task: task, list: list!)
+            listController!.addTaskInList(task: task, list: list!)
         }
         navigationController?.popViewController(animated: true)
     }

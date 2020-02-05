@@ -49,12 +49,15 @@ class ListController {
     // Add Item
     func add(item: List) {
         lists.append(item)
+        print(lists.count)
         saveToPersistence()
     }
     
     // Delete Item
-    func delete(at index: Int) {
+    func delete(at index: Int, list: List) {
         lists.remove(at: index)
+        let allList = self.lists[0]
+        allList.tasks.filter { $0 >= 5 }
         saveToPersistence()
     }
     

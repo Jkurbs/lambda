@@ -19,6 +19,6 @@ extension UIImage {
     
     
    func dataFrom() -> Data? {
-    return self.pngData()
+    return self.jpegData(compressionQuality: 1.0)
    }
 }
