@@ -23,6 +23,13 @@ class AddListVC: UIViewController {
         setupViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let backButton = UIBarButtonItem()
+        backButton.title = "Lists"
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+    }
+    
     func setupViews() {
         self.title = "Add List"
         view.backgroundColor = .white

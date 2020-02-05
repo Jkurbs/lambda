@@ -22,6 +22,11 @@ class TaskListVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let backButton = UIBarButtonItem()
+        backButton.title = "Lists"
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        
         tableView.reloadData()
     }
     
@@ -33,8 +38,8 @@ class TaskListVC: UIViewController {
         tableView.estimatedRowHeight = 85.0
         tableView.dataSource = self
         tableView.dataSource = self
+        tableView.separatorStyle = .none
         view.addSubview(tableView)
-        
         navigationItem.addRight(self, .add, #selector(addTask))
     }
     

@@ -36,7 +36,7 @@ class ListCell: UICollectionViewCell {
     
     func setupViews() {
         
-        let height = contentView.frame.height - 50
+        let height = contentView.frame.height - 40
         imageView.frame = CGRect(x: 0, y: 15, width: height, height: height)
         imageView.center.x = contentView.center.x
         imageView.contentMode = .scaleAspectFit

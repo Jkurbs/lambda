@@ -23,7 +23,10 @@ class ListController {
     func initializeItems() {
         if !UserDefaults.standard.bool(forKey: .initializeLists) {
             UserDefaults.standard.set(true, forKey: .initializeLists)
-            lists = [List(title: "All Tasks", thumbnail: UIImage(systemName: "doc.plaintext"), type: .all, tasks: []),
+            
+            let configuration = UIImage.SymbolConfiguration(scale: .default)
+
+            lists = [List(title: "All Tasks", thumbnail: UIImage(systemName: "doc.plaintext")!.withTintColor(.systemBlue, renderingMode: .alwaysTemplate), type: .all, tasks: []),
                           List(title: "Personal", thumbnail: UIImage(systemName: "doc.plaintext"), type: .personal, tasks: []),
                           List(title: "Health", thumbnail: UIImage(systemName: "doc.plaintext"), type: .health, tasks: []),
                           List(title: "Work", thumbnail: UIImage(systemName: "doc.plaintext"), type: .work, tasks: [])]
@@ -88,6 +91,10 @@ class ListController {
         allList.tasks?.remove(at: index)
         list.tasks?.remove(at: index)
         saveToPersistence()
+    }
+    
+    func taskIsDone(for task: Task) {
+        self.saveToPersistence()
     }
 }
 
