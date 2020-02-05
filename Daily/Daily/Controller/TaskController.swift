@@ -13,8 +13,6 @@ import Foundation
 class TaskController {
     
     var tasks = [Task]()
-    
-    var suggestions = [Task(title: "Run 1 mile", type: .health, done: false), Task(title: "Drink a smoothie", type: .health, done: true), Task(title: "Call someone", type: .work, done: false)]
 
     // Item Count
     var itemsCount: Int {

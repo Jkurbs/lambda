@@ -9,10 +9,10 @@
 import UIKit
 
 class ListVC: UIViewController {
-        
+    
     var collectionView: UICollectionView!
     var controller = ListController()
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -27,7 +27,7 @@ class ListVC: UIViewController {
     
     func setupViews() {
         
-        self.title = "Work hard, play \n hard"
+        self.title = "List"
         view.backgroundColor = .white
         self.navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -82,7 +82,7 @@ class ListVC: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
         // Create and return a UIMenu with the share action
-        return UIMenu(title: "Main Menu", children: [edit, delete])
+        return UIMenu(title: "", children: [edit, delete])
     }
 }
 

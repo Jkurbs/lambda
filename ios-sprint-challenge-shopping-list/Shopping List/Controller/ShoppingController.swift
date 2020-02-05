@@ -55,10 +55,6 @@ class ShoppingController {
         let notAddedItems = items.filter({!$0.added})
         return notAddedItems
     }
-
-    
-    
-    
     
     // Persistence file url
     var fileURL: URL? {

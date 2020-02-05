@@ -8,7 +8,11 @@
 
 import UIKit
 
-class CreateTaskVC: UIViewController {
+class CreateTaskVC: UIViewController, TaskDescDelegate {
+    
+    var addToList: Type?
+    var note: String?
+    var time: String?
     
     var tableView: UITableView!
     var listController: ListController?
@@ -32,17 +36,24 @@ class CreateTaskVC: UIViewController {
         tableView = UITableView(frame: view.frame, style: .plain)
         tableView.register(TextFieldCell.self, forCellReuseIdentifier: TextFieldCell.id)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DescriptionCell")
         
-        tableView.dataSource = self
+        
+        tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
         view.addSubview(tableView)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(addTask))
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     @objc func addTask() {
-        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TextFieldCell {
-            let task = Task(title: cell.textFied.text!, done: false)
+        if let titleCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TextFieldCell {
+            let task = Task(title: titleCell.textFied.text!, note: note ?? "", type: addToList ?? .all, setReminder: false, done: false)
             listController!.addTaskInList(task: task, list: list!)
         }
         navigationController?.popViewController(animated: true)
@@ -61,7 +72,7 @@ extension CreateTaskVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "Cell")
         cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .none
         
@@ -69,10 +80,18 @@ extension CreateTaskVC: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: TextFieldCell.id, for: indexPath) as! TextFieldCell
             return cell
         } else if indexPath.row == 1 {
-            cell.textLabel?.text = "Select time"
+            cell.accessoryType = .disclosureIndicator
+            cell.selectionStyle = .none
+            cell.textLabel?.text = "Add note"
+            cell.detailTextLabel?.text = self.note ?? ""
             return cell
         } else if indexPath.row == 2 {
-            cell.textLabel?.text = "Select type"
+            cell.textLabel?.text = "Select time"
+            cell.detailTextLabel?.text = self.time ?? ""
+            return cell
+        } else if indexPath.row == 3 {
+            cell.textLabel?.text = "Add to list"
+            cell.detailTextLabel?.text = self.addToList?.description
             return cell
         } else {
             cell.textLabel?.text = "Remind me"
@@ -86,9 +105,23 @@ extension CreateTaskVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath.row == 1 {
+            let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0))
+            let vc = AddNoteVC()
+            vc.textView.text = cell?.detailTextLabel?.text ?? ""
+            vc.delegate = self
+            navigationController?.pushViewController(vc, animated: true)
+        } else if indexPath.row == 3 {
+            //             let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0))
+            let vc = ChooseListVC()
+            vc.listController = self.listController
+            vc.delegate = self
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80.0
+        return 60.0
     }
 }

@@ -36,7 +36,10 @@ class TaskCell: UITableViewCell {
     func setupViews() {
         
         titleLabel.frame = CGRect(x: 20, y: 0, width: contentView.frame.width, height: contentView.frame.height)
+        titleLabel.center.y = contentView.center.y
         button.frame = CGRect(x: contentView.frame.width - 20 , y: 0, width: 100, height: contentView.frame.height)
+        
+        button.center.y = contentView.center.y
         
         button.setImage(UIImage(systemName: "circle"), for: .normal)
         button.addTarget(self, action: #selector(selected(_:)), for: .touchUpInside)
@@ -48,7 +51,7 @@ class TaskCell: UITableViewCell {
     @objc func selected(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
-            sender.setImage(UIImage(named: "circle.fill"), for: .selected)
+            sender.setImage(UIImage(named: "circle.fill"), for: .normal)
             task?.done = true
         } else {
             sender.setImage(UIImage(named: "circle"), for: .normal)
@@ -57,7 +60,6 @@ class TaskCell: UITableViewCell {
     
     func updateViews() {
         titleLabel.text = task?.title
-        
         _ = task!.done ? button.setImage(UIImage(systemName: "circle.fill"), for: .normal) :  button.setImage(UIImage(systemName: "circle"), for: .normal)
     }
 }

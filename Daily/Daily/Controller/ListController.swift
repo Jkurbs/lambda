@@ -16,7 +16,7 @@ class ListController {
     var lists = [List]()
     
     init() {
-       initializeItems()
+        initializeItems()
     }
     
     // Initialize exsisting lists
@@ -25,11 +25,11 @@ class ListController {
             UserDefaults.standard.set(true, forKey: .initializeLists)
             
             let configuration = UIImage.SymbolConfiguration(scale: .default)
-
+            
             lists = [List(title: "All Tasks", thumbnail: UIImage(systemName: "doc.plaintext")!.withTintColor(.systemBlue, renderingMode: .alwaysTemplate), type: .all, tasks: []),
-                          List(title: "Personal", thumbnail: UIImage(systemName: "doc.plaintext"), type: .personal, tasks: []),
-                          List(title: "Health", thumbnail: UIImage(systemName: "doc.plaintext"), type: .health, tasks: []),
-                          List(title: "Work", thumbnail: UIImage(systemName: "doc.plaintext"), type: .work, tasks: [])]
+                     List(title: "Personal", thumbnail: UIImage(systemName: "doc.plaintext"), type: .personal, tasks: []),
+                     List(title: "Health", thumbnail: UIImage(systemName: "doc.plaintext"), type: .health, tasks: []),
+                     List(title: "Work", thumbnail: UIImage(systemName: "doc.plaintext"), type: .work, tasks: [])]
             saveToPersistence()
         }
         /// Items are initialized, load items from persistence
@@ -70,19 +70,12 @@ class ListController {
         saveToPersistence()
     }
     
-    func tasksForList(at index: Int) -> [Task]? {
-        let list = self.item(at: index)
-        if list.type != .all {
-            return list.tasks
-        } else {
-            return taskController.tasks
-        }
+    func tasksDone(for list: List) -> [Task]? {
+        return list.tasks?.filter({$0.done})
     }
     
-    func suggestionForList(at index: Int) -> [Task]? {
-        let list = self.item(at: index)
-        let suggestions = taskController.suggestions.filter({$0.type == list.type})
-        return suggestions
+    func tasksUndone(for list: List) -> [Task]? {
+        return list.tasks?.filter({!$0.done})
     }
     
     func addTaskInList(task: Task, list: List) {

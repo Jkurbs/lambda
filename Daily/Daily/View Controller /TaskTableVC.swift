@@ -36,7 +36,7 @@ class TaskListVC: UIViewController {
         tableView = UITableView(frame: view.frame, style: .plain)
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.id)
         tableView.estimatedRowHeight = 85.0
-        tableView.dataSource = self
+        tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
         view.addSubview(tableView)
@@ -54,16 +54,20 @@ class TaskListVC: UIViewController {
 extension TaskListVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list?.tasks?.count ?? 0
+        if section == 0 {
+            return listController?.tasksDone(for: list!)?.count ?? 0
+        } else {
+             return listController?.tasksUndone(for: list!)?.count ?? 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.id, for: indexPath) as! TaskCell
-        let task = list?.tasks?[indexPath.row]
+        let task = itemForSection(indexPath: indexPath)
         cell.task = task
         return cell
     }
@@ -75,7 +79,21 @@ extension TaskListVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let item = itemForSection(indexPath: indexPath)
+        item.done = !item.done
+        listController?.saveToPersistence()
+        print(item.done)
+        tableView.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80.0
+        return 60.0
+    }
+    
+    func itemForSection(indexPath: IndexPath) -> Task {
+        let index = indexPath.section == 0 ? listController?.tasksDone(for: list!)![indexPath.row] : listController?.tasksUndone(for: list!)![indexPath.row]
+        return index!
     }
 }

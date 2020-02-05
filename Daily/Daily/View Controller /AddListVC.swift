@@ -17,6 +17,7 @@ class AddListVC: UIViewController {
     var list: List?
     
     var imagePicker = UIImagePickerController()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,9 +41,6 @@ class AddListVC: UIViewController {
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 5.0
-        imageView.layer.borderWidth = 0.5
-        imageView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
-        imageView.layer.borderColor = UIColor.lightGray.cgColor
         
         editButton.frame = CGRect(x: 0, y: imageView.layer.position.y + 50, width: 100, height: 45)
         editButton.center.x = view.center.x
@@ -67,6 +65,9 @@ class AddListVC: UIViewController {
         guard let list = self.list, let imageData = list.thumbnail else { return }
         self.imageView.image = UIImage(data: imageData)
         self.titleField.text = list.title
+        self.title = "Save List"
+        navigationItem.rightBarButtonItem?.title = "Save"
+        
     }
     
     @objc func done() {
@@ -80,9 +81,6 @@ class AddListVC: UIViewController {
                 let list = List(title: title, thumbnail: image, type: .health, tasks: [])
                 listController!.add(item: list)
             }
-            
-            
-           
             self.navigationController?.popViewController(animated: true)
         }
     }
