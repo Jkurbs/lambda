@@ -65,7 +65,9 @@ class ListVC: UIViewController {
         
         let edit = UIAction(title: "Edit", image: UIImage(systemName: "exclamationmark.circle")) { action in
             // edit
-            
+            let vc = AddListVC()
+            vc.list = list
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         
         let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash")) { action in

@@ -63,8 +63,10 @@ class ListController {
     }
     
     // Edit item
-    func edit(item: List, at index: Int) {
-        lists[index] = item
+    func edit(item: List) {
+        if let index = self.lists.firstIndex(of: item) {
+            lists[index] = item
+        }
         saveToPersistence()
     }
     

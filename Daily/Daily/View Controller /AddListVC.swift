@@ -13,14 +13,15 @@ class AddListVC: UIViewController {
     var imageView = UIImageView()
     var editButton = UIButton()
     var titleField = UITextField()
-    
     var listController: ListController?
+    var list: List?
     
     var imagePicker = UIImagePickerController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        updateViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,7 +55,7 @@ class AddListVC: UIViewController {
         titleField.textAlignment = .center
         titleField.placeholder = "Add title"
         titleField.becomeFirstResponder()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(add))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(done))
         
         view.addSubview(imageView)
         view.addSubview(editButton)
@@ -62,10 +63,26 @@ class AddListVC: UIViewController {
         
     }
     
-    @objc func add() {
-        if let title = titleField.text, let image =  imageView.image {
-            let list = List(title: title, thumbnail: image, type: .health, tasks: [])
-            listController!.add(item: list)
+    func updateViews() {
+        guard let list = self.list, let imageData = list.thumbnail else { return }
+        self.imageView.image = UIImage(data: imageData)
+        self.titleField.text = list.title
+    }
+    
+    @objc func done() {
+
+        if let title = titleField.text, let image = imageView.image {
+            if list != nil {
+                list?.title = title
+                list?.thumbnail = image.jpegData(compressionQuality: 1.0)
+                listController?.edit(item: list!)
+            } else {
+                let list = List(title: title, thumbnail: image, type: .health, tasks: [])
+                listController!.add(item: list)
+            }
+            
+            
+           
             self.navigationController?.popViewController(animated: true)
         }
     }
