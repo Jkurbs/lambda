@@ -28,10 +28,16 @@ class ListVC: UIViewController {
     func setupViews() {
         
         self.title = "List"
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(white: 0.6, alpha: 1.0)
         self.navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.addRight(self, .add, #selector(self.addList))
+        
+        
+        self.navigationController?.isToolbarHidden = false
+        var items = [UIBarButtonItem]()
+        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
+        items.append(UIBarButtonItem(title: "Add List", style: .done, target: self, action:  #selector(self.addList)))
+        toolbarItems = items
         
         let layout = UICollectionViewFlowLayout()
         let width = (view.frame.width / 3) - 10
@@ -48,14 +54,16 @@ class ListVC: UIViewController {
         
         collectionView.register(ListCell.self, forCellWithReuseIdentifier: ListCell.id)
         collectionView.backgroundColor = .white
+
         view.addSubview(collectionView)
     }
     
     
     @objc func addList() {
         let vc = AddListVC()
+        let nav = UINavigationController(rootViewController: vc)
         vc.listController = self.controller
-        navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     

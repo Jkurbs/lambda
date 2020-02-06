@@ -34,12 +34,9 @@ class TaskCell: UITableViewCell {
     }
     
     func setupViews() {
-        
+                
         titleLabel.frame = CGRect(x: 20, y: 0, width: contentView.frame.width, height: contentView.frame.height)
-        titleLabel.center.y = contentView.center.y
         button.frame = CGRect(x: contentView.frame.width - 20 , y: 0, width: 100, height: contentView.frame.height)
-        
-        button.center.y = contentView.center.y
         
         button.setImage(UIImage(systemName: "circle"), for: .normal)
         button.addTarget(self, action: #selector(selected(_:)), for: .touchUpInside)

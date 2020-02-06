@@ -38,7 +38,9 @@ class TaskListVC: UIViewController {
         tableView.estimatedRowHeight = 85.0
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorStyle = .none
+//        tableView.separatorStyle = .none
+        tableView.tableFooterView = UIView()
+
         view.addSubview(tableView)
         navigationItem.addRight(self, .add, #selector(addTask))
     }

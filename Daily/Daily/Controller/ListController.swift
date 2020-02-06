@@ -24,12 +24,10 @@ class ListController {
         if !UserDefaults.standard.bool(forKey: .initializeLists) {
             UserDefaults.standard.set(true, forKey: .initializeLists)
             
-            let configuration = UIImage.SymbolConfiguration(scale: .default)
-            
-            lists = [List(title: "All Tasks", thumbnail: UIImage(systemName: "doc.plaintext")!.withTintColor(.systemBlue, renderingMode: .alwaysTemplate), type: .all, tasks: []),
-                     List(title: "Personal", thumbnail: UIImage(systemName: "doc.plaintext"), type: .personal, tasks: []),
-                     List(title: "Health", thumbnail: UIImage(systemName: "doc.plaintext"), type: .health, tasks: []),
-                     List(title: "Work", thumbnail: UIImage(systemName: "doc.plaintext"), type: .work, tasks: [])]
+            lists = [List(title: "All Tasks", thumbnail: nil, imageName: "doc.circle.fill", type: .all, tasks: []),
+                     List(title: "Personal", thumbnail: nil, imageName: "person.crop.circle.fill", type: .personal, tasks: []),
+                     List(title: "Health", thumbnail: nil,  imageName: "heart.circle.fill", type: .health, tasks: []),
+                     List(title: "Work", thumbnail: nil, imageName: "calendar.circle.fill", type: .work, tasks: [])]
             saveToPersistence()
         }
         /// Items are initialized, load items from persistence

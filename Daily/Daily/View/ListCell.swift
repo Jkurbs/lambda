@@ -35,18 +35,18 @@ class ListCell: UICollectionViewCell {
     }
     
     func setupViews() {
-        
-        let height = contentView.frame.height - 40
-        imageView.frame = CGRect(x: 0, y: 15, width: height, height: height)
+        contentView.backgroundColor = .white
+        let height = contentView.frame.height - 50
+        imageView.frame = CGRect(x: 0, y: 10, width: height, height: height)
         imageView.center.x = contentView.center.x
         imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
+        //        imageView.clipsToBounds = true
         
-        titleLabel.frame = CGRect(x: 0, y: height + 10, width: contentView.frame.width, height: 40)
+        titleLabel.frame = CGRect(x: 0, y: height + 10, width: contentView.frame.width, height: 25)
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont.systemFont(ofSize: 16)
         
-        countLabel.frame = CGRect(x: 0, y: titleLabel.layer.position.y , width: contentView.frame.width, height: 40)
+        countLabel.frame = CGRect(x: 0, y: titleLabel.layer.position.y + 5 , width: contentView.frame.width, height: 25)
         countLabel.textAlignment = .center
         countLabel.font = UIFont.systemFont(ofSize: 11, weight: .light)
         contentView.addSubview(imageView)
@@ -56,9 +56,20 @@ class ListCell: UICollectionViewCell {
     
     func configure() {
         
-        imageView.image = list?.thumbnail?.image()
-        titleLabel.text = list?.title
-        if let count = list?.tasks?.count {
+        guard let list = self.list else { return }
+        
+        if let thumbnail = list.thumbnail {
+            print("")
+            imageView.image = thumbnail.image()
+        } else {
+            let configuration = UIImage.SymbolConfiguration(weight: .thin)
+            imageView.image = UIImage(systemName: list.imageName ?? "", withConfiguration: configuration)
+        }
+        
+       
+        
+        titleLabel.text = list.title
+        if let count = list.tasks?.count {
             let text = count > 1 ? "\(count) tasks" : "\(count) task"
             countLabel.text = text
         }
