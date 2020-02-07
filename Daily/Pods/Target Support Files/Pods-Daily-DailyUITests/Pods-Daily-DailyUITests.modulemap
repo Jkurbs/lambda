@@ -1,0 +1,6 @@
+framework module Pods_Daily_DailyUITests {
+  umbrella header "Pods-Daily-DailyUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

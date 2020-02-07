@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Lottie
 
 class TaskListVC: UIViewController {
     
@@ -16,6 +16,7 @@ class TaskListVC: UIViewController {
     var tableView: UITableView!
     var list: List?
     var listController: ListController?
+    var animationView: AnimationView!
     
     // MARK: - View Life Cicle
     
@@ -45,6 +46,12 @@ class TaskListVC: UIViewController {
         tableView.tableFooterView = UIView()
         view.addSubview(tableView)
         navigationItem.addRight(self, .add, #selector(addTask))
+        
+        let animation = Animation.named("ribbon")
+        animationView = AnimationView(animation: animation)
+        animationView.frame = view.frame
+        animationView.center = self.view.center
+        animationView.contentMode = .scaleAspectFill
     }
     
     
@@ -94,12 +101,16 @@ extension TaskListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
         let item = itemForSection(indexPath: indexPath)
         item.done = !item.done
-        
-        print(item.done)
         listController?.saveToPersistence()
         tableView.reloadData()
+        
+        if item.done == true {
+            view.addSubview(animationView)
+            animationView.play()
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -107,7 +118,7 @@ extension TaskListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func itemForSection(indexPath: IndexPath) -> Task {
-        let index = indexPath.section == 0 ? listController?.tasksDone(for: list!)![indexPath.row] : listController?.tasksUndone(for: list!)![indexPath.row]
+        let index = indexPath.section == 0 ? listController?.tasksDone(for: list!)?[indexPath.row] : listController?.tasksUndone(for: list!)?[indexPath.row]
         return index!
     }
 }
