@@ -40,7 +40,6 @@ class ListCell: UICollectionViewCell {
         imageView.frame = CGRect(x: 0, y: 10, width: height, height: height)
         imageView.center.x = contentView.center.x
         imageView.contentMode = .scaleAspectFit
-        //        imageView.clipsToBounds = true
         
         titleLabel.frame = CGRect(x: 0, y: height + 10, width: contentView.frame.width, height: 25)
         titleLabel.textAlignment = .center
@@ -60,8 +59,9 @@ class ListCell: UICollectionViewCell {
         
         if let thumbnail = list.thumbnail {
             imageView.image = thumbnail.image()
-        } else {
+        } else  {
             let configuration = UIImage.SymbolConfiguration(weight: .thin)
+            imageView.tintColor = UIColor(hexString: list.color ?? "")
             imageView.image = UIImage(systemName: list.imageName ?? "", withConfiguration: configuration)
         }
 

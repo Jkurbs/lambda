@@ -90,6 +90,8 @@ extension TaskListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = itemForSection(indexPath: indexPath)
         item.done = !item.done
+        
+        print(item.done)
         listController?.saveToPersistence()
         tableView.reloadData()
     }

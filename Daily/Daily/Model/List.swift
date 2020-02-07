@@ -13,16 +13,18 @@ class List: Codable {
     var title: String
     var thumbnail: Data?
     var imageName: String?
+    var color: String?
     var type: Type
     var tasks: [Task]?
     
     
-    init(title: String, thumbnail: UIImage?, imageName: String?, type: Type = .all, tasks: [Task]?) {
+    init(title: String, thumbnail: UIImage?, imageName: String?, color: String?, type: Type = .all, tasks: [Task]?) {
         self.title = title
         if let data = thumbnail?.dataFrom() {
             self.thumbnail = data
         }
         self.imageName = imageName
+        self.color = color
         self.type = type
         self.tasks = tasks
     }

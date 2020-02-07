@@ -23,13 +23,13 @@ class TaskCell: UITableViewCell {
         }
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        if selected {
-            button.setImage(UIImage(systemName: "circle.fill"), for: .normal)
-        } else {
-            button.setImage(UIImage(systemName: "circle"), for: .normal)
-        }
-    }
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        if selected {
+//            button.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+//        } else {
+//            button.setImage(UIImage(systemName: "circle"), for: .normal)
+//        }
+//    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

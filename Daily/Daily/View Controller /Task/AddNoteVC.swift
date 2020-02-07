@@ -10,8 +10,9 @@ import UIKit
 
 protocol TaskDescDelegate {
     var note: String? { get set }
-    var addToList: Type? { get set }
-    var time: String? { get set }
+    var time: String! { get set }
+    
+    func didPickTime(_ time: String)
 }
 
 class AddNoteVC: UIViewController {

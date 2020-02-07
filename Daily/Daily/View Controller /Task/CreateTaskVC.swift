@@ -9,10 +9,13 @@
 import UIKit
 
 class CreateTaskVC: UIViewController, TaskDescDelegate {
+    func didPickTime(_ time: String) {
+        
+    }
     
-    var addToList: Type?
+    
     var note: String?
-    var time: String?
+    var time: String!
     
     var tableView: UITableView!
     var listController: ListController?
@@ -54,12 +57,14 @@ class CreateTaskVC: UIViewController, TaskDescDelegate {
     }
     
     @objc func addTask() {
-        if let titleCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TextFieldCell {
-            
+        if let titleCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TextFieldCell, let list = self.list, let title = titleCell.textFied.text {
             let setReminder = switchView.isOn != switchView.isOn
             
-            let task = Task(title: titleCell.textFied.text!, note: note ?? "", type: addToList ?? .all, setReminder: setReminder, done: false)
-            listController!.addTaskInList(task: task, list: list!)
+            let task = Task(title: title, note: note ?? "", type: list.type, setReminder: setReminder, done: false)
+            if setReminder == true {
+                NotificationController.scheduleLocalNotif(taskName: title, time: time)
+            }
+            listController!.addTaskInList(task: task, list: list)
         }
         navigationController?.popViewController(animated: true)
     }
@@ -91,11 +96,12 @@ extension CreateTaskVC: UITableViewDelegate, UITableViewDataSource {
             cell.detailTextLabel?.text = self.note ?? ""
             return cell
         } else if indexPath.row == 2 {
-            cell.textLabel?.text = "Time to finish"
+            cell.textLabel?.text = "Time to start"
             cell.detailTextLabel?.text = self.time ?? ""
             return cell
         } else {
             cell.textLabel?.text = "Remind me"
+            cell.detailTextLabel?.text = "Notification we'll be send 10 min before the starting time."
             switchView = UISwitch(frame: .zero)
             switchView.setOn(false, animated: true)
             switchView.tag = indexPath.row
@@ -106,7 +112,6 @@ extension CreateTaskVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
         if indexPath.row == 1 {
             let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0))
             let vc = AddNoteVC()
@@ -115,6 +120,9 @@ extension CreateTaskVC: UITableViewDelegate, UITableViewDataSource {
             navigationController?.pushViewController(vc, animated: true)
         } else if indexPath.row == 2 {
             let vc = SelectTimeVC()
+            vc.timeSelected = { time in
+                self.time = time
+            }
             navigationController?.pushViewController(vc, animated: true)
         }
     }

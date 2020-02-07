@@ -21,6 +21,9 @@ class AddListVC: UIViewController, UITextFieldDelegate {
     var listController: ListController?
     var list: List?
     
+    
+    var colors = [UIColor.systemRed, .systemGray, .systemBlue, .systemPink, .systemGreen, .systemOrange]
+    
     var icons = ["star.circle.fill", "heart.circle.fill", "mappin.circle.fill", "info.circle.fill", "message.circle.fill", "phone.circle.fill", "envelope.circle.fill", "pin.circle.fill",  "book.circle.fill",  "link.circle.fill",  "moon.circle.fill", "flag.circle.fill", "location.circle.fill", "lock.circle.fill", "safari.fill", "questionmark.circle.fill", "number.circle.fill", "paperclip.circle.fill"]
     
     var imagePicker = UIImagePickerController()
@@ -50,9 +53,9 @@ class AddListVC: UIViewController, UITextFieldDelegate {
         imageView.frame = CGRect(x: 0, y: 150, width: 100, height: 100)
         imageView.center.x = view.center.x
         imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
         imageView.layer.cornerRadius = imageView.frame.width/2
         imageView.backgroundColor = .secondaryColor
+        imageView.image = UIImage(systemName: icons.first!)
         
         editButton.frame = CGRect(x: 0, y: imageView.layer.position.y + 50, width: 100, height: 45)
         editButton.center.x = view.center.x
@@ -84,12 +87,13 @@ class AddListVC: UIViewController, UITextFieldDelegate {
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         
-        collectionView = UICollectionView(frame: CGRect(x: 0, y: titleField.layer.position.y + 50, width: view.frame.width, height: 200), collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: CGRect(x: 0, y: titleField.layer.position.y + 50, width: view.frame.width, height: 400), collectionViewLayout: layout)
         collectionView.allowsMultipleSelection = false
         
         /// Setup tableview datasource/delegate
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.register(IconCell.self, forCellWithReuseIdentifier: IconCell.id)
         collectionView.backgroundColor = .white
         view.addSubview(collectionView)
@@ -110,6 +114,7 @@ class AddListVC: UIViewController, UITextFieldDelegate {
     
     @objc func done() {
         if let title = titleField.text, let image = imageView.image {
+            let color = imageView.tintColor.toHexString()
             if list != nil {
                 list?.title = title
                 if image.isSymbolImage {
@@ -126,11 +131,11 @@ class AddListVC: UIViewController, UITextFieldDelegate {
                 if image.isSymbolImage {
                     if let index = collectionView.indexPathsForSelectedItems?.first {
                         let name = self.icons[index.row]
-                        let list = List(title: title, thumbnail: nil, imageName: name, tasks: [])
+                        let list = List(title: title, thumbnail: nil, imageName: name, color: color, tasks: [])
                         listController!.add(item: list)
                     }
                 } else {
-                    let list = List(title: title, thumbnail: image, imageName: nil, tasks: [])
+                    let list = List(title: title, thumbnail: image, imageName: nil, color: color, tasks: [])
                     listController!.add(item: list)
                 }
             }
@@ -165,23 +170,41 @@ extension AddListVC: UINavigationControllerDelegate, UIImagePickerControllerDele
 extension AddListVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return icons.count
+        if section == 0 {
+            return colors.count
+        } else {
+            return icons.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IconCell.id, for: indexPath) as! IconCell
+        
+        if indexPath.section == 0 {
+            let color = self.colors[indexPath.row]
+            cell.imageView.backgroundColor = color
+            return cell
+        }
+        
         let name = self.icons[indexPath.row]
         cell.configure(iconName: name)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let icon = self.icons[indexPath.row]
-        self.imageView.image = UIImage(systemName: icon)
+        if indexPath.section == 0 {
+            let color = self.colors[indexPath.row]
+            imageView.tintColor = color
+        } else {
+            let icon = self.icons[indexPath.row]
+            self.imageView.image = UIImage(systemName: icon)
+        }
     }
 }
+
 

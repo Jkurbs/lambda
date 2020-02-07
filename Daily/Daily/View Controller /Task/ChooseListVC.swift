@@ -59,7 +59,7 @@ extension ChooseListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let list = listController?.lists[indexPath.row]
-        delegate?.addToList = list?.type
+//        delegate?.addToList = list?.type
         navigationController?.popViewController(animated: true)
     }
     
