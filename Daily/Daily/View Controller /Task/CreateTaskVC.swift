@@ -9,13 +9,11 @@
 import UIKit
 
 class CreateTaskVC: UIViewController, TaskDescDelegate {
-    func didPickTime(_ time: String) {
-        
-    }
     
+    // MARK: - Properties
     
     var note: String?
-    var time: String!
+    var time: String?
     
     var tableView: UITableView!
     var listController: ListController?
@@ -23,10 +21,19 @@ class CreateTaskVC: UIViewController, TaskDescDelegate {
     
     var switchView: UISwitch!
     
+    // MARK: - View Life Cicle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
+    // MARK: - Functions
     
     func setupViews() {
         
@@ -51,24 +58,21 @@ class CreateTaskVC: UIViewController, TaskDescDelegate {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(addTask))
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.reloadData()
-    }
-    
     @objc func addTask() {
         if let titleCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TextFieldCell, let list = self.list, let title = titleCell.textFied.text {
             let setReminder = switchView.isOn != switchView.isOn
             
             let task = Task(title: title, note: note ?? "", type: list.type, setReminder: setReminder, done: false)
             if setReminder == true {
-                NotificationController.scheduleLocalNotif(taskName: title, time: time)
+                NotificationController.scheduleLocalNotif(taskName: title, time: time ?? "")
             }
             listController!.addTaskInList(task: task, list: list)
         }
         navigationController?.popViewController(animated: true)
     }
 }
+
+// MARK: - UITableViewDelegate/UITableViewDataSource
 
 extension CreateTaskVC: UITableViewDelegate, UITableViewDataSource {
     

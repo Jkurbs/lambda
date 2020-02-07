@@ -10,9 +10,13 @@ import UIKit
 
 class TypesVC: UIViewController {
     
+    // MARK: - Properties
+    
     var tableView: UITableView!
     var types = [Type]()
     var listController: ListController?
+    
+    // MARK: - View Life Cicle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +27,8 @@ class TypesVC: UIViewController {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
+    
+    // MARK: - Functions
     
     func setupViews() {
         view.backgroundColor = .white
@@ -42,6 +48,8 @@ class TypesVC: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
 }
+
+// MARK: - UITableViewDelegate/UITableViewDataSource
 
 extension TypesVC: UITableViewDelegate, UITableViewDataSource {
     

@@ -10,10 +10,13 @@ import UIKit
 
 class SelectTimeVC: UIViewController {
     
+    // MARK: - Properties
+
     var timePicker: UIDatePicker!
     var timeSelected: ((_ time: String) -> ())?
     var delegate: TaskDescDelegate?
 
+    // MARK: - View Life Cicle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,8 @@ class SelectTimeVC: UIViewController {
         view.addSubview(timePicker)
         navigationItem.addRight(self, .done, #selector(done))
     }
+    
+    // MARK: - Functions
     
     @objc func selectedDate(_ sender: UIDatePicker) {
         let formatter = DateFormatter()

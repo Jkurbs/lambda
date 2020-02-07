@@ -21,13 +21,13 @@ class AddListVC: UIViewController, UITextFieldDelegate {
     var listController: ListController?
     var list: List?
     
-    
-    var colors = [UIColor.systemRed, .systemGray, .systemBlue, .systemPink, .systemGreen, .systemOrange]
-    
     var icons = ["star.circle.fill", "heart.circle.fill", "mappin.circle.fill", "info.circle.fill", "message.circle.fill", "phone.circle.fill", "envelope.circle.fill", "pin.circle.fill",  "book.circle.fill",  "link.circle.fill",  "moon.circle.fill", "flag.circle.fill", "location.circle.fill", "lock.circle.fill", "safari.fill", "questionmark.circle.fill", "number.circle.fill", "paperclip.circle.fill"]
     
     var imagePicker = UIImagePickerController()
     var collectionView: UICollectionView!
+    
+    var selectedColor: Color?
+    var selectedIconName: String?
     
     // MARK: - View Life Cicle
     
@@ -114,28 +114,20 @@ class AddListVC: UIViewController, UITextFieldDelegate {
     
     @objc func done() {
         if let title = titleField.text, let image = imageView.image {
-            let color = imageView.tintColor.toHexString()
             if list != nil {
                 list?.title = title
                 if image.isSymbolImage {
-                    if let index = collectionView.indexPathsForSelectedItems?.first {
-                        let name = self.icons[index.row]
-                        list?.imageName = name
-                    }
+                        list?.imageName = self.selectedIconName
                 } else {
                     list?.thumbnail = image.jpegData(compressionQuality: 1.0)
                 }
-                
                 listController?.edit(item: list!)
             } else {
                 if image.isSymbolImage {
-                    if let index = collectionView.indexPathsForSelectedItems?.first {
-                        let name = self.icons[index.row]
-                        let list = List(title: title, thumbnail: nil, imageName: name, color: color, tasks: [])
-                        listController!.add(item: list)
-                    }
+                    let list = List(title: title, thumbnail: nil, imageName: self.selectedIconName, color: selectedColor, tasks: [])
+                    listController!.add(item: list)
                 } else {
-                    let list = List(title: title, thumbnail: image, imageName: nil, color: color, tasks: [])
+                    let list = List(title: title, thumbnail: image, imageName: nil, color: selectedColor, tasks: [])
                     listController!.add(item: list)
                 }
             }
@@ -176,6 +168,7 @@ extension AddListVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
             return colors.count
+            
         } else {
             return icons.count
         }
@@ -186,8 +179,9 @@ extension AddListVC: UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IconCell.id, for: indexPath) as! IconCell
         
         if indexPath.section == 0 {
-            let color = self.colors[indexPath.row]
-            cell.imageView.backgroundColor = color
+            let color = colors[indexPath.row]
+            print(color.description)
+            cell.imageView.backgroundColor = UIColor(hexString: color.description)
             return cell
         }
         
@@ -198,11 +192,13 @@ extension AddListVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            let color = self.colors[indexPath.row]
-            imageView.tintColor = color
+            let color = colors[indexPath.row]
+            self.selectedColor = color
+            imageView.tintColor = UIColor(hexString: color.description)
         } else {
-            let icon = self.icons[indexPath.row]
-            self.imageView.image = UIImage(systemName: icon)
+            let iconName = self.icons[indexPath.row]
+            self.selectedIconName = iconName
+            self.imageView.image = UIImage(systemName: iconName)
         }
     }
 }

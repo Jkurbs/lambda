@@ -43,7 +43,6 @@ class TaskListVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
-        
         view.addSubview(tableView)
         navigationItem.addRight(self, .add, #selector(addTask))
     }
@@ -66,10 +65,17 @@ extension TaskListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return listController?.tasksDone(for: list!)?.count ?? 0
+        let done = listController?.tasksDone(for: list!)?.count ?? 0
+        let undone = listController?.tasksUndone(for: list!)?.count ?? 0
+        if done + undone == 0 {
+            tableView.setEmptyView(title: "No task in \(list?.title ?? "")", message: "Select the add button to add one.")
         } else {
-            return listController?.tasksUndone(for: list!)?.count ?? 0
+            tableView.restore()
+        }
+        if section == 0 {
+            return done
+        } else {
+            return undone
         }
     }
     

@@ -26,9 +26,11 @@ class IconCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        imageView.frame = CGRect(x: 0, y: 0, width: 45, height: 45)
+        print(contentView.frame.width)
+        let width = contentView.frame.width - 20
+        imageView.frame = CGRect(x: 0, y: 0, width: width, height: width)
         imageView.center = contentView.center
-        imageView.layer.cornerRadius = imageView.frame.width/2
+        imageView.layer.cornerRadius = width/2
     }
     
     required init?(coder: NSCoder) {
@@ -36,7 +38,6 @@ class IconCell: UICollectionViewCell {
     }
      
     func configure(iconName: String) {
-        
         let image = UIImage(systemName: iconName)?.withRenderingMode(.alwaysTemplate)
         imageView.tintColor = .lightGray
         imageView.image = image

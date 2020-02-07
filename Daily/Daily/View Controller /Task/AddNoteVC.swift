@@ -8,13 +8,6 @@
 
 import UIKit
 
-protocol TaskDescDelegate {
-    var note: String? { get set }
-    var time: String! { get set }
-    
-    func didPickTime(_ time: String)
-}
-
 class AddNoteVC: UIViewController {
     
     // MARK: - Properties 
@@ -24,12 +17,12 @@ class AddNoteVC: UIViewController {
     
     let separator: CALayer = {
         let layer = CALayer()
-        layer.backgroundColor = UIColor(red: 200 / 255.0, green: 199 / 255.0, blue: 204 / 255.0, alpha: 1).cgColor
+        layer.backgroundColor = UIColor.separatorColor
         return layer
     }()
     
     // MARK: - View Life Cicle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,11 +45,11 @@ class AddNoteVC: UIViewController {
         textView.frame = CGRect(x: 0, y: 150, width: view.frame.width, height: 150)
         
         let height: CGFloat = 0.5
-        separator.frame = CGRect(x: 10, y: textView.layer.position.y, width: view.bounds.width, height: height)
+        separator.frame = CGRect(x: 10, y: textView.layer.position.y, width: view.bounds.width - 10, height: height)
     }
     
     // MARK: - Functions
-
+    
     @objc func done() {
         delegate?.note = textView.text
         navigationController?.popViewController(animated: true)

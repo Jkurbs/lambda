@@ -40,7 +40,49 @@ extension Type {
     enum PostTypeCodingError: Error {
         case decoding(String)
     }
+}
+
+
+protocol TaskDescDelegate {
+    var note: String? { get set }
+}
+
+
+// Types of colors
+enum Color: String, CustomStringConvertible, Codable {
     
+    case alizarin
+    case emerald
+    case carrot
+    case asphalt
+    case river
+    case sunflower
+    
+    var description : String {
+        switch self {
+        // Use Internationalization, as appropriate.
+        case .alizarin: return "#e74c3c"
+        case .emerald: return "#2ecc71"
+        case .carrot: return "#e67e22"
+        case .asphalt: return "#34495e"
+        case .river: return "#3498db"
+        case .sunflower: return "#f1c40f"
+        }
+    }
+}
+
+extension Color {
+    
+    private enum CodingKeys: String, CodingKey {
+        case all
+        case health
+        case personal
+        case work
+    }
+    
+    enum PostTypeCodingError: Error {
+        case decoding(String)
+    }
 }
 
 class Task: Codable {

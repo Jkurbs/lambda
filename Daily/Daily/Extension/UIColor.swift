@@ -8,9 +8,14 @@
 
 import UIKit
 
+
+var colors = [Color.alizarin, .asphalt, .carrot, .river, .emerald, .sunflower]
+
 extension UIColor {
+    
     static let mainColor = UIColor.white
     static let secondaryColor = UIColor(red: 241.0/255.0, green: 242.0/255.0, blue: 247.0/255.0, alpha: 1.0)
+    static let separatorColor = UIColor(red: 200 / 255.0, green: 199 / 255.0, blue: 204 / 255.0, alpha: 1).cgColor
     
     convenience init(hexString: String, alpha: CGFloat = 1.0) {
         let hexString: String = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)

@@ -36,7 +36,7 @@ class ListCell: UICollectionViewCell {
     
     func setupViews() {
         contentView.backgroundColor = .white
-        let height = contentView.frame.height - 50
+        let height = contentView.frame.height - 30
         imageView.frame = CGRect(x: 0, y: 10, width: height, height: height)
         imageView.center.x = contentView.center.x
         imageView.contentMode = .scaleAspectFit
@@ -61,7 +61,7 @@ class ListCell: UICollectionViewCell {
             imageView.image = thumbnail.image()
         } else  {
             let configuration = UIImage.SymbolConfiguration(weight: .thin)
-            imageView.tintColor = UIColor(hexString: list.color ?? "")
+            imageView.tintColor = UIColor(hexString: list.color?.description ?? "")
             imageView.image = UIImage(systemName: list.imageName ?? "", withConfiguration: configuration)
         }
 

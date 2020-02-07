@@ -24,10 +24,10 @@ class ListController {
         if !UserDefaults.standard.bool(forKey: .initializeLists) {
             UserDefaults.standard.set(true, forKey: .initializeLists)
             
-            lists = [List(title: "All Tasks", thumbnail: nil, imageName: "doc.circle.fill", color: nil, type: .all, tasks: []),
-                     List(title: "Personal", thumbnail: nil, imageName: "person.crop.circle.fill", color: nil, type: .personal, tasks: []),
-                     List(title: "Health", thumbnail: nil,  imageName: "heart.circle.fill", color: nil, type: .health, tasks: []),
-                     List(title: "Work", thumbnail: nil, imageName: "calendar.circle.fill", color: nil, type: .work, tasks: [])]
+            lists = [List(title: "All Tasks", thumbnail: nil, imageName: "doc.circle.fill", color: .river, type: .all, tasks: []),
+                     List(title: "Personal", thumbnail: nil, imageName: "person.crop.circle.fill", color: .asphalt, type: .personal, tasks: []),
+                     List(title: "Health", thumbnail: nil,  imageName: "heart.circle.fill", color: .alizarin, type: .health, tasks: []),
+                     List(title: "Work", thumbnail: nil, imageName: "calendar.circle.fill", color: .emerald, type: .work, tasks: [])]
             saveToPersistence()
         }
         /// Items are initialized, load items from persistence

@@ -18,8 +18,8 @@ extension UINavigationItem {
     }
     
     func addLeft(_ vc: UIViewController, _ item: UIBarButtonItem.SystemItem, _ selector: Selector) {
-           let button = UIBarButtonItem(barButtonSystemItem: item, target: self, action: selector)
-           button.target = vc
-           self.leftBarButtonItem = button
-       }
+        let button = UIBarButtonItem(barButtonSystemItem: item, target: self, action: selector)
+        button.target = vc
+        self.leftBarButtonItem = button
+    }
 }
