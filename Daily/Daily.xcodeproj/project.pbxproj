@@ -164,13 +164,6 @@
 			path = Task;
 			sourceTree = "<group>";
 		};
-		6D7F8EBA23EDC90A00A8B26B /* Animation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Animation;
-			sourceTree = "<group>";
-		};
 		6DEAF69B23E600D5005BA6E7 = {
 			isa = PBXGroup;
 			children = (
@@ -197,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				6D7F8EBC23EDCB0200A8B26B /* ribbon.json */,
-				6D7F8EBA23EDC90A00A8B26B /* Animation */,
 				6DEAF6DD23E60FA9005BA6E7 /* Extension */,
 				6DEAF6DA23E609EB005BA6E7 /* Model */,
 				6DEAF6D923E609E4005BA6E7 /* View */,

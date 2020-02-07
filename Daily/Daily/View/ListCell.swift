@@ -24,6 +24,23 @@ class ListCell: UICollectionViewCell {
         }
     }
     
+    
+    var isInEditingMode: Bool = false {
+        didSet {
+            titleLabel.isHidden = !isInEditingMode
+            countLabel.isHidden = !isInEditingMode
+        }
+    }
+
+    // 2
+    override var isSelected: Bool {
+        didSet {
+            if isInEditingMode {
+                titleLabel.text = isSelected ? "✓" : ""
+            }
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()

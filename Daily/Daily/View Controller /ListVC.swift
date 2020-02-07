@@ -15,6 +15,8 @@ class ListVC: UIViewController {
     var collectionView: UICollectionView!
     var controller = ListController()
     
+    var addButton: UIBarButtonItem!
+    
     // MARK: - View Life Cicle
     
     override func viewDidLoad() {
@@ -35,6 +37,9 @@ class ListVC: UIViewController {
         view.backgroundColor = UIColor(white: 0.6, alpha: 1.0)
         self.navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        addButton = UIBarButtonItem(title: "Select", style: .done, target: self, action: #selector(self.addList))
+        navigationItem.rightBarButtonItem = addButton
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New list", style: .done, target: self, action: #selector(self.addList))
         
@@ -118,5 +123,10 @@ extension ListVC: UICollectionViewDelegate, UICollectionViewDataSource  {
             let list = self.controller.lists[indexPath.row]
             return self.makeContextMenu(list, indexPath.row)
         })
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: true)
+        addButton.isEnabled = !editing
     }
 }
