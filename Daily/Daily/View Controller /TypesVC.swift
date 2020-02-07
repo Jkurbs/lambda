@@ -54,9 +54,9 @@ extension TypesVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.id, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.id, for: indexPath) as! TaskCell
         let type = types[indexPath.row]
-        cell.textLabel?.text = type.rawValue
+        cell.titleLabel.text = type.description
         return cell
     }
     

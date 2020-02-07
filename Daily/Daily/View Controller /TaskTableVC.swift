@@ -14,6 +14,7 @@ class TaskListVC: UIViewController {
     var tableView: UITableView!
     var list: List?
     var listController: ListController?
+    var emptyView = EmptyView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +27,16 @@ class TaskListVC: UIViewController {
         let backButton = UIBarButtonItem()
         backButton.title = "Lists"
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
-        
         tableView.reloadData()
+        
+        if let list = self.list, let tasks = list.tasks {
+            if tasks.count == 0 {
+                emptyView.frame = view.frame
+                view.addSubview(emptyView)
+            }
+        }
+        
+        emptyView.removeFromSuperview()
     }
     
     func setupViews() {
@@ -38,12 +47,12 @@ class TaskListVC: UIViewController {
         tableView.estimatedRowHeight = 85.0
         tableView.delegate = self
         tableView.dataSource = self
-//        tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
 
         view.addSubview(tableView)
         navigationItem.addRight(self, .add, #selector(addTask))
     }
+    
     
     @objc func addTask() {
         let vc = CreateTaskVC()

@@ -19,6 +19,8 @@
 		6D70FDDC23E89DF700EBFD7D /* UIBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D70FDDB23E89DF700EBFD7D /* UIBarButton.swift */; };
 		6D70FDDE23E8AB2A00EBFD7D /* ListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D70FDDD23E8AB2A00EBFD7D /* ListController.swift */; };
 		6D83C03F23EC79C30025A37E /* TaskInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D83C03E23EC79C30025A37E /* TaskInfoCell.swift */; };
+		6D83C04123ECABE30025A37E /* SelectTimeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D83C04023ECABE30025A37E /* SelectTimeVC.swift */; };
+		6D83C04323ECF1CA0025A37E /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D83C04223ECF1CA0025A37E /* EmptyView.swift */; };
 		6D84E0D423EB3BAD00C02A90 /* AddNoteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D84E0D323EB3BAD00C02A90 /* AddNoteVC.swift */; };
 		6D84E0D623EB400400C02A90 /* ChooseListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D84E0D523EB400400C02A90 /* ChooseListVC.swift */; };
 		6DAD21B623E9AED2002F28D6 /* CreateTaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAD21B523E9AED2002F28D6 /* CreateTaskVC.swift */; };
@@ -68,6 +70,8 @@
 		6D70FDDB23E89DF700EBFD7D /* UIBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButton.swift; sourceTree = "<group>"; };
 		6D70FDDD23E8AB2A00EBFD7D /* ListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListController.swift; sourceTree = "<group>"; };
 		6D83C03E23EC79C30025A37E /* TaskInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskInfoCell.swift; sourceTree = "<group>"; };
+		6D83C04023ECABE30025A37E /* SelectTimeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTimeVC.swift; sourceTree = "<group>"; };
+		6D83C04223ECF1CA0025A37E /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		6D84E0D323EB3BAD00C02A90 /* AddNoteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteVC.swift; sourceTree = "<group>"; };
 		6D84E0D523EB400400C02A90 /* ChooseListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseListVC.swift; sourceTree = "<group>"; };
 		6DAD21B523E9AED2002F28D6 /* CreateTaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateTaskVC.swift; path = "Daily/View Controller /CreateTaskVC.swift"; sourceTree = SOURCE_ROOT; };
@@ -185,6 +189,7 @@
 				6DAD21B923E9F6D9002F28D6 /* TypesVC.swift */,
 				6D84E0D323EB3BAD00C02A90 /* AddNoteVC.swift */,
 				6D84E0D523EB400400C02A90 /* ChooseListVC.swift */,
+				6D83C04023ECABE30025A37E /* SelectTimeVC.swift */,
 			);
 			path = "View Controller ";
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 				6DAD21BD23E9FB86002F28D6 /* TimerCell.swift */,
 				6D38C64D23EBEBC500F11645 /* IconCell.swift */,
 				6D83C03E23EC79C30025A37E /* TaskInfoCell.swift */,
+				6D83C04223ECF1CA0025A37E /* EmptyView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -376,11 +382,13 @@
 				6DEAF6DC23E60C15005BA6E7 /* Task.swift in Sources */,
 				6D83C03F23EC79C30025A37E /* TaskInfoCell.swift in Sources */,
 				6DAD21BC23E9F9EE002F28D6 /* TextFieldCell.swift in Sources */,
+				6D83C04323ECF1CA0025A37E /* EmptyView.swift in Sources */,
 				6D3163A423E8D81E00448C2E /* UIImage+Data.swift in Sources */,
 				6DEAF6DF23E61058005BA6E7 /* UIColor.swift in Sources */,
 				6D3163A223E8D72A00448C2E /* String+UserDefaults.swift in Sources */,
 				6D38C64E23EBEBC500F11645 /* IconCell.swift in Sources */,
 				6DAD21BA23E9F6D9002F28D6 /* TypesVC.swift in Sources */,
+				6D83C04123ECABE30025A37E /* SelectTimeVC.swift in Sources */,
 				6DAD21B623E9AED2002F28D6 /* CreateTaskVC.swift in Sources */,
 				6D70FDDE23E8AB2A00EBFD7D /* ListController.swift in Sources */,
 				6D70FDD823E8855300EBFD7D /* List.swift in Sources */,

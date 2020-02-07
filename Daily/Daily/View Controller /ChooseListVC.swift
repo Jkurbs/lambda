@@ -13,6 +13,7 @@ class ChooseListVC: UIViewController {
     var delegate: TaskDescDelegate?
     var tableView: UITableView!
     var listController: ListController?
+    var list: List!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,9 +58,14 @@ extension ChooseListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         let list = listController?.lists[indexPath.row]
         delegate?.addToList = list?.type
         navigationController?.popViewController(animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let index = listController?.lists.firstIndex(of: list) {
+            tableView.selectRow(at: IndexPath(row: index, section: 0), animated: false, scrollPosition: .none)
+         }
     }
 }

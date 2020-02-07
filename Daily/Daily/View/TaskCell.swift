@@ -23,6 +23,13 @@ class TaskCell: UITableViewCell {
         }
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        if selected {
+            button.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+        } else {
+            button.setImage(UIImage(systemName: "circle"), for: .normal)
+        }
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,14 +40,22 @@ class TaskCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        let height = contentView.frame.height
+        
+        titleLabel.frame = CGRect(x: 20, y: 0, width: 100, height: height)
+        titleLabel.center.y = contentView.center.y
+        
+        button.frame = CGRect(x: contentView.frame.width - height , y: 0, width: height, height: height)
+    }
+    
     func setupViews() {
-                
-        titleLabel.frame = CGRect(x: 20, y: 0, width: contentView.frame.width, height: contentView.frame.height)
-        button.frame = CGRect(x: contentView.frame.width - 20 , y: 0, width: 100, height: contentView.frame.height)
         
         button.setImage(UIImage(systemName: "circle"), for: .normal)
         button.addTarget(self, action: #selector(selected(_:)), for: .touchUpInside)
-    
+        
         contentView.addSubview(titleLabel)
         contentView.addSubview(button)
     }

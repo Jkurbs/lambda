@@ -22,7 +22,6 @@ class AddListVC: UIViewController, UITextFieldDelegate {
     var icons = ["star.circle.fill", "heart.circle.fill", "mappin.circle.fill", "info.circle.fill", "message.circle.fill", "phone.circle.fill", "envelope.circle.fill", "pin.circle.fill"]
     
     var imagePicker = UIImagePickerController()
-    
     var collectionView: UICollectionView!
     
     
@@ -30,6 +29,8 @@ class AddListVC: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         setupViews()
         updateViews()
+        
+        print(list?.title)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,8 +94,12 @@ class AddListVC: UIViewController, UITextFieldDelegate {
     }
     
     func updateViews() {
-        guard let list = self.list, let imageData = list.thumbnail else { return }
-        self.imageView.image = UIImage(data: imageData)
+        guard let list = self.list else { return }
+        if let imageData = list.thumbnail {
+            self.imageView.image = UIImage(data: imageData)
+        } else {
+            self.imageView.image = UIImage(systemName: list.imageName!)
+        }
         self.titleField.text = list.title
         self.title = "Edit List"
         navigationItem.rightBarButtonItem?.title = "Save"
@@ -104,7 +109,15 @@ class AddListVC: UIViewController, UITextFieldDelegate {
         if let title = titleField.text, let image = imageView.image {
             if list != nil {
                 list?.title = title
-                list?.thumbnail = image.jpegData(compressionQuality: 1.0)
+                if image.isSymbolImage {
+                    if let index = collectionView.indexPathsForSelectedItems?.first {
+                        let name = self.icons[index.row]
+                        list?.imageName = name
+                    }
+                } else {
+                   list?.thumbnail = image.jpegData(compressionQuality: 1.0)
+                }
+
                 listController?.edit(item: list!)
             } else {
                 if image.isSymbolImage {

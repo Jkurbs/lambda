@@ -18,6 +18,8 @@ class CreateTaskVC: UIViewController, TaskDescDelegate {
     var listController: ListController?
     var list: List?
     
+    var switchView: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -53,7 +55,10 @@ class CreateTaskVC: UIViewController, TaskDescDelegate {
     
     @objc func addTask() {
         if let titleCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TextFieldCell {
-            let task = Task(title: titleCell.textFied.text!, note: note ?? "", type: addToList ?? .all, setReminder: false, done: false)
+            
+            let setReminder = switchView.isOn != switchView.isOn
+            
+            let task = Task(title: titleCell.textFied.text!, note: note ?? "", type: addToList ?? .all, setReminder: setReminder, done: false)
             listController!.addTaskInList(task: task, list: list!)
         }
         navigationController?.popViewController(animated: true)
@@ -67,7 +72,7 @@ extension CreateTaskVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -90,12 +95,12 @@ extension CreateTaskVC: UITableViewDelegate, UITableViewDataSource {
             cell.detailTextLabel?.text = self.time ?? ""
             return cell
         } else if indexPath.row == 3 {
-            cell.textLabel?.text = "Add to list"
+            cell.textLabel?.text = "List"
             cell.detailTextLabel?.text = self.addToList?.description
             return cell
         } else {
             cell.textLabel?.text = "Remind me"
-            let switchView = UISwitch(frame: .zero)
+            switchView = UISwitch(frame: .zero)
             switchView.setOn(false, animated: true)
             switchView.tag = indexPath.row
             cell.accessoryView = switchView
@@ -113,9 +118,9 @@ extension CreateTaskVC: UITableViewDelegate, UITableViewDataSource {
             vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
         } else if indexPath.row == 3 {
-            //             let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0))
             let vc = ChooseListVC()
             vc.listController = self.listController
+            vc.list = self.list
             vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
         }

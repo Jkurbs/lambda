@@ -48,7 +48,7 @@ class AddNoteVC: UIViewController {
         textView.frame = CGRect(x: 0, y: 150, width: view.frame.width, height: 150)
         
         let height: CGFloat = 0.5
-        separator.frame = CGRect(x: 0, y: textView.layer.position.y, width: view.bounds.width, height: height)
+        separator.frame = CGRect(x: 10, y: textView.layer.position.y, width: view.bounds.width, height: height)
     }
     
     
