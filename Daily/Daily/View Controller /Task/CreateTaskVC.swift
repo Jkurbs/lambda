@@ -72,7 +72,7 @@ extension CreateTaskVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -91,12 +91,8 @@ extension CreateTaskVC: UITableViewDelegate, UITableViewDataSource {
             cell.detailTextLabel?.text = self.note ?? ""
             return cell
         } else if indexPath.row == 2 {
-            cell.textLabel?.text = "Select time"
+            cell.textLabel?.text = "Time to finish"
             cell.detailTextLabel?.text = self.time ?? ""
-            return cell
-        } else if indexPath.row == 3 {
-            cell.textLabel?.text = "List"
-            cell.detailTextLabel?.text = self.addToList?.description
             return cell
         } else {
             cell.textLabel?.text = "Remind me"
@@ -117,11 +113,8 @@ extension CreateTaskVC: UITableViewDelegate, UITableViewDataSource {
             vc.textView.text = cell?.detailTextLabel?.text ?? ""
             vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
-        } else if indexPath.row == 3 {
-            let vc = ChooseListVC()
-            vc.listController = self.listController
-            vc.list = self.list
-            vc.delegate = self
+        } else if indexPath.row == 2 {
+            let vc = SelectTimeVC()
             navigationController?.pushViewController(vc, animated: true)
         }
     }

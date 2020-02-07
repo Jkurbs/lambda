@@ -7,21 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
-class EmptyView: UIView {
-    
-    var label = UILabel()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        self.backgroundColor = .red 
-        
-        label.center = self.center
-        label.sizeToFit()
-        label.text = "No task available"
-        self.addSubview(label)
-    }
-    
-    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-}
+
+

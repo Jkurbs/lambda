@@ -11,10 +11,13 @@ import UIKit
 
 class TaskListVC: UIViewController {
     
+    // MARK: - Properties
+    
     var tableView: UITableView!
     var list: List?
     var listController: ListController?
-    var emptyView = EmptyView()
+    
+    // MARK: - View Life Cicle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,21 +26,13 @@ class TaskListVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         let backButton = UIBarButtonItem()
         backButton.title = "Lists"
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         tableView.reloadData()
-        
-        if let list = self.list, let tasks = list.tasks {
-            if tasks.count == 0 {
-                emptyView.frame = view.frame
-                view.addSubview(emptyView)
-            }
-        }
-        
-        emptyView.removeFromSuperview()
     }
+    
+    // MARK: - Functions
     
     func setupViews() {
         self.title = list?.title
@@ -48,7 +43,7 @@ class TaskListVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
-
+        
         view.addSubview(tableView)
         navigationItem.addRight(self, .add, #selector(addTask))
     }
@@ -62,6 +57,8 @@ class TaskListVC: UIViewController {
     }
 }
 
+// MARK: - UITableViewDelegate/UITableViewDataSource
+
 extension TaskListVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -72,7 +69,7 @@ extension TaskListVC: UITableViewDelegate, UITableViewDataSource {
         if section == 0 {
             return listController?.tasksDone(for: list!)?.count ?? 0
         } else {
-             return listController?.tasksUndone(for: list!)?.count ?? 0
+            return listController?.tasksUndone(for: list!)?.count ?? 0
         }
     }
     
@@ -91,11 +88,9 @@ extension TaskListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         let item = itemForSection(indexPath: indexPath)
         item.done = !item.done
         listController?.saveToPersistence()
-        print(item.done)
         tableView.reloadData()
     }
     

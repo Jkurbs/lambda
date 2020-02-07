@@ -13,24 +13,25 @@ import UIKit
 
 class AddListVC: UIViewController, UITextFieldDelegate {
     
+    // MARK: - Properties
+    
     var imageView = UIImageView()
     var editButton = UIButton()
     var titleField = UITextField()
     var listController: ListController?
     var list: List?
     
-    var icons = ["star.circle.fill", "heart.circle.fill", "mappin.circle.fill", "info.circle.fill", "message.circle.fill", "phone.circle.fill", "envelope.circle.fill", "pin.circle.fill"]
+    var icons = ["star.circle.fill", "heart.circle.fill", "mappin.circle.fill", "info.circle.fill", "message.circle.fill", "phone.circle.fill", "envelope.circle.fill", "pin.circle.fill",  "book.circle.fill",  "link.circle.fill",  "moon.circle.fill", "flag.circle.fill", "location.circle.fill", "lock.circle.fill", "safari.fill", "questionmark.circle.fill", "number.circle.fill", "paperclip.circle.fill"]
     
     var imagePicker = UIImagePickerController()
     var collectionView: UICollectionView!
     
+    // MARK: - View Life Cicle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         updateViews()
-        
-        print(list?.title)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +40,8 @@ class AddListVC: UIViewController, UITextFieldDelegate {
         backButton.title = "Lists"
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
     }
+    
+    // MARK: - Functions
     
     func setupViews() {
         self.title = "Add List"
@@ -90,8 +93,8 @@ class AddListVC: UIViewController, UITextFieldDelegate {
         collectionView.register(IconCell.self, forCellWithReuseIdentifier: IconCell.id)
         collectionView.backgroundColor = .white
         view.addSubview(collectionView)
-        
     }
+    
     
     func updateViews() {
         guard let list = self.list else { return }
@@ -115,9 +118,9 @@ class AddListVC: UIViewController, UITextFieldDelegate {
                         list?.imageName = name
                     }
                 } else {
-                   list?.thumbnail = image.jpegData(compressionQuality: 1.0)
+                    list?.thumbnail = image.jpegData(compressionQuality: 1.0)
                 }
-
+                
                 listController?.edit(item: list!)
             } else {
                 if image.isSymbolImage {

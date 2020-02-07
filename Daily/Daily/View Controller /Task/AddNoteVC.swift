@@ -16,8 +16,9 @@ protocol TaskDescDelegate {
 
 class AddNoteVC: UIViewController {
     
-    var textView = UITextView()
+    // MARK: - Properties 
     
+    var textView = UITextView()
     var delegate: TaskDescDelegate?
     
     let separator: CALayer = {
@@ -26,6 +27,8 @@ class AddNoteVC: UIViewController {
         return layer
     }()
     
+    // MARK: - View Life Cicle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,7 +54,8 @@ class AddNoteVC: UIViewController {
         separator.frame = CGRect(x: 10, y: textView.layer.position.y, width: view.bounds.width, height: height)
     }
     
-    
+    // MARK: - Functions
+
     @objc func done() {
         delegate?.note = textView.text
         navigationController?.popViewController(animated: true)

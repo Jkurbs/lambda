@@ -10,8 +10,12 @@ import UIKit
 
 class ListVC: UIViewController {
     
+    // MARK: - Properties
+    
     var collectionView: UICollectionView!
     var controller = ListController()
+    
+    // MARK: - View Life Cicle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,12 +36,7 @@ class ListVC: UIViewController {
         self.navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        
-        self.navigationController?.isToolbarHidden = false
-        var items = [UIBarButtonItem]()
-        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
-        items.append(UIBarButtonItem(title: "Add List", style: .done, target: self, action:  #selector(self.addList)))
-        toolbarItems = items
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New list", style: .done, target: self, action: #selector(self.addList))
         
         let layout = UICollectionViewFlowLayout()
         let width = (view.frame.width / 3) - 10
@@ -54,33 +53,26 @@ class ListVC: UIViewController {
         
         collectionView.register(ListCell.self, forCellWithReuseIdentifier: ListCell.id)
         collectionView.backgroundColor = .white
-
+        
         view.addSubview(collectionView)
     }
     
     
     @objc func addList() {
         let vc = AddListVC()
-        let nav = UINavigationController(rootViewController: vc)
         vc.listController = self.controller
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     
     func makeContextMenu(_ list: List, _ index: Int) -> UIMenu {
-        // Create a UIAction for sharing
-        
-        
         let edit = UIAction(title: "Edit", image: UIImage(systemName: "exclamationmark.circle")) { action in
-            // edit
             let vc = AddListVC()
             vc.list = list
             self.navigationController?.pushViewController(vc, animated: true)
         }
         
         let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash")) { action in
-            // Delete
-            
             let alert = UIAlertController(title: "Are you sure you want to delete \(list.title)", message: "You can't undo this action.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
@@ -89,13 +81,13 @@ class ListVC: UIViewController {
             }))
             self.present(alert, animated: true, completion: nil)
         }
-        // Create and return a UIMenu with the share action
         return UIMenu(title: "", children: [edit, delete])
     }
 }
 
 
-// MARK: - UITableViewDataSource
+// MARK: - UICollectionViewDelegate/UICollectionViewDataSource
+
 extension ListVC: UICollectionViewDelegate, UICollectionViewDataSource  {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         controller.itemsCount

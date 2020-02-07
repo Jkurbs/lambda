@@ -59,15 +59,12 @@ class ListCell: UICollectionViewCell {
         guard let list = self.list else { return }
         
         if let thumbnail = list.thumbnail {
-            print("")
             imageView.image = thumbnail.image()
         } else {
             let configuration = UIImage.SymbolConfiguration(weight: .thin)
             imageView.image = UIImage(systemName: list.imageName ?? "", withConfiguration: configuration)
         }
-        
-       
-        
+
         titleLabel.text = list.title
         if let count = list.tasks?.count {
             let text = count > 1 ? "\(count) tasks" : "\(count) task"
