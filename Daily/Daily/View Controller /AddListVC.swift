@@ -55,8 +55,12 @@ class AddListVC: UIViewController, UITextFieldDelegate {
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = imageView.frame.width/2
         imageView.backgroundColor = .secondaryColor
-        imageView.image = UIImage(systemName: icons.first!)
-        
+        imageView.image = UIImage(systemName: list?.imageName ?? icons.first ?? "")
+        if let color = list?.color?.description {
+            imageView.tintColor = UIColor(hexString: color)
+        }
+        imageView.tintColor = UIColor.systemBlue
+
         editButton.frame = CGRect(x: 0, y: imageView.layer.position.y + 50, width: 100, height: 45)
         editButton.center.x = view.center.x
         editButton.setTitle("Open library", for: .normal)
@@ -121,6 +125,7 @@ class AddListVC: UIViewController, UITextFieldDelegate {
                 } else {
                     list?.thumbnail = image.jpegData(compressionQuality: 1.0)
                 }
+                list?.color = self.selectedColor
                 listController?.edit(item: list!)
             } else {
                 if image.isSymbolImage {

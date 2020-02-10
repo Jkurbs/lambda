@@ -120,16 +120,19 @@ extension ListController {
     
     // Load from persistence
     func loadFromPersistence() {
-        guard let url = fileURL else { return }
         
-        do {
-            let decoder = PropertyListDecoder()
-            let data = try Data(contentsOf: url)
-            print(data)
-            let decodedData = try decoder.decode([List].self, from: data)
-            self.lists = decodedData
-        } catch {
-            print("Error decoding data: \(error)")
+        let bgQueu = DispatchQueue(label: "test",attributes: .concurrent)
+        bgQueu.async {
+            guard let url = self.fileURL else { return }
+            do {
+                let decoder = PropertyListDecoder()
+                let data = try Data(contentsOf: url)
+                print(data)
+                let decodedData = try decoder.decode([List].self, from: data)
+                self.lists = decodedData
+            } catch {
+                print("Error decoding data: \(error)")
+            }
         }
     }
 }
