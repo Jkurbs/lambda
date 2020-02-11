@@ -16,6 +16,7 @@
 		6D248D2823F3047B008D31C0 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D248D2723F3047B008D31C0 /* SearchResult.swift */; };
 		6D248D2A23F30665008D31C0 /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D248D2923F30665008D31C0 /* ResultType.swift */; };
 		6D248D2E23F306EF008D31C0 /* SearchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D248D2D23F306EF008D31C0 /* SearchResultController.swift */; };
+		6D6DA5DD23F34CE500231392 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DA5DC23F34CE500231392 /* SearchResultsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		6D248D2723F3047B008D31C0 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		6D248D2923F30665008D31C0 /* ResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultType.swift; sourceTree = "<group>"; };
 		6D248D2D23F306EF008D31C0 /* SearchResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultController.swift; sourceTree = "<group>"; };
+		6D6DA5DC23F34CE500231392 /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		6D248D1023F30404008D31C0 /* ItuneSearch */ = {
 			isa = PBXGroup;
 			children = (
+				6D6DA5DB23F34CCB00231392 /* View Controller */,
 				6D248D2C23F306E2008D31C0 /* Controller */,
 				6D248D2623F30472008D31C0 /* Model */,
 				6D248D2523F3046E008D31C0 /* View */,
@@ -98,6 +101,14 @@
 				6D248D2D23F306EF008D31C0 /* SearchResultController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		6D6DA5DB23F34CCB00231392 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6D6DA5DC23F34CE500231392 /* SearchResultsTableViewController.swift */,
+			);
+			path = "View Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +187,7 @@
 				6D248D1623F30404008D31C0 /* ViewController.swift in Sources */,
 				6D248D1223F30404008D31C0 /* AppDelegate.swift in Sources */,
 				6D248D2823F3047B008D31C0 /* SearchResult.swift in Sources */,
+				6D6DA5DD23F34CE500231392 /* SearchResultsTableViewController.swift in Sources */,
 				6D248D1423F30404008D31C0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
