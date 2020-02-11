@@ -13,6 +13,7 @@ struct SearchResult: Codable {
     var image: Data?
     var title: String?
     var creator: String?
+    var type: ResultType?
     
     enum CodingKeys: String, CodingKey {
         case title = "trackName"
@@ -21,6 +22,6 @@ struct SearchResult: Codable {
 }
 
 
-struct SearchResults {
+struct SearchResults: Codable {
     let results: [SearchResult]
 }

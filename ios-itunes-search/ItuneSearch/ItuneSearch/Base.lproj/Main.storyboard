@@ -32,6 +32,9 @@
                                                 <segment title="Music"/>
                                                 <segment title="Movies"/>
                                             </segments>
+                                            <connections>
+                                                <action selector="segment:" destination="N6H-Gj-XWU" eventType="valueChanged" id="pV1-3d-dfz"/>
+                                            </connections>
                                         </segmentedControl>
                                     </subviews>
                                 </stackView>
@@ -45,7 +48,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="bCo-LK-qQb" detailTextLabel="3WV-09-ks5" rowHeight="76" style="IBUITableViewCellStyleSubtitle" id="5Uc-8C-Myi">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="bCo-LK-qQb" detailTextLabel="3WV-09-ks5" rowHeight="76" style="IBUITableViewCellStyleSubtitle" id="5Uc-8C-Myi">
                                 <rect key="frame" x="0.0" y="115" width="414" height="76"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Uc-8C-Myi" id="Nne-TR-ivs">
@@ -78,6 +81,7 @@
                     <navigationItem key="navigationItem" title="iTunes Search" id="IuN-xj-NRo"/>
                     <connections>
                         <outlet property="searchBar" destination="Af0-8R-gJw" id="yMM-aJ-Z4z"/>
+                        <outlet property="segmentedControl" destination="ac8-DW-ezV" id="bvn-Ki-3hb"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AqF-GZ-3Ix" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
