@@ -23,7 +23,6 @@ struct RecipesNetworkClient {
                 completion(nil, NSError())
                 return
             }
-            
             do {
                 let recipes = try JSONDecoder().decode([Recipe].self, from: data)
                 completion(recipes, nil)
