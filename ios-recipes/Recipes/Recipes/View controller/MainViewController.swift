@@ -58,7 +58,6 @@ class MainViewController: UIViewController {
     func filterRecipes() {
         if let text = textField.text {
             if !text.isEmpty {
-                print(text)
                 let recipies = self.allRecipes.filter({$0.name.contains(text.lowercased())})
                 print(recipies.count)
                 self.filteredRecipes = recipies
@@ -86,14 +85,6 @@ extension MainViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         print(textField.text)
     }
-    
-    //    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    //
-    //        let recipies = self.allRecipes.filter({$0.name == textField.text!})
-    //        self.filteredRecipes = recipies
-    //
-    //        return true
-    //    }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         filterRecipes()
