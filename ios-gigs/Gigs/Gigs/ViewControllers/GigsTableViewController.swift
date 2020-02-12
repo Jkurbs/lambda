@@ -17,6 +17,8 @@ class GigsTableViewController: UITableViewController {
     
     // MARK: - Properties
     
+    var authController = AuthController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +34,7 @@ class GigsTableViewController: UITableViewController {
     
     @objc func getGigs() {
         let vc = ViewController()
+        vc.authController = authController
         self.present(vc, animated: true, completion: nil)
     }
     

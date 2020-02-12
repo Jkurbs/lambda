@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     
     var authController: AuthController!
     var authStatus = AuthStatus.signUp
-
+    
     // MARK: View Life Cycle
     
     override func viewDidLoad() {
@@ -62,6 +62,7 @@ class ViewController: UIViewController {
         passwordField.center.x = centerX
         passwordField.layer.cornerRadius = 5
         passwordField.placeholder = "Password"
+        passwordField.isSecureTextEntry = true
         passwordField.textAlignment = .center
         passwordField.backgroundColor = backgroundColor
         view.addSubview(passwordField)
@@ -73,6 +74,7 @@ class ViewController: UIViewController {
         signButton.setTitle("Sign Up", for: .normal)
         signButton.contentVerticalAlignment = .center
         signButton.backgroundColor = view.tintColor
+        signButton.addTarget(self, action: #selector(authenticate), for: .touchUpInside)
         view.addSubview(signButton)
         
     }
@@ -90,13 +92,35 @@ class ViewController: UIViewController {
     }
     
     @objc func authenticate() {
-        if authStatus == .signUp {
-            // Create an account for the user
-        
-            
-        } else {
-            // Login the user
+        print("Tapped")
+        if let username = usernameField.text, !username.isEmpty,
+            let pass = passwordField.text, !pass.isEmpty {
+            let user = User(username: username, password: pass)
+            print(user.username)
+            if authStatus == .signUp {
+                // Create an account for the user
+                authController.signUp(user) { (error) in
+                    if let error = error {
+                        print("Error: \(error)")
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Success", message: nil, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                        self.present(alert, animated: true) {
+                            self.segmentControl.selectedSegmentIndex = 1
+                            self.signButton.setTitle("Sign In", for: .normal)
+                        }
+                    }
+                }
+            } else {
+                // Login the user
+            }
         }
+    }
+    
+    func changeUI() {
+        
     }
 }
 

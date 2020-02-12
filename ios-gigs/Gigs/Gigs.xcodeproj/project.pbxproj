@@ -80,8 +80,8 @@
 		6D6940C923F496BD00266F7D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				6D6940B723F4912E00266F7D /* AuthenticateVC.swift */,
 				6D6940C723F4963700266F7D /* GigsTableViewController.swift */,
+				6D6940B723F4912E00266F7D /* AuthenticateVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

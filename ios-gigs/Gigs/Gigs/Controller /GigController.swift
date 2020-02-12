@@ -24,10 +24,10 @@ class AuthController {
     
     // Sign up user
     
-    func signUp(_ user: User, _ completion: @escaping(Error) -> ()) {
+    func signUp(_ user: User, _ completion: @escaping(Error?) -> ()) {
         
         /// Configure Url
-        let url = baseUrl?.appendingPathComponent("user/signUp")
+        let url = baseUrl?.appendingPathComponent("/users/signup")
         /// Create request
         var request = URLRequest(url: url!)
         request.httpMethod = HTTPMETHODS.POST.rawValue
@@ -60,7 +60,8 @@ class AuthController {
                     return
                 }
             }
-        }
+            completion(nil)
+        }.resume()
     }
     
     // Sign in user
