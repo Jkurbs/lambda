@@ -11,8 +11,13 @@ import UIKit
 class SearchResultsTableViewController: UITableViewController {
     
     // MARK: - IBOutlet
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    // MARK: - Properties
+    
+    let searchResultsController = SearchResultController()
     
     var type: String? {
         didSet {
@@ -21,16 +26,15 @@ class SearchResultsTableViewController: UITableViewController {
         }
     }
     
-    // MARK: - Properties
-    
-    let searchResultsController = SearchResultController()
-    
-    
     // MARK: View Life Cicle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
     }
+    
+    
+    // MARK: Functions
     
     @IBAction func segment(_ sender: UISegmentedControl) {
         
@@ -43,6 +47,19 @@ class SearchResultsTableViewController: UITableViewController {
             type = ResultType.movie.rawValue
         default:
             break
+        }
+    }
+    
+    func updateData() {
+        searchResultsController.performSearch(searchTerm: searchBar.text ?? "", resultType: type) { (error) in
+            if let error = error {
+                print("error: \(error)")
+                return
+            } else {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
         }
     }
     
@@ -62,20 +79,9 @@ class SearchResultsTableViewController: UITableViewController {
         cell.detailTextLabel?.text = result.creator
         return cell
     }
-    
-    func updateData() {
-        searchResultsController.performSearch(searchTerm: searchBar.text ?? "", resultType: type) { (error) in
-            if let error = error {
-                print("error: \(error)")
-                return
-            } else {
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            }
-        }
-    }
 }
+
+// MARK: - UISearchBarDelegate
 
 extension SearchResultsTableViewController: UISearchBarDelegate {
     

@@ -17,6 +17,7 @@
 		6D248D2A23F30665008D31C0 /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D248D2923F30665008D31C0 /* ResultType.swift */; };
 		6D248D2E23F306EF008D31C0 /* SearchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D248D2D23F306EF008D31C0 /* SearchResultController.swift */; };
 		6D6DA5DD23F34CE500231392 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6DA5DC23F34CE500231392 /* SearchResultsTableViewController.swift */; };
+		6D936B4D23F3653200FFDF96 /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D936B4C23F3653200FFDF96 /* ResultCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		6D248D2923F30665008D31C0 /* ResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultType.swift; sourceTree = "<group>"; };
 		6D248D2D23F306EF008D31C0 /* SearchResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultController.swift; sourceTree = "<group>"; };
 		6D6DA5DC23F34CE500231392 /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
+		6D936B4C23F3653200FFDF96 /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 		6D248D2523F3046E008D31C0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6D936B4C23F3653200FFDF96 /* ResultCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 			files = (
 				6D248D2E23F306EF008D31C0 /* SearchResultController.swift in Sources */,
 				6D248D2A23F30665008D31C0 /* ResultType.swift in Sources */,
+				6D936B4D23F3653200FFDF96 /* ResultCell.swift in Sources */,
 				6D248D1623F30404008D31C0 /* ViewController.swift in Sources */,
 				6D248D1223F30404008D31C0 /* AppDelegate.swift in Sources */,
 				6D248D2823F3047B008D31C0 /* SearchResult.swift in Sources */,

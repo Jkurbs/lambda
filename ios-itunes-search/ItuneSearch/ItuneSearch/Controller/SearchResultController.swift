@@ -32,7 +32,9 @@ class SearchResultController {
     
     
     func performSearch(searchTerm: String, resultType: String?, completion: @escaping(Error?) -> () ) {
+        
         results = []
+        
         /// Unwrappe URL
         guard let url = baseUrl else { return }
         
@@ -42,7 +44,8 @@ class SearchResultController {
         /// Create query item, base on search term
         let termQueryItem = URLQueryItem(name: "term", value: searchTerm)
         let mediaQueryItem = URLQueryItem(name: "entity", value: resultType ?? ResultType.software.rawValue)
-        urlCoponemt?.queryItems = [termQueryItem, mediaQueryItem]
+        let limitQueryItem = URLQueryItem(name: "limit", value: "25")
+        urlCoponemt?.queryItems = [termQueryItem, mediaQueryItem, limitQueryItem]
         
         /// Unwrappe URLComponents url
         guard let requestUrl = urlCoponemt?.url else {return}
