@@ -10,11 +10,20 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
+    // MARK: - UI
+    
     var segmentControl = UISegmentedControl()
     var usernameField = UITextField()
     var passwordField = UITextField()
     var signButton = UIButton()
+    
+    // MARK: - Properties
+    
+    var authStatus = AuthStatus.signUp
 
+    // MARK: View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -35,6 +44,7 @@ class ViewController: UIViewController {
         segmentControl.frame = CGRect(x: 0, y: 100, width: 150, height: 60)
         segmentControl.center.x = centerX
         segmentControl.selectedSegmentIndex = 0
+        segmentControl.addTarget(self, action: #selector(selectOptions(_:)), for: .valueChanged)
         view.addSubview(segmentControl)
         
         /// Setup TextFields
@@ -66,8 +76,24 @@ class ViewController: UIViewController {
         
     }
     
+    // MARK: - Functions
+    
+    @objc func selectOptions(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            _ = authStatus == .signUp
+            signButton.setTitle("Sign Up", for: .normal)
+        } else {
+            _ = authStatus == .signIn
+            signButton.setTitle("Sign In", for: .normal)
+        }
+    }
+    
     @objc func authenticate() {
-        
+        if authStatus == .signUp {
+            // Create an account for the user
+        } else {
+            // Login the user
+        }
     }
 }
 
