@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     
     // MARK: - Properties
     
+    var authController: AuthController!
     var authStatus = AuthStatus.signUp
 
     // MARK: View Life Cycle
@@ -91,6 +92,8 @@ class ViewController: UIViewController {
     @objc func authenticate() {
         if authStatus == .signUp {
             // Create an account for the user
+        
+            
         } else {
             // Login the user
         }
