@@ -25,15 +25,18 @@ class GigsTableViewController: UITableViewController {
         self.title = "Gigs"
         
         let authButton = UIBarButtonItem(title: "Get Gigs", style: .done, target: self, action: #selector(getGigs))
-        
         navigationItem.leftBarButtonItem = authButton
+        
+        if authController.bearer != nil {
+            self.present(AuthenticateVC(), animated: true, completion: nil)
+        }
     }
     
     
     // MARK: - Functions
     
     @objc func getGigs() {
-        let vc = ViewController()
+        let vc = AuthenticateVC()
         vc.authController = authController
         self.present(vc, animated: true, completion: nil)
     }

@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  AuthenticateVC.swift
 //  Gigs
 //
 //  Created by Kerby Jean on 2/12/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class AuthenticateVC: UIViewController {
     
     
     // MARK: - UI
@@ -83,20 +83,19 @@ class ViewController: UIViewController {
     
     @objc func selectOptions(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            _ = authStatus == .signUp
+            authStatus = .signUp
             signButton.setTitle("Sign Up", for: .normal)
         } else {
-            _ = authStatus == .signIn
+          authStatus = .signIn
+            print(authStatus)
             signButton.setTitle("Sign In", for: .normal)
         }
     }
     
     @objc func authenticate() {
-        print("Tapped")
         if let username = usernameField.text, !username.isEmpty,
             let pass = passwordField.text, !pass.isEmpty {
             let user = User(username: username, password: pass)
-            print(user.username)
             if authStatus == .signUp {
                 // Create an account for the user
                 authController.signUp(user) { (error) in
@@ -105,17 +104,31 @@ class ViewController: UIViewController {
                         return
                     }
                     DispatchQueue.main.async {
-                        let alert = UIAlertController(title: "Success", message: nil, preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                        self.present(alert, animated: true) {
-                            self.segmentControl.selectedSegmentIndex = 1
-                            self.signButton.setTitle("Sign In", for: .normal)
-                        }
+                        self.showAlert("Success signUp")
                     }
                 }
             } else {
+                print("Sign In")
                 // Login the user
+                authController.signIn(user) { (error) in
+                    if let error = error {
+                        print("Error: \(error)")
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self.showAlert("Success signIn")
+                    }
+                }
             }
+        }
+    }
+    
+    func showAlert(_ title: String) {
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true) {
+            self.segmentControl.selectedSegmentIndex = 1
+            self.signButton.setTitle("Sign In", for: .normal)
         }
     }
     
