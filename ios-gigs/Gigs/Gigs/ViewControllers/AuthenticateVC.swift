@@ -10,7 +10,6 @@ import UIKit
 
 class AuthenticateVC: UIViewController {
     
-    
     // MARK: - UI
     
     var segmentControl = UISegmentedControl()
@@ -27,15 +26,13 @@ class AuthenticateVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        view.backgroundColor = .white
         setupViews()
     }
     
     // MARK: - Functions
     
     func setupViews() {
-        
+        view.backgroundColor = .white
         let width = view.frame.width - 60
         let centerX = view.center.x
         
@@ -67,7 +64,6 @@ class AuthenticateVC: UIViewController {
         passwordField.backgroundColor = backgroundColor
         view.addSubview(passwordField)
         
-        
         signButton.frame = CGRect(x: 0, y: passwordField.layer.position.y + 60, width: width, height: 60)
         signButton.center.x = view.center.x
         signButton.layer.cornerRadius = 5
@@ -76,17 +72,15 @@ class AuthenticateVC: UIViewController {
         signButton.backgroundColor = view.tintColor
         signButton.addTarget(self, action: #selector(authenticate), for: .touchUpInside)
         view.addSubview(signButton)
-        
     }
     
-    // MARK: - Functions
     
     @objc func selectOptions(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             authStatus = .signUp
             signButton.setTitle("Sign Up", for: .normal)
         } else {
-          authStatus = .signIn
+            authStatus = .signIn
             print(authStatus)
             signButton.setTitle("Sign In", for: .normal)
         }
@@ -108,7 +102,6 @@ class AuthenticateVC: UIViewController {
                     }
                 }
             } else {
-                print("Sign In")
                 // Login the user
                 authController.signIn(user) { (error) in
                     if let error = error {
@@ -116,7 +109,7 @@ class AuthenticateVC: UIViewController {
                         return
                     }
                     DispatchQueue.main.async {
-                        self.showAlert("Success signIn")
+                        self.dismiss(animated: true, completion: nil)
                     }
                 }
             }
@@ -124,16 +117,12 @@ class AuthenticateVC: UIViewController {
     }
     
     func showAlert(_ title: String) {
-        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: title, message: "You can now login", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true) {
             self.segmentControl.selectedSegmentIndex = 1
             self.signButton.setTitle("Sign In", for: .normal)
         }
-    }
-    
-    func changeUI() {
-        
     }
 }
 
