@@ -34,6 +34,10 @@ class GigsTableViewController: UITableViewController {
         let authButton = UIBarButtonItem(title: "Get Gigs", style: .done, target: self, action: #selector(getGigs))
         navigationItem.leftBarButtonItem = authButton
         
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addGig))
+        navigationItem.rightBarButtonItem = addButton
+        
         if authController.bearer != nil {
             self.present(AuthenticateVC(), animated: true, completion: nil)
         }
@@ -46,6 +50,11 @@ class GigsTableViewController: UITableViewController {
         let vc = AuthenticateVC()
         vc.authController = authController
         self.present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func addGig() {
+        let vc = GigsInfoVC()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     

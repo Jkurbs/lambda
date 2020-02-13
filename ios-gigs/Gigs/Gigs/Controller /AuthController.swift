@@ -20,7 +20,6 @@ class AuthController {
 
     var baseUrl = URL(string: "https://lambdagigs.vapor.cloud/api")
     var bearer: Bearer?
-
     
     // Sign up user
 
@@ -101,6 +100,5 @@ class AuthController {
             }
             completion(nil)
         }.resume()
-        
     }
 }

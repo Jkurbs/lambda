@@ -27,6 +27,7 @@ class AuthenticateVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+
     }
     
     // MARK: - Functions
@@ -81,7 +82,6 @@ class AuthenticateVC: UIViewController {
             signButton.setTitle("Sign Up", for: .normal)
         } else {
             authStatus = .signIn
-            print(authStatus)
             signButton.setTitle("Sign In", for: .normal)
         }
     }
@@ -125,4 +125,3 @@ class AuthenticateVC: UIViewController {
         }
     }
 }
-
