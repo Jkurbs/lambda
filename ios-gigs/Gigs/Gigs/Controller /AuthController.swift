@@ -9,26 +9,32 @@
 import Foundation
 
 // HttpMethods enums
-enum HTTPMETHODS: String {
+enum HTTPMethod: String {
     case POST
     case GET
+}
+
+enum NetworkError: Error {
+    case noAuth
+    case noData
+    case unableToDecode
 }
 
 
 class AuthController {
     
 
-    var baseUrl = URL(string: "https://lambdagigs.vapor.cloud/api")
+    var baseUrl = URL(string: "https://lambdagigs.vapor.cloud/api")!
     var bearer: Bearer?
     
     // Sign up user
 
     func signUp(_ user: User, _ completion: @escaping(Error?) -> ()) {
         /// Configure Url
-        let url = baseUrl?.appendingPathComponent("/users/signup")
+        let url = baseUrl.appendingPathComponent("/users/signup")
         /// Create request
-        var request = URLRequest(url: url!)
-        request.httpMethod = HTTPMETHODS.POST.rawValue
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.POST.rawValue
         
         ///Configure header
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -63,12 +69,13 @@ class AuthController {
     }
     
     // Sign in user
+    
     func signIn(_ user: User, _ completion: @escaping(Error?) -> ()) {
         /// Configure Url
-        let url = baseUrl?.appendingPathComponent("/users/login")
+        let url = baseUrl.appendingPathComponent("/users/login")
         /// Create request
-        var request = URLRequest(url: url!)
-        request.httpMethod = HTTPMETHODS.POST.rawValue
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.POST.rawValue
         
         ///Configure header
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -101,4 +108,48 @@ class AuthController {
             completion(nil)
         }.resume()
     }
+    
+    // Fetch gigs
+
+    func fetchGigs(completion:@escaping (Result<[Gig], NetworkError>) -> Void) {
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+        
+        let url = baseUrl.appendingPathComponent("/gigs/")
+               
+        /// Create request
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.GET.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+
+        /// Create URLSession
+
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error  {
+                NSLog("Error with data task: \(error)")
+                completion(.failure(.noAuth))
+                return
+            }
+
+            guard let data = data else {
+                NSLog("No data")
+                completion(.failure(.noData))
+                return
+            }
+
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.dateDecodingStrategy = .iso8601
+            do {
+                let gigData = try jsonDecoder.decode([Gig].self, from: data)
+                completion(.success(gigData))
+            } catch {
+                NSLog("Error decoding data: \(error)")
+                completion(.failure(.unableToDecode))
+            }
+        }.resume()
+    }
+    
+    //Create
 }

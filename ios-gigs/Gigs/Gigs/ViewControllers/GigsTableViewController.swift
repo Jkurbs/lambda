@@ -18,6 +18,7 @@ class GigsTableViewController: UITableViewController {
     // MARK: - Properties
     
     var authController = AuthController()
+    var gigs = [Gig]()
     
     // MARK: View Life Cycle
     
@@ -34,12 +35,15 @@ class GigsTableViewController: UITableViewController {
         let authButton = UIBarButtonItem(title: "Get Gigs", style: .done, target: self, action: #selector(getGigs))
         navigationItem.leftBarButtonItem = authButton
         
-        
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addGig))
         navigationItem.rightBarButtonItem = addButton
         
-        if authController.bearer != nil {
-            self.present(AuthenticateVC(), animated: true, completion: nil)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
+        if authController.bearer == nil {
+            let vc = AuthenticateVC()
+            vc.authController = authController
+            self.present(vc, animated: true, completion: nil)
         }
     }
     
@@ -47,9 +51,15 @@ class GigsTableViewController: UITableViewController {
     // MARK: - Functions
     
     @objc func getGigs() {
-        let vc = AuthenticateVC()
-        vc.authController = authController
-        self.present(vc, animated: true, completion: nil)
+        
+        authController.fetchGigs { (result) in
+            if let gigs = try? result.get() {
+                DispatchQueue.main.async {
+                    self.gigs = gigs
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
     
     @objc func addGig() {
@@ -60,13 +70,15 @@ class GigsTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return gigs.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") else  { return UITableViewCell() }
+        let gig = self.gigs[indexPath.count]
+        cell.textLabel?.text = gig.title
+        return cell
     }
 }

@@ -18,6 +18,7 @@
 		6DCC35D523F49AE0000A1AB8 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCC35D423F49AE0000A1AB8 /* AuthController.swift */; };
 		6DCC35D723F49AF6000A1AB8 /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCC35D623F49AF6000A1AB8 /* Bearer.swift */; };
 		6DCC35F923F59E39000A1AB8 /* GigsInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCC35F823F59E39000A1AB8 /* GigsInfoVC.swift */; };
+		6DCC35FB23F5A748000A1AB8 /* Gig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCC35FA23F5A748000A1AB8 /* Gig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		6DCC35D423F49AE0000A1AB8 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		6DCC35D623F49AF6000A1AB8 /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		6DCC35F823F59E39000A1AB8 /* GigsInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsInfoVC.swift; sourceTree = "<group>"; };
+		6DCC35FA23F5A748000A1AB8 /* Gig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 			children = (
 				6DCC35D123F49A70000A1AB8 /* User.swift */,
 				6DCC35D623F49AF6000A1AB8 /* Bearer.swift */,
+				6DCC35FA23F5A748000A1AB8 /* Gig.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 				6DCC35D223F49A70000A1AB8 /* User.swift in Sources */,
 				6D6940B623F4912E00266F7D /* SceneDelegate.swift in Sources */,
 				6DCC35D523F49AE0000A1AB8 /* AuthController.swift in Sources */,
+				6DCC35FB23F5A748000A1AB8 /* Gig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
