@@ -37,5 +37,9 @@ class PokeDetailsVC: UIViewController {
         guard let pokemon = pokemon else { return }
         imageView.image = UIImage(data: pokemon.imageData)
         nameLabel.text = pokemon.name
+        for ability in pokemon.abilities {
+            skillLabel.text = [ability.ability.name].joined(separator: ", ")
+        }
     }
+    
 }
