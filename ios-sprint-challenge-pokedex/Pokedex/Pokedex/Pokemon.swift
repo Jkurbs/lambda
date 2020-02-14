@@ -9,13 +9,14 @@
 import Foundation
 
 
-struct PokemonProfile: Codable {
+struct Pokemon: Codable {
     var id: Int
     var name: String
     var imageData: Data
+    var abilities: [Ability]
 }
 
-struct Pokemon: Codable {
+struct PokemonProfile: Codable {
     
     let abilities: [Ability]
     let id: Int

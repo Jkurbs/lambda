@@ -19,14 +19,14 @@ class PokeController {
     
     var baseURL = URL(string: "https://pokeapi.co/api/v2")
     
-    var pokemons: [PokemonProfile] = []
+    var pokemons: [Pokemon] = []
     let radQueue = OperationQueue()
     
     
-    func loadPokemons(completion:@escaping (Result<Pokemon, NetworkError>) -> Void) {
+    func loadPokemons(completion:@escaping (Result<PokemonProfile, NetworkError>) -> Void) {
         
         var id = 0
-        for _ in 1...20 {
+        for _ in 1...700 {
             id += 1
             guard let url = baseURL else {
                 completion(.failure(.badURL))
@@ -48,7 +48,7 @@ class PokeController {
                 }
                 let decoder = JSONDecoder()
                 do {
-                    let pokemonData = try decoder.decode(Pokemon.self, from: data)
+                    let pokemonData = try decoder.decode(PokemonProfile.self, from: data)
                     completion(.success(pokemonData))
                 } catch {
                     completion(.failure(.decoderError))
@@ -81,7 +81,7 @@ class PokeController {
         return count
     }
     
-    func item(at: Int) -> PokemonProfile? {
-        return pokemons.sorted(by: {$0.id > $1.id})[at]
+    func item(at: Int) -> Pokemon? {
+        return pokemons[at]
     }
 }

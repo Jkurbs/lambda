@@ -19,7 +19,7 @@ class PokeCell: UICollectionViewCell {
     var imageView = UIImageView()
     var titleLabel = UILabel()
     
-    var pokemon: PokemonProfile? {
+    var pokemon: Pokemon? {
         didSet {
             updateViews()
         }
@@ -46,7 +46,6 @@ class PokeCell: UICollectionViewCell {
         titleLabel.frame = CGRect(x: 0, y: height + 10, width: contentView.frame.width, height: 25)
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont.systemFont(ofSize: 16)
-        
        
         contentView.addSubview(imageView)
         contentView.addSubview(titleLabel)

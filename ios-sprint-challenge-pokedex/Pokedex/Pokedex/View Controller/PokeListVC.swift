@@ -15,6 +15,9 @@ class PokeListVC: UIViewController {
     var collectionView: UICollectionView!
     var controller = PokeController()
     
+    
+    // MARK: View Life Cicle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,7 +53,7 @@ class PokeListVC: UIViewController {
             if let pokemon = try? result.get() {
                 self.controller.loadImage(url: pokemon.sprites.frontDefault) { (result) in
                     if let  imageData = try? result.get() {
-                        let profile = PokemonProfile(id: pokemon.id ,name: pokemon.name, imageData: imageData)
+                        let profile = Pokemon(id: pokemon.id, name: pokemon.name, imageData: imageData, abilities: pokemon.abilities)
                         self.controller.pokemons.append(profile)
                         DispatchQueue.main.async {
                             self.collectionView.reloadData()
@@ -81,6 +84,10 @@ extension PokeListVC: UICollectionViewDelegate, UICollectionViewDataSource  {
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let board = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc = board.instantiateViewController(identifier: "PokeDetailsVC") as! PokeDetailsVC
+        let pokemon = controller.item(at: indexPath.row)
+        vc.pokemon = pokemon
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
