@@ -10,6 +10,7 @@ import UIKit
 
 class GigsInfoVC: UIViewController {
     
+    var authController: AuthController!
     var titleField = UITextField()
     var datePicker = UIDatePicker()
     var descriptionField = UITextView()
@@ -23,6 +24,9 @@ class GigsInfoVC: UIViewController {
     // MARK: - Functions
     
     func setupViews() {
+        
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveGig))
+        navigationItem.rightBarButtonItem = saveButton
         
         view.backgroundColor = .white
         let centerX = view.center.x
@@ -43,5 +47,16 @@ class GigsInfoVC: UIViewController {
         descriptionField.frame = CGRect(x: 0, y: Int(datePicker.layer.position.y + 100), width: Int(width), height: 300)
         descriptionField.center.x = centerX
         descriptionField.font = UIFont.systemFont(ofSize: 17)
+    }
+    
+    @objc func saveGig() {
+        if let title = titleField.text, let description = descriptionField.text {
+            let date = datePicker.date
+            print(date)
+            let gig = Gig(title: title, dueDate: date, description: description)
+            authController.createGig(gig: gig) { (result) in
+                
+            }
+        }
     }
 }

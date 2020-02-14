@@ -152,4 +152,49 @@ class AuthController {
     }
     
     //Create
+    
+    func createGig(gig: Gig, completion:@escaping (Result<Gig, NetworkError>) -> Void) {
+        
+        guard let bearer = bearer else {
+            completion(.failure(.noAuth))
+            return
+        }
+                
+        let url = baseUrl.appendingPathComponent("/gigs/")
+            
+        /// Create request
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.POST.rawValue
+        
+        ///Configure header
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        ///Encode gig to json
+        let jsonEncoder = JSONEncoder()
+        
+        do {
+            let jsonData = try jsonEncoder.encode(gig)
+            request.httpBody = jsonData
+        } catch {
+            NSLog("Error encoding data: \(error)")
+        }
+        /// Create URLSession
+        
+
+        URLSession.shared.dataTask(with: request) { ( data, response, error) in
+            if let error = error  {
+                NSLog("Error with URL Session: \(error)")
+                return
+            }
+            
+            guard let data = data else { return }
+            
+            let jsonDecoder = JSONDecoder()
+            do {
+                let data = try jsonDecoder.decode(Gig.self, from: data)
+            } catch {
+                NSLog("Error decoding data: \(error)")
+            }
+        }.resume()
+    }
 }

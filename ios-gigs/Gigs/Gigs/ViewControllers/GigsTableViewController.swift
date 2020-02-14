@@ -64,6 +64,7 @@ class GigsTableViewController: UITableViewController {
     
     @objc func addGig() {
         let vc = GigsInfoVC()
+        vc.authController = authController
         navigationController?.pushViewController(vc, animated: true)
     }
     
