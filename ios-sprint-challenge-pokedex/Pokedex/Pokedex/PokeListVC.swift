@@ -8,75 +8,79 @@
 
 import UIKit
 
-class PokeListVC: UITableViewController {
+class PokeListVC: UIViewController {
     
+    // MARK: - Properties
+    
+    var collectionView: UICollectionView!
     var controller = PokeController()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        setupViews()
+        loadData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.reloadData()
+    // MARK: Functions
+    
+    func setupViews() {
+        view.backgroundColor = .white
+        
+        let layout = UICollectionViewFlowLayout()
+        let width = (view.frame.width / 3) - 10
+        layout.itemSize = CGSize(width: width, height: width)
+        layout.sectionInset = UIEdgeInsets(top: 25, left: 5, bottom: 50, right: 5)
+        layout.minimumLineSpacing = 20
+        layout.minimumInteritemSpacing = 10
+        
+        collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
+        
+        /// Setup tableview datasource/delegate
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.register(PokeCell.self, forCellWithReuseIdentifier: PokeCell.id)
+        collectionView.backgroundColor = .white
+        view.addSubview(collectionView)
     }
-
-    // MARK: - Table view data source
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return controller.pokemon.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let pokemon = controller.pokemon[indexPath.row]
-        cell.textLabel?.text = pokemon.name
-        return cell
-    }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Search" {
-            let destination = segue.destination as! ViewController
-            destination.controller = controller
+    
+    func loadData() {
+        controller.loadPokemons { (result) in
+            if let pokemon = try? result.get() {
+                self.controller.loadImage(url: pokemon.sprites.frontDefault) { (result) in
+                    if let  imageData = try? result.get() {
+                        let profile = PokemonProfile(id: pokemon.id ,name: pokemon.name, imageData: imageData)
+                        self.controller.pokemons.append(profile)
+                        DispatchQueue.main.async {
+                            self.collectionView.reloadData()
+                        }
+                    }
+                }
+            }
         }
     }
+}
 
+
+
+
+// MARK: - UICollectionViewDelegate/UICollectionViewDataSource
+
+extension PokeListVC: UICollectionViewDelegate, UICollectionViewDataSource  {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        controller.itemCount
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokeCell.id, for: indexPath) as? PokeCell else {return UICollectionViewCell()}
+        let pokemon = controller.item(at: indexPath.row)
+        cell.pokemon = pokemon
+        return cell
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
 }
