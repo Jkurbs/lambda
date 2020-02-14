@@ -18,12 +18,45 @@ class ViewController: UIViewController {
     @IBOutlet weak var abilitiesLabel: UILabel!
     
     
+    var controller: PokeController!
+    
+    var pokemon: Pokemon? {
+        didSet {
+            updateViews()
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        searchField.delegate = self
     }
+    
+    func searchPokemon() {
+        if let name = searchField.text {
+            controller.searchPokemon(name: name) { (result) in
+                if let pokemon = try? result.get() {
+                    DispatchQueue.main.async {
+                        self.pokemon = pokemon
+                    }
+                }
+            }
+        }
+    }
+    
+    func updateViews() {
+        guard let pokemon = pokemon else {return}
+        self.idLabel.text = "\(pokemon.id)"
+//        print("abilities: \(pokemon.abilities.count)")
+    }
+}
 
-
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchPokemon()
+        return true
+        
+    }
 }
 
