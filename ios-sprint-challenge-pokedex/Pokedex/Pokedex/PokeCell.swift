@@ -10,13 +10,13 @@ import Foundation
 
 import UIKit
 
-class PokeCell: UICollectionViewCell {
+class PokeCell: UITableViewCell {
     
     static var id: String {
         return String(describing: self)
     }
     
-    var imageView = UIImageView()
+    var thumbnailView = UIImageView()
     var titleLabel = UILabel()
     
     var pokemon: Pokemon? {
@@ -26,8 +26,8 @@ class PokeCell: UICollectionViewCell {
     }
 
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier   )
         setupViews()
     }
     
@@ -38,23 +38,21 @@ class PokeCell: UICollectionViewCell {
     
     func setupViews() {
         contentView.backgroundColor = .white
-        let height = contentView.frame.height - 30
-        imageView.frame = CGRect(x: 0, y: 10, width: height, height: height)
-        imageView.center.x = contentView.center.x
-        imageView.contentMode = .scaleAspectFit
+        thumbnailView.frame = CGRect(x: 10, y: 10, width: 45, height: 45)
+        thumbnailView.contentMode = .scaleAspectFit
         
-        titleLabel.frame = CGRect(x: 0, y: height + 10, width: contentView.frame.width, height: 25)
-        titleLabel.textAlignment = .center
+        titleLabel.frame = CGRect(x: 60, y: 0, width: contentView.frame.width, height: contentView.frame.height)
         titleLabel.font = UIFont.systemFont(ofSize: 16)
        
-        contentView.addSubview(imageView)
+        contentView.addSubview(thumbnailView)
         contentView.addSubview(titleLabel)
     }
     
     func updateViews() {
         self.titleLabel.text = pokemon?.name
+        print("UPDATE")
         if let data = pokemon?.imageData {
-            self.imageView.image = UIImage(data: data)
+            self.thumbnailView.image = UIImage(data: data)
         }
     }
 }

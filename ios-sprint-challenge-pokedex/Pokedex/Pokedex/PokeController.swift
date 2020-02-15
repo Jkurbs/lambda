@@ -20,6 +20,7 @@ class PokeController {
     var baseURL = URL(string: "https://pokeapi.co/api/v2")
     
     var pokemons: [Pokemon] = []
+    var filteredPok: [Pokemon] = []
     let radQueue = OperationQueue()
     
     
