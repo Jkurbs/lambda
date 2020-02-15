@@ -28,6 +28,29 @@ class PokeListVC: UIViewController {
         loadData()
     }
     
+    func loadData() {
+        
+        let firstTime = UserDefaults.standard.bool(forKey: "FirstTime")
+        if firstTime == true {
+            controller.loadFromPersistence()
+        } else {
+            print("Controller")
+            controller.loadPokemons { (result) in
+                if let pokemon = try? result.get() {
+                    self.controller.loadImage(url: pokemon.sprites.frontDefault) { (result) in
+                        if let  imageData = try? result.get() {
+                            let profile = Pokemon(id: pokemon.id, name: pokemon.name, imageData: imageData, abilities: pokemon.abilities)
+                            self.controller.pokemons.append(profile)
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     // MARK: Functions
     
     func setupViews() {
@@ -39,6 +62,8 @@ class PokeListVC: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.scopeButtonTitles = ["Name", "Id"]
         searchController.searchBar.delegate = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        definesPresentationContext = false
         
         tableView = UITableView(frame: view.frame, style: .plain)
         tableView.tableHeaderView = searchController.searchBar
@@ -50,23 +75,10 @@ class PokeListVC: UIViewController {
         tableView.register(PokeCell.self, forCellReuseIdentifier:  PokeCell.id)
         tableView.backgroundColor = .white
         view.addSubview(tableView)
+        
+        controller.viewController = self 
     }
     
-    func loadData() {
-        controller.loadPokemons { (result) in
-            if let pokemon = try? result.get() {
-                self.controller.loadImage(url: pokemon.sprites.frontDefault) { (result) in
-                    if let  imageData = try? result.get() {
-                        let profile = Pokemon(id: pokemon.id, name: pokemon.name, imageData: imageData, abilities: pokemon.abilities)
-                        self.controller.pokemons.append(profile)
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
 
 
@@ -95,6 +107,13 @@ extension PokeListVC: UITableViewDelegate, UITableViewDataSource  {
         let pokemon = searchController.isActive ? controller.filteredPok[indexPath.row] : controller.pokemons[indexPath.row]
         vc.pokemon = pokemon
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            controller.removeItem(at: indexPath.row)
+            tableView.reloadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -132,7 +151,6 @@ extension PokeListVC: UISearchResultsUpdating {
 }
 
 extension PokeListVC: UISearchBarDelegate {
-    
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         filterSearchController(searchBar)
     }
