@@ -51,7 +51,7 @@ struct Sprites: Codable {
     let backShiny: String
     let frontDefault: String
     let frontShiny: String
-
+    
     enum CodingKeys: String, CodingKey {
         case backDefault = "back_default"
         case backShiny = "back_shiny"

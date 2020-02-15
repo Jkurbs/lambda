@@ -121,6 +121,9 @@ extension PokeListVC: UITableViewDelegate, UITableViewDataSource  {
     }
 }
 
+
+// MARK: - UISearchResultsUpdating
+
 extension PokeListVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {

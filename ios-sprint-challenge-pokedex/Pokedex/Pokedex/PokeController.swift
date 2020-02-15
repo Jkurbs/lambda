@@ -24,9 +24,6 @@ class PokeController {
     let radQueue = OperationQueue()
     var viewController: PokeListVC?
     
- 
-    
-    
     
     func loadPokemons(completion:@escaping (Result<PokemonProfile, NetworkError>) -> Void) {
         var id = 0
@@ -101,41 +98,41 @@ class PokeController {
 extension PokeController {
     
     // Persistence file url
-       var fileURL: URL? {
-           let manager = FileManager.default
-           guard let documentDir = manager.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
-           let fileURL = documentDir.appendingPathComponent("pokemon.plist")
-           return fileURL
-       }
-       
-       // Save to persistence
-       func saveToPersistence() {
-           guard let url = fileURL else {  return }
-           
-           do {
-               let encoder = PropertyListEncoder()
-               let data = try encoder.encode(pokemons)
-               try data.write(to: url)
-           } catch {
-               print("Error encoding data: \(error)")
-           }
-       }
-       
-       // Load from persistence
-       func loadFromPersistence() {
-           
-           let bgQueu = DispatchQueue(label: "test",attributes: .concurrent)
-           bgQueu.async {
-               guard let url = self.fileURL else { return }
-               do {
-                   let decoder = PropertyListDecoder()
-                   let data = try Data(contentsOf: url)
-                   print(data)
-                   let decodedData = try decoder.decode([Pokemon].self, from: data)
-                   self.pokemons = decodedData
-               } catch {
-                   print("Error decoding data: \(error)")
-               }
-           }
-       }
+    var fileURL: URL? {
+        let manager = FileManager.default
+        guard let documentDir = manager.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
+        let fileURL = documentDir.appendingPathComponent("pokemon.plist")
+        return fileURL
+    }
+    
+    // Save to persistence
+    func saveToPersistence() {
+        guard let url = fileURL else {  return }
+        
+        do {
+            let encoder = PropertyListEncoder()
+            let data = try encoder.encode(pokemons)
+            try data.write(to: url)
+        } catch {
+            print("Error encoding data: \(error)")
+        }
+    }
+    
+    // Load from persistence
+    func loadFromPersistence() {
+        
+        let bgQueu = DispatchQueue(label: "test",attributes: .concurrent)
+        bgQueu.async {
+            guard let url = self.fileURL else { return }
+            do {
+                let decoder = PropertyListDecoder()
+                let data = try Data(contentsOf: url)
+                print(data)
+                let decodedData = try decoder.decode([Pokemon].self, from: data)
+                self.pokemons = decodedData
+            } catch {
+                print("Error decoding data: \(error)")
+            }
+        }
+    }
 }

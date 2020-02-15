@@ -18,16 +18,17 @@ class PokeDetailsVC: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var skillLabel: UILabel!
     
-    // MARK: View Life Cicle
-
     var pokemon: Pokemon?
     
-    
+    // MARK: - View Life Cicle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         updateViews()
     }
+    
+    // MARK: - Functions 
     
     func setupViews() {
         view.backgroundColor = .white

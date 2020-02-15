@@ -50,7 +50,6 @@ class PokeCell: UITableViewCell {
     
     func updateViews() {
         self.titleLabel.text = pokemon?.name
-        print("UPDATE")
         if let data = pokemon?.imageData {
             self.thumbnailView.image = UIImage(data: data)
         }
