@@ -23,15 +23,17 @@ class PhotoCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoController.photos.count
+        return 3
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as? PhotoCollectionViewCell else { return UICollectionViewCell() }
+        cell.backgroundColor = .red
         
-        let photo = photoController.photos[indexPath.row]
+        print("CELL FOR ROW")
         
-        cell.photo = photo
+//        let photo = photoController.photos[indexPath.row]
+//        cell.photo = photo
         
         return cell
     }
