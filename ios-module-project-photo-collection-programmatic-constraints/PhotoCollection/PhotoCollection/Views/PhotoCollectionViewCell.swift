@@ -39,11 +39,20 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         imageView.backgroundColor = .black
         
         
-        // Setup imageView 
+        // Setup imageView
         NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: contentView, attribute: .height, multiplier: 1, constant: -50).isActive = true
         NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal, toItem: imageView, attribute: .height, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: imageView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: imageView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
+        
+        // Setup label
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.text = "Text"
+        titleLabel.textAlignment = .center
+        addSubview(titleLabel)
+        
+        NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: imageView, attribute: .bottom, multiplier: 1, constant: 3).isActive = true
+        NSLayoutConstraint(item: titleLabel, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1, constant: 0).isActive = true
     }
     
     func updateViews() {
