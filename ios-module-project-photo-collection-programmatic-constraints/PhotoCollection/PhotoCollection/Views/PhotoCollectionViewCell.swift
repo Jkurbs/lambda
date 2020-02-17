@@ -30,16 +30,14 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     }
     
     func setUpSubviews() {
-        print("Setup")
         
+        // Setup imageView
         imageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(imageView)
-
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .black
         
-        
-        // Setup imageView
+        // Setup imageView constraint
         NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: contentView, attribute: .height, multiplier: 1, constant: -50).isActive = true
         NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal, toItem: imageView, attribute: .height, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: imageView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
@@ -51,6 +49,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         titleLabel.textAlignment = .center
         addSubview(titleLabel)
         
+        // Setup label constraint
         NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: imageView, attribute: .bottom, multiplier: 1, constant: 3).isActive = true
         NSLayoutConstraint(item: titleLabel, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1, constant: 0).isActive = true
     }
