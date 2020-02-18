@@ -118,11 +118,6 @@ class PhotoDetailViewController: UIViewController, UIImagePickerControllerDelega
         
     }
     
-    
-    
-    
-    
-    
     private func updateViews() {
         
         guard let photo = photo else {
