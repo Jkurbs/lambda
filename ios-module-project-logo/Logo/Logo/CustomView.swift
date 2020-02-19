@@ -12,12 +12,9 @@ import UIKit
 @IBDesignable
 class CustomView: UIView {
 
+   //https://apps.apple.com/us/app/goat-sneakers-apparel/id966758561
     
-//    private let color1 = UIColor(red: 26.0/255.0, green: 42.0/255.0, blue: 108.0/255.0, alpha: 1.0)
-//    let color2 = UIColor(red: 178.0/255.0, green: 31.0/255.0, blue: 31.0/255.0, alpha: 1.0)
-//    let color3 = UIColor(red: 253.0/255.0, green: 187.0/255.0, blue: 45.0/255.0, alpha: 1.0)
-      
-    
+   // Draw goat app icon
     override func draw(_ rect: CGRect) {
         if let context = UIGraphicsGetCurrentContext() {
             // Size of rounded rectangle
@@ -29,7 +26,7 @@ class CustomView: UIView {
             let yf:CGFloat = (self.frame.height - rectHeight) / 2
 
             let rect = CGRect(x: xf, y: yf, width: rectWidth, height: rectHeight)
-            let clipPath: CGPath = UIBezierPath(roundedRect: rect, cornerRadius: 15).cgPath
+            let clipPath: CGPath = UIBezierPath(roundedRect: rect, cornerRadius: 20).cgPath
 
             context.addPath(clipPath)
             context.setFillColor(UIColor.black.cgColor)
