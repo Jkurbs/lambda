@@ -41,6 +41,10 @@ class CustomControl: UIControl {
     
     
     private func setup() {
+        
+        backgroundColor = .clear
+        
+        
         for x in 1...5 {
             let label = UILabel(frame: CGRect(x: componentDimension + CGFloat(30 * x), y: 0, width: componentDimension, height: componentDimension))
             label.tag = x
@@ -85,10 +89,22 @@ class CustomControl: UIControl {
             if bounds.contains(touch) {
                 value = label.tag
                 label.textColor = componentActiveColor
+                label.performFlare()
                 sendActions(for: .valueChanged)
             } else {
                 label.textColor = componentInactiveColor
             }
         }
     }
+}
+
+
+extension UIView {
+  // "Flare view" animation sequence
+  func performFlare() {
+    func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+    func unflare() { transform = .identity }
+    
+    UIView.animate(withDuration: 0.3, animations: { flare() }, completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+  }
 }
