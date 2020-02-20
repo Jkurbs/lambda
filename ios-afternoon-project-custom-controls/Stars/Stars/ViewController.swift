@@ -15,6 +15,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func updateRating(_ sender: CustomControl) {
+        let title = sender.value > 0 ? "User Rating: \(sender.value) stars" : "User Rating: \(sender.value) star"
+        self.title = title
+    }
 }
 
