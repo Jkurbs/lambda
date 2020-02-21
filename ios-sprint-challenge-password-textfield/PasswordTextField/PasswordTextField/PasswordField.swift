@@ -47,6 +47,19 @@ class PasswordField: UIControl {
     private var strengthDescriptionLabel: UILabel = UILabel()
     
     
+    // MARK: - Init
+     override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setup()
+    }
+    
+    // MARK: - Functions
+    
     func setup() {
         
         backgroundColor = bgColor
@@ -101,7 +114,6 @@ class PasswordField: UIControl {
         mediumView.layer.cornerRadius = colorViewSize.height/2
         strongView.layer.cornerRadius = colorViewSize.height/2
         
-        
         let stackView = UIStackView(arrangedSubviews: [weakView, mediumView, strongView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillEqually
@@ -116,6 +128,8 @@ class PasswordField: UIControl {
             stackView.heightAnchor.constraint(equalToConstant: colorViewSize.height)
         ])
         
+        
+        // Setup strength label
         addSubview(strengthDescriptionLabel)
         strengthDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         strengthDescriptionLabel.adjustsFontSizeToFitWidth = true
@@ -137,19 +151,10 @@ class PasswordField: UIControl {
              textField.isSecureTextEntry = false
         }
     }
-    
-     override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setup()
-    }
 }
 
 
+// MARK: - UITextFieldDelegate
 extension PasswordField: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
