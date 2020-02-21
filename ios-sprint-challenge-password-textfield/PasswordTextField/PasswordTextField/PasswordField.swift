@@ -28,8 +28,12 @@ class PasswordField: UIControl {
     
     // Public API - these properties are used to fetch the final password and strength values
     private (set) var password: String = ""
-    private var  isShowed: Bool = false
-    private var strenght: Strenght = .weak
+    private var isShowed: Bool = false
+    var strenght: Strenght = .weak {
+        didSet {
+            updateStrenghtLabel()
+        }
+    }
     
     private let standardMargin: CGFloat = 8.0
     private let textFieldContainerHeight: CGFloat = 50.0
@@ -162,6 +166,10 @@ class PasswordField: UIControl {
             showHideButton.setImage(UIImage(named: "eyes-open"), for: .normal)
         }
     }
+    
+    func updateStrenghtLabel() {
+        strengthDescriptionLabel.text = strenght.description
+    }
 }
 
 
@@ -174,7 +182,6 @@ extension PasswordField: UITextFieldDelegate {
         let newText = oldText.replacingCharacters(in: stringRange, with: string)
         // TODO: send new text to the determine strength method
         verifyStrenght(for: newText)
-        strengthDescriptionLabel.text = strenght.description
         return true
     }
     
@@ -195,10 +202,15 @@ extension PasswordField: UITextFieldDelegate {
         switch text.count {
         case 0...9:
             strenght = .weak
+            weakView.backgroundColor = weakColor
+            mediumView.backgroundColor = unusedColor
         case 10...19:
             strenght = .medium
+            mediumView.backgroundColor = mediumColor
+            strongView.backgroundColor = unusedColor
         case 20...:
             strenght = .strong
+            strongView.backgroundColor = strongColor
         default:
             break
         }
