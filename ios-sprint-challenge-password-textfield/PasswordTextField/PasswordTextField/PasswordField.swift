@@ -1,62 +1,112 @@
 //
-//  PasswordField.swift
-//  PasswordTextField
+//  CustomControl.swift
+//  Stars
 //
-//  Created by Ben Gohlke on 6/26/19.
-//  Copyright © 2019 Lambda School. All rights reserved.
+//  Created by Kerby Jean on 2/20/20.
+//  Copyright © 2020 Kerby Jean. All rights reserved.
 //
 
 import UIKit
 
-class PasswordField: UIControl {
+
+
+@IBDesignable
+class CustomControl: UIControl {
     
-    // Public API - these properties are used to fetch the final password and strength values
-    private (set) var password: String = ""
     
-    private let standardMargin: CGFloat = 8.0
-    private let textFieldContainerHeight: CGFloat = 50.0
-    private let textFieldMargin: CGFloat = 6.0
-    private let colorViewSize: CGSize = CGSize(width: 60.0, height: 5.0)
+    private let componentDimension: CGFloat = 40.0
+    private let componentCount = 5
+    private let componentActiveColor = UIColor.black
+    private let componentInactiveColor = UIColor.gray
     
-    private let labelTextColor = UIColor(hue: 233.0/360.0, saturation: 16/100.0, brightness: 41/100.0, alpha: 1)
-    private let labelFont = UIFont.systemFont(ofSize: 14.0, weight: .semibold)
-    
-    private let textFieldBorderColor = UIColor(hue: 208/360.0, saturation: 80/100.0, brightness: 94/100.0, alpha: 1)
-    private let bgColor = UIColor(hue: 0, saturation: 0, brightness: 97/100.0, alpha: 1)
-    
-    // States of the password strength indicators
-    private let unusedColor = UIColor(hue: 210/360.0, saturation: 5/100.0, brightness: 86/100.0, alpha: 1)
-    private let weakColor = UIColor(hue: 0/360, saturation: 60/100.0, brightness: 90/100.0, alpha: 1)
-    private let mediumColor = UIColor(hue: 39/360.0, saturation: 60/100.0, brightness: 90/100.0, alpha: 1)
-    private let strongColor = UIColor(hue: 132/360.0, saturation: 60/100.0, brightness: 75/100.0, alpha: 1)
-    
-    private var titleLabel: UILabel = UILabel()
-    private var textField: UITextField = UITextField()
-    private var showHideButton: UIButton = UIButton()
-    private var weakView: UIView = UIView()
-    private var mediumView: UIView = UIView()
-    private var strongView: UIView = UIView()
-    private var strengthDescriptionLabel: UILabel = UILabel()
-    
-    func setup() {
-        // Lay out your subviews here
-        
-        addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+    override var intrinsicContentSize: CGSize {
+      let componentsWidth = CGFloat(componentCount) * componentDimension
+      let componentsSpacing = CGFloat(componentCount + 1) * 8.0
+      let width = componentsWidth + componentsSpacing
+      return CGSize(width: width, height: componentDimension)
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    
+    var value: Int = 1
+    var labels = [UILabel]()
+
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setup()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setup()
+    }
+    
+    
+    private func setup() {
+        
+        backgroundColor = .clear
+        
+        for x in 1...5 {
+            let label = UILabel(frame: CGRect(x: componentDimension + CGFloat(30 * x), y: 0, width: componentDimension, height: componentDimension))
+            label.tag = x
+            label.font = UIFont.boldSystemFont(ofSize: 32.0)
+            label.text = "☆"
+            label.textAlignment = .center
+            label.textColor = componentInactiveColor
+            labels.append(label)
+            addSubview(label)
+        }
+    }
+    
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        updateValue(at: touch)
+        return true
+    }
+    
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        let touchLocation = touch.location(in: self)
+        if self.bounds.contains(touchLocation) {
+            updateValue(at: touch)
+            sendActions(for: [.touchDragInside, .touchDragOutside])
+        }
+        return true
+    }
+    
+    override func cancelTracking(with event: UIEvent?) {
+        sendActions(for: .touchCancel)
+    }
+    
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        if let touch = touch?.location(in: self) {
+            if self.bounds.contains(touch) {
+                sendActions(for: [.touchUpInside, .touchUpOutside])
+            }
+        }
+    }
+    
+    func updateValue(at touch: UITouch) {
+        for label in labels {
+            let touch = touch.location(in: label)
+            if bounds.contains(touch) {
+                value = label.tag
+                label.textColor = componentActiveColor
+                label.performFlare()
+                sendActions(for: .valueChanged)
+            } else {
+                label.textColor = componentInactiveColor
+            }
+        }
     }
 }
 
-extension PasswordField: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let oldText = textField.text!
-        let stringRange = Range(range, in: oldText)!
-        let newText = oldText.replacingCharacters(in: stringRange, with: string)
-        // TODO: send new text to the determine strength method
-        return true
-    }
+
+extension UIView {
+  // "Flare view" animation sequence
+  func performFlare() {
+    func flare()   { transform = CGAffineTransform(scaleX: 1.6, y: 1.6) }
+    func unflare() { transform = .identity }
+    
+    UIView.animate(withDuration: 0.3, animations: { flare() }, completion: { _ in UIView.animate(withDuration: 0.1) { unflare() }})
+  }
 }
+

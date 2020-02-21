@@ -27,4 +27,11 @@ class ViewController: UIViewController {
 //        let referenceVC = UIReferenceLibraryViewController(term: str)
 //        present(referenceVC, animated: true, completion: nil)
 //    }
+    
+
+//    @IBAction func editingBegin(_ sender: PasswordField) {
+//        print("Editing")
+//
+//    }
+    
 }
