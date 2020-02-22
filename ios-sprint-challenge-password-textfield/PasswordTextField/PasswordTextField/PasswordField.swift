@@ -29,11 +29,8 @@ class PasswordField: UIControl {
     // Public API - these properties are used to fetch the final password and strength values
     private (set) var password: String = ""
     private var isShowed: Bool = false
-    var strenght: Strenght = .weak {
-        didSet {
-            updateStrenghtLabel()
-        }
-    }
+    var strenght: Strenght = .weak
+    
     
     private let standardMargin: CGFloat = 8.0
     private let textFieldContainerHeight: CGFloat = 50.0
@@ -168,7 +165,17 @@ class PasswordField: UIControl {
     }
     
     func updateStrenghtLabel() {
-        strengthDescriptionLabel.text = strenght.description
+
+        if UIReferenceLibraryViewController.dictionaryHasDefinition(forTerm: password) {
+            switch strenght {
+            case .medium:
+                strenght = .weak
+            case .strong:
+                strenght = .medium
+            case .weak:
+                strenght = .weak
+            }
+        }
     }
 }
 
@@ -188,6 +195,7 @@ extension PasswordField: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         sendActions(for: .valueChanged)
+        updateStrenghtLabel()
         return true
     }
     
@@ -214,5 +222,7 @@ extension PasswordField: UITextFieldDelegate {
         default:
             break
         }
+        
+         strengthDescriptionLabel.text = strenght.description
     }
 }

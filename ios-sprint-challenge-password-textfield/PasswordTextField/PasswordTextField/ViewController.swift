@@ -24,22 +24,11 @@ class ViewController: UIViewController {
 
         // Uncomment this portion to set up the dictionary
 //        let str = "lambda"
-
+        
     }
     
     
     @IBAction func valueChanged(_ sender: PasswordField) {
         print(sender.password)
-        let referenceVC = UIReferenceLibraryViewController(term: sender.password)
-        present(referenceVC, animated: true) {
-            switch sender.strenght {
-            case .medium:
-                sender.strenght = .weak
-            case .strong:
-                sender.strenght = .medium
-            case .weak:
-                sender.strenght = .weak
-            }
-        }
     }
 }
